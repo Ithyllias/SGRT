@@ -10,24 +10,26 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group([], function(){
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('billes', ['as' => 'billes', function () {
+        return view('billes');
+    }]);
+    Route::get('gestion', ['as' => 'gestion', function () {
+        return view('gestion');
+    }]);
+    Route::get('changeLang/{locale}', function ($locale) {
+        return redirect()->back()->with('newLang', $locale);
+    });
 
-Route::get('/', function () {
-    return view('welcome');
+    // Group for choix routes
+    Route::group([], function() {
+        Route::any('choix', ['as' => 'choix', function () {
+            return view('choix');
+        }]);
+        Route::get('choix/getTasks', 'ChoixService@getTasks');
+        Route::get('choix/submit/{ensId}{a}/{b}/{c}/{d}/{e}', 'ChoixService@submitChoix');
+    });
 });
-Route::any('choix', ['as' => 'choix', function () {
-    return view('choix');
-}]);
-Route::get('billes', ['as' => 'billes', function () {
-    return view('billes');
-}]);
-Route::get('gestion', ['as' => 'gestion', function () {
-    return view('gestion');
-}]);
-Route::get('changeLang/{locale}', function ($locale) {
-    return redirect()->back()->with('newLang', $locale);
-});
-Route::get('choix/getTasks', 'ChoixService@getTasks');
-Route::get('choix/test', function(){
-    return "test";
-});
-Route::get('test', 'ChoixService@getTasks');

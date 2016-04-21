@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
@@ -11,8 +10,12 @@ class ChoixService extends Controller
 {
     //
     function getTasks(){
-        $courses = DB::select('SELECT cou_no, cou_titre FROM cours_cou');
+        $courses = DB::table('cours_cou')->select('cou_no')->addSelect('cou_titre')->get();
 
         return response()->json($courses)->header('Access-Control-Allow-Origin', '*');
+    }
+
+    function submit($ensId, $a, $b, $c, $d, $e){
+
     }
 }
