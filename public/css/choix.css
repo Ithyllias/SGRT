@@ -1,0 +1,27 @@
+
+table{
+    margin: 0px auto;
+}
+
+.elements{
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+p{
+    display: inline-block;
+    font-size: 30px;
+    margin-top: 2px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+#fixer{
+    position: fixed;
+    margin-left: 100px;
+    border: 1px solid black;
+    height: 150px;
+    width:200px;
+}
