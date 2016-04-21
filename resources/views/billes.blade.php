@@ -1,3 +1,4 @@
+@include("init");
 
 @extends('master')
 

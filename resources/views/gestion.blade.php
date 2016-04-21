@@ -1,9 +1,5 @@
-<?php
-    $lang = Session::get('newLang');
-    if(isset($lang)){
-        App::setLocale($lang);
-    }
-?>
+@include("init");
+
 @extends('master')
 
 @section('content')
