@@ -1,11 +1,44 @@
-@include("init");
+@include("init")
 
 <link href="{{ URL::asset('css/choix.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script src="{{ URL::asset('js/choix.js') }}" type="text/javascript"></script>
 @extends('master')
 <?php
     $courses = json_decode(file_get_contents(url('choix/getTasks')));
+if(sizeof($_POST) > 0)
+{
+    $enseignantID = 1;
+    $No1;
+    $No2;
+    $No3;
+    $No4;
+    $No5;
 
+    foreach ($_POST as $key => $value){
+        if($value == 1)
+        {
+            $No1 = $key;
+        }
+        elseif ($value == 2)
+        {
+            $No2 = $key;
+        }
+        elseif ($value == 3)
+        {
+            $No3 = $key;
+        }
+        elseif ($value == 4)
+        {
+            $No4 = $key;
+        }
+        elseif ($value == 5)
+        {
+            $No5 = $key;
+        }
+    }
+
+    $worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+}
 ?>
 @section('content')
     <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
@@ -16,14 +49,16 @@
         <p id="4" draggable="true" ondragstart="drag(event)">&nbsp;4&nbsp;</p>
         <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
     </div>
-        <form action="action_page.php">
+        <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix')?>">
+            {{ csrf_field() }}
             <h1><?=trans('choix.listC')?></h1>
             <table>
                 <?php foreach ($courses as $c): ?>
                     <tr>
-                        <td><?php echo $c->cou_no . $c->cou_titre; ?>:</td>
+                        <td><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                         <td>
-                            <div class="elements" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div id="<?php echo $c->cou_no; ?>" class="elements" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <input type="text" value="" name="<?php echo $c->cou_no; ?>"  hidden readonly/>
                         </td>
                     </tr>
                     <?php endforeach; ?>
