@@ -4,5 +4,6 @@ return [
 
     'listC' => 'Courses List:',
     'priorities' => 'Priorities',
-    'bouton' => 'Submit'
+    'bouton' => 'Submit',
+    'Alexis' => 'MASTER '
 ];
