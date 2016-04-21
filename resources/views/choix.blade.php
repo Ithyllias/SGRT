@@ -9,7 +9,7 @@
 ?>
 @section('content')
     <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
-        <h1>Priorités</h1>
+        <h1><?=trans('choix.priorities')?></h1>
         <p id="1" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
         <p id="2" draggable="true" ondragstart="drag(event)">&nbsp;2&nbsp;</p>
         <p id="3" draggable="true" ondragstart="drag(event)">&nbsp;3&nbsp;</p>
@@ -17,7 +17,7 @@
         <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
     </div>
         <form action="action_page.php">
-            <h1>Liste des cours:</h1>
+            <h1><?=trans('choix.listC')?></h1>
             <table>
                 <?php foreach ($courses as $c): ?>
                     <tr>
@@ -29,6 +29,6 @@
                     <?php endforeach; ?>
             </table>
             <br/>
-            <input type="submit" value="Soumettre">
+            <input type="submit" value="<?=trans('choix.bouton')?>">
         </form>
 @endsection
