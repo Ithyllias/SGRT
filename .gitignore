@@ -4,3 +4,8 @@
 Homestead.yaml
 Homestead.json
 .env
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
