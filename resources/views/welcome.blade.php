@@ -13,10 +13,10 @@
     <br/>
     <form action="">
         <?=trans('home.email')?><br/>
-        <input type="text" name="username" value=""><br/>
+        <input id="usrname" type="text" name="username" value=""><br/>
         <br>
             <?=trans('home.password')?><br>
-        <input type="text" name="password" value=""><br/><br/>
+        <input id="pwd" type="password" name="password" value=""><br/><br/>
         <input type="submit" value="<?=trans('home.connect')?>">
     </form>
 @endsection
