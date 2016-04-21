@@ -11,9 +11,11 @@
 |
 */
 Route::group([], function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'LdapAuthController@getLogin');
+    Route::post('/login', 'LdapAuthController@postLogin');
+    Route::get('/home', ['as' => 'home', function () {
+        return view('home');
+    }]);
     Route::get('billes', ['as' => 'billes', function () {
         return view('billes');
     }]);
@@ -33,3 +35,5 @@ Route::group([], function(){
         Route::get('choix/submit/{ensId}{a}/{b}/{c}/{d}/{e}', 'ChoixService@submitChoix');
     });
 });
+
+
