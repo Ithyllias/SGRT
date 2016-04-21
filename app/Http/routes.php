@@ -30,3 +30,4 @@ Route::get('choix/getTasks', 'ChoixService@getTasks');
 Route::get('choix/test', function(){
     return "test";
 });
+Route::get('test', 'ChoixService@getTasks');
