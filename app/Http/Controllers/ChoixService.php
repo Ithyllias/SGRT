@@ -16,6 +16,32 @@ class ChoixService extends Controller
     }
 
     function submit($ensId, $a, $b, $c, $d, $e){
-
+        DB::table('choix_chx')->insert([
+            [
+                'chx_priorite' => 1,
+                'chx_cdn_id' => $a,
+                'chx_ens_id' => $ensId
+            ],
+            [
+                'chx_priorite' => 2,
+                'chx_cdn_id' => $b,
+                'chx_ens_id' => $ensId
+            ],
+            [
+                'chx_priorite' => 3,
+                'chx_cdn_id' => $c,
+                'chx_ens_id' => $ensId
+            ],
+            [
+                'chx_priorite' => 4,
+                'chx_cdn_id' => $d,
+                'chx_ens_id' => $ensId
+            ],
+            [
+                'chx_priorite' => 5,
+                'chx_cdn_id' => $e,
+                'chx_ens_id' => $ensId
+            ],
+        ]);
     }
 }
