@@ -16,7 +16,7 @@ class ChoixService extends Controller
     }
 
     function submit($ensId, $a, $b, $c, $d, $e){
-        DB::table('choix_chx')->insert([
+        $response = DB::table('choix_chx')->insert([
             [
                 'chx_priorite' => 1,
                 'chx_cdn_id' => $a,
@@ -41,7 +41,13 @@ class ChoixService extends Controller
                 'chx_priorite' => 5,
                 'chx_cdn_id' => $e,
                 'chx_ens_id' => $ensId
-            ],
+            ]
         ]);
+
+        return $response;
+    }
+
+    function test(){
+
     }
 }

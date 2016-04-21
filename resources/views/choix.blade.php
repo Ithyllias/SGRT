@@ -8,11 +8,6 @@
 if(sizeof($_POST) > 0)
 {
     $enseignantID = 1;
-    $No1;
-    $No2;
-    $No3;
-    $No4;
-    $No5;
 
     foreach ($_POST as $key => $value){
         if($value == 1)
@@ -38,6 +33,7 @@ if(sizeof($_POST) > 0)
     }
 
     $worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+    var_dump($worked);
 }
 ?>
 @section('content')
