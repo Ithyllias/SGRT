@@ -33,5 +33,7 @@ Route::group([], function(){
         }]);
         Route::get('choix/getTasks', 'ChoixService@getTasks');
         Route::post('choix/submit', 'ChoixService@submit');
+        Route::post('choix/choixStatus', 'ChoixService@choixStatus');
+        Route::post('choix/test', 'ChoixService@choixStatus');
     });
 });
