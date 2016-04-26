@@ -45,7 +45,18 @@ if(sizeof($_POST) > 0)
     }
     else
     {
-        //$worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+        $worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+
+        echo '<script language="javascript">';
+        if($worked == true)
+        {
+            echo 'alert("' . trans('choix.work') . '")';
+        }
+        else
+        {
+            echo 'alert("' . trans('choix.notWork') . '")';
+        }
+        echo '</script>';
     }
 
 }
@@ -74,6 +85,6 @@ if(sizeof($_POST) > 0)
                     <?php endforeach; ?>
             </table>
             <br/>
-            <input type="submit" value="<?=trans('choix.bouton')?>">
+            <input type="submit" onclick="return confirm('<?=trans('choix.confirm')?>')" value="<?=trans('choix.bouton')?>">
         </form>
 @endsection
