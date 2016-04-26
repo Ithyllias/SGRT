@@ -26,7 +26,7 @@ p{
     width:200px;
 }
 
-td{
+.cours{
     width: 600px;
     overflow: hidden;
     white-space: nowrap;

@@ -69,7 +69,7 @@
                 echo '<script language="javascript">';
                 if($worked == true)
                 {
-                    echo 'alert("' . trans('choix.work') . '")';
+                    redirect(url("choix"));
                 }
                 else
                 {
@@ -81,6 +81,7 @@
      }
      else
      {
+
          $url = url('choix/getChoix/');
          $data = [
                  'ensId' => $enseignantID
@@ -122,9 +123,13 @@
     <br/>
     <br/>
         <table>
+            <tr>
+                <th>Cours</th>
+                <th>Priorités</th>
+            </tr>
             <?php foreach ($tacheEns as $tache): ?>
                 <tr>
-                    <td><?php echo $tache->cou_no . " " . $tache->cou_titre; ?>:</td>
+                    <td class="cours"><?php echo $tache->cou_no . " " . $tache->cou_titre; ?>:</td>
                     <td>
                         <?php echo $tache->chx_priorite; ?>
                     </td>
