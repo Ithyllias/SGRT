@@ -64,7 +64,7 @@ class ChoixService extends Controller
         $newestTache = DB::table('tache_tac')->max('tac_id');
 
         return response()->json(DB::table('choix_chx')
-            ->select(DB::raw('count(*)=5'))
+            ->select(DB::raw('count(*)=5 as choixFait'))
             ->addSelect('tac_annee')
             ->join('cours_donne_cdn', 'cdn_id', '=', 'chx_cdn_id')
             ->join('tache_tac', 'tac_id', '=', 'cdn_tac_id')
