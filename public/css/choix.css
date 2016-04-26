@@ -25,3 +25,19 @@ p{
     height: 150px;
     width:200px;
 }
+
+td{
+    width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+}
+
+tr{
+    text-align: center;
+}
+
+table{
+    font-size: 18px;
+    font-weight: bold;
+}
