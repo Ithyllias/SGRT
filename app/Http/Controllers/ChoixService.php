@@ -22,7 +22,7 @@ class ChoixService extends Controller
 
     function getChoix(){
         $ensId = request()->input('ensId');
-        $maxId = DB::table('tache_tac')->max('tac_id')->get();
+        $maxId = DB::table('tache_tac')->max('tac_id');
 
         $courses = DB::table('choix_chx')
             ->select('chx_priorite')
