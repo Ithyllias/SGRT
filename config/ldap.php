@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'suffix' => '@dns.example.local',
+    'suffix' => '@cegeplimoilou.lan',
 
     /*
     |--------------------------------------------------
@@ -14,8 +14,11 @@ return [
     |
     */
     'domain_controller' => [
-        'dns.example.local',
-        'dns-2.example.local'
+        'SV01-DC01-2.cegeplimoilou.lan',
+        'SV01-DC01-3.cegeplimoilou.lan',
+        'SV01-RODC01.cegeplimoilou.lan',
+        'SV10-DC03.cegeplimoilou.lan',
+        'SV10-DC04.cegeplimoilou.lan'
     ],
 
     /*
@@ -30,7 +33,7 @@ return [
     | It's highly recommended to include it to limit queries executed per request.
     |
     */
-    'base_dn' => 'OU=People,DC=dns,DC=example,DC=local',
+    'base_dn' => 'CN=Domain Users,CN=Users,DC=cegeplimoilou,DC=lan',
 
     /*
     |--------------------------------------------------
@@ -82,7 +85,7 @@ return [
     | securely. Ensure that only one option can be true. The other one must be false.
     |
     */
-    'ssl' => false,
+    'ssl' => true,
     'tls' => false,
 
     /*
