@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'www.info.climoilou.qc.ca'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', '420-669-e16-02'),
-            'username' => env('DB_USERNAME', '1261669'),
-            'password' => env('DB_PASSWORD', 'DEMA17079205'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

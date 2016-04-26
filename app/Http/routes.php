@@ -32,6 +32,6 @@ Route::group([], function(){
             return view('choix');
         }]);
         Route::get('choix/getTasks', 'ChoixService@getTasks');
-        Route::get('choix/submit/{ensId}/{a}/{b}/{c}/{d}/{e}', 'ChoixService@submit');
+        Route::post('choix/submit', 'ChoixService@submit');
     });
 });
