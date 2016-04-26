@@ -33,7 +33,10 @@ Route::group([], function(){
             return view('choix');
         }]);
         Route::get('choix/getTasks', 'ChoixService@getTasks');
-        Route::post('choix/submit/{ensId}/{a}/{b}/{c}/{d}/{e}', 'ChoixService@submitChoix');
+        Route::post('choix/getChoix', 'ChoixService@getChoix');
+        Route::post('choix/choixStatus', 'ChoixService@choixStatus');
+        Route::post('choix/submit', 'ChoixService@submit');
+        Route::post('choix/test', 'ChoixService@getChoix');
     });
     Route::group(['prefix' => 'api'], function(){
         Route::post('authenticate', 'AuthenticateController@authenticate');
