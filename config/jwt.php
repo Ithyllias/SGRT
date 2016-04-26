@@ -15,7 +15,7 @@ return [
     | A helper command is provided for this: `php artisan jwt:generate`
     |
     */
-    'secret' => env('JWT_SECRET', 'qgfFreZRG8cjlKvJqVohsrktdeMJEhk5'),
+    'secret' => env('JWT_SECRET', 'r3iBPCqKZbJyeP1t1TEol5gbh91hWQFa'),
     /*
     |--------------------------------------------------------------------------
     | JWT time to live
@@ -59,7 +59,7 @@ return [
     | e.g. 'Acme\Entities\User'
     |
     */
-    'user' => 'App\User',
+    'user' => 'Krenor\LdapAuth\Objects\LdapUser',
     /*
     |--------------------------------------------------------------------------
     | User identifier

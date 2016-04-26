@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::group([], function(){
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
@@ -33,5 +34,8 @@ Route::group([], function(){
         }]);
         Route::get('choix/getTasks', 'ChoixService@getTasks');
         Route::post('choix/submit/{ensId}/{a}/{b}/{c}/{d}/{e}', 'ChoixService@submitChoix');
+    });
+    Route::group(['prefix' => 'api'], function(){
+        Route::post('authenticate', 'AuthenticateController@authenticate');
     });
 });

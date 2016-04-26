@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'suffix' => '@cegeplimoilou.lan',
+    'suffix' => '@Info01.local',
 
     /*
     |--------------------------------------------------
@@ -14,11 +14,7 @@ return [
     |
     */
     'domain_controller' => [
-        'SV01-DC01-2.cegeplimoilou.lan',
-        'SV01-DC01-3.cegeplimoilou.lan',
-        'SV01-RODC01.cegeplimoilou.lan',
-        'SV10-DC03.cegeplimoilou.lan',
-        'SV10-DC04.cegeplimoilou.lan'
+        'SV01-DCINFO01.Info01.local'
     ],
 
     /*
@@ -33,7 +29,7 @@ return [
     | It's highly recommended to include it to limit queries executed per request.
     |
     */
-    'base_dn' => 'CN=Domain Users,CN=Users,DC=cegeplimoilou,DC=lan',
+    'base_dn' => 'CN=Users,DC=info01,DC=local',
 
     /*
     |--------------------------------------------------
@@ -57,9 +53,7 @@ return [
     |
     */
     'search_fields' => [
-        'samaccountname',
-        'displayname',
-        'memberof'
+        'samaccountname'
     ],
     
     /*
@@ -85,7 +79,7 @@ return [
     | securely. Ensure that only one option can be true. The other one must be false.
     |
     */
-    'ssl' => true,
+    'ssl' => false,
     'tls' => false,
 
     /*
@@ -99,6 +93,6 @@ return [
     | these permissions to prevent anonymous bindings.
     |
     */
-    'admin_user' => 'admin',
-    'admin_pass' => 'admin',
+    'admin_user' => 'etudiant-tp325',
+    'admin_pass' => 'Jujube325',
 ];
