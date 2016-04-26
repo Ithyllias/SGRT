@@ -4,5 +4,6 @@ return [
 
     'listC' => 'Liste des cours:',
     'priorities' => 'Priorités',
-    'bouton' => 'Soumettre'
+    'bouton' => 'Soumettre',
+    'error' => 'Veuillez placer toutes vos priorités.'
 ];

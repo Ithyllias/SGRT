@@ -8,36 +8,46 @@
 if(sizeof($_POST) > 0)
 {
     $enseignantID = 1;
-    $No1;
-    $No2;
-    $No3;
-    $No4;
-    $No5;
+    $No1 = "";
+    $No2 = "";
+    $No3 = "";
+    $No4 = "";
+    $No5 = "";
 
     foreach ($_POST as $key => $value){
-        if($value == 1)
-        {
-            $No1 = $key;
-        }
-        elseif ($value == 2)
-        {
-            $No2 = $key;
-        }
-        elseif ($value == 3)
-        {
-            $No3 = $key;
-        }
-        elseif ($value == 4)
-        {
-            $No4 = $key;
-        }
-        elseif ($value == 5)
-        {
-            $No5 = $key;
+        $key = str_replace("-", "::", $key);
+
+        switch ($value) {
+            case 1:
+                $No1 = $key;
+                break;
+            case 2:
+                $No2 = $key;
+                break;
+            case 3:
+                $No3 = $key;
+                break;
+            case 4:
+                $No4 = $key;
+                break;
+            case 5:
+                $No5 = $key;
+                break;
         }
     }
 
-    $worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+
+    if(strlen($No1) == 0 || strlen($No2) == 0 || strlen($No3) == 0 || strlen($No4) == 0 || strlen($No5) == 0)
+    {
+        echo '<script language="javascript">';
+        echo 'alert("' . trans('choix.error') . '")';
+        echo '</script>';
+    }
+    else
+    {
+        //$worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+    }
+
 }
 ?>
 @section('content')
