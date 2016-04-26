@@ -15,8 +15,6 @@ if(sizeof($_POST) > 0)
     $No5 = "";
 
     foreach ($_POST as $key => $value){
-        $key = str_replace("-", "::", $key);
-
         switch ($value) {
             case 1:
                 $No1 = $key;
@@ -36,7 +34,6 @@ if(sizeof($_POST) > 0)
         }
     }
 
-
     if(strlen($No1) == 0 || strlen($No2) == 0 || strlen($No3) == 0 || strlen($No4) == 0 || strlen($No5) == 0)
     {
         echo '<script language="javascript">';
@@ -45,7 +42,26 @@ if(sizeof($_POST) > 0)
     }
     else
     {
-        $worked = file_get_contents(url('choix/submit/'. $enseignantID . "/" . $No1 . "/" . $No2 . "/" . $No3 . "/" . $No4 . "/" . $No5 ));
+        $url = url('choix/submit/');
+        $data = [
+                'ensId' => $enseignantID,
+                'values' => [
+                        'a' => $No1,
+                        'b' => $No2,
+                        'c' => $No3,
+                        'd' => $No4,
+                        'e' => $No5
+                ]
+        ];
+        $field_string = http_build_query($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $field_string);
+        $worked = curl_exec($ch);
+        curl_close($ch);
 
         echo '<script language="javascript">';
         if($worked == true)
@@ -58,7 +74,6 @@ if(sizeof($_POST) > 0)
         }
         echo '</script>';
     }
-
 }
 ?>
 @section('content')
@@ -78,8 +93,8 @@ if(sizeof($_POST) > 0)
                     <tr>
                         <td><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                         <td>
-                            <div id="<?php echo $c->cou_no; ?>" class="elements" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                            <input type="text" value="" name="<?php echo $c->cou_no; ?>"  hidden readonly/>
+                            <div id="<?php echo $c->cdn_id; ?>" class="elements" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <input type="text" value="" name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
                         </td>
                     </tr>
                     <?php endforeach; ?>
