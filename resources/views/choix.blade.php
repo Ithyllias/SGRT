@@ -65,16 +65,11 @@
                         ]
                 ];
                 $worked = curlCall($url,$data);
+                echo $worked;
 
                 echo '<script language="javascript">';
-                if($worked == true)
-                {
-                    redirect(url("choix"));
-                }
-                else
-                {
+                if($worked != true)
                     echo 'alert("' . trans('choix.notWork') . '")';
-                }
                 echo '</script>';
             }
         }

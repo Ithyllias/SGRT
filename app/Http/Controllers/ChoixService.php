@@ -56,7 +56,11 @@ class ChoixService extends Controller
 
         $response = DB::table('choix_chx')->insert($insertData);
 
-        return "" . $response;
+        if ($response == true) {
+            return redirect()->route('choix');
+        } else {
+            return "" . $response;
+        }
     }
 
     function choixStatus(){
