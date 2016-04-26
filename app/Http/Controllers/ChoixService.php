@@ -32,6 +32,7 @@ class ChoixService extends Controller
             ->join('cours_cou', 'cou_no', '=', 'cdn_cou_no')
             ->where('chx_ens_id', '=', $ensId)
             ->where('cdn_tac_id', '=', $maxId)
+            ->orderBy('chx_priorite')
             ->get();
 
         return response()->json($courses)->header('Access-Control-Allow-Origin', '*');
