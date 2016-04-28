@@ -6,7 +6,13 @@
         App::setLocale($lang);
     }
 
-    function curlCall($url, $data){
+    /**
+     * @param $url String Url to call
+     * @param array $data Array Data to send in the POST
+     * @param array $headers Array Headers to add to the post call (array('Header: value', 'Header2: value2',...)
+     * @return mixed Data returned by the post call
+     */
+    function curlCall($url, $data = [], $headers = []){
         $field_string = http_build_query($data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
@@ -14,6 +20,7 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $field_string);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $returnVal = curl_exec($ch);
         curl_close($ch);
         return $returnVal;
