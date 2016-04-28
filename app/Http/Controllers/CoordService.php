@@ -21,12 +21,10 @@ class CoordService extends Controller
             'ens_coordonateur' => intval(request()->input('ens_coordonateur'))
         ];
 
-        $ensId = DB::table('enseignant_ens')
-            ->select('ens_id')
-            ->where('ens_alias', '=', $ens['ens_alias'])
-            ->get();
+        
+        $ensId = App\Enseignant::getId($ens['ens_alias']);
 
-        if(sizeOf($ensId) == 1 && $ensId[0]->ens_id > 0){
+        if($ensId > 0){
             $result = DB::table('enseignant_ens')
                 ->where('ens_id', '=', $ensId[0]->ens_id)
                 ->update($ens);
