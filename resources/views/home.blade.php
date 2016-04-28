@@ -14,5 +14,7 @@ $courses = json_decode(file_get_contents(url('choix/getTasks')));
 
 ?>
 @section('content')
-   INSERT NEWS PAGE HERE
+   <?php
+          curlCall(url('/choix'), array(), array('Authorization: Bearer '.Session::get('jwt')));
+   ?>
 @endsection

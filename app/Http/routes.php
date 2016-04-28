@@ -11,9 +11,7 @@
 |
 */
 
-Route::group([], function(){
-    Route::get('/', 'LdapAuthController@getLogin');
-    Route::post('/login', 'LdapAuthController@postLogin');
+Route::group(['middleware' => 'jwt.auth'], function(){
     Route::get('/home', ['as' => 'home', function () {
         return view('home');
     }]);
@@ -54,4 +52,8 @@ Route::group([], function(){
         Route::post('coord/addProf', 'CoordService@addProf');
         Route::post('coord/test', 'CoordService@test');
     });
+});
+Route::group([], function(){
+    Route::get('/', 'LdapAuthController@getLogin');
+    Route::post('/login', 'LdapAuthController@postLogin');
 });
