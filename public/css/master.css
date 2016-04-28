@@ -86,3 +86,8 @@ ul#menu li a:hover {
 .currentPage {
     background-color: darkblue;
 }
+
+.error{
+    color: red;
+    font-weight: bold;
+}

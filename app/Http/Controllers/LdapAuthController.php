@@ -37,9 +37,7 @@ class LdapAuthController extends Controller
             return redirect()->intended('/home');
         }
 
-        return redirect()->back()->withErrors(
-            'Username and/or Password are not matching!'
-        );
+        return redirect()->back()->with('error', 'Username and/or Password are not matching!');
     }
 
     /**

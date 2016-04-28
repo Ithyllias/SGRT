@@ -13,6 +13,7 @@
     <br/>
     <form action="<?=url('login')?>" method="post">
         {{ csrf_field() }}
+        <span class="error"><?=session('error'); ?></span></br></br>
         <?=trans('login.email')?><br/>
         <input id="email" type="text" name="username" value=""><br/>
         <br>
