@@ -24,6 +24,7 @@ p{
     border: 1px solid black;
     height: 150px;
     width:200px;
+    display: inline-block;
 }
 
 .cours{

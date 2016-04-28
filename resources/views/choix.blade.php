@@ -98,7 +98,7 @@
         </div>
             <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix')?>">
                 {{ csrf_field() }}
-                <h1><?=trans('choix.listC')?></h1>
+                <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
                 <table>
                     <?php foreach ($courses as $c): ?>
                         <tr>
