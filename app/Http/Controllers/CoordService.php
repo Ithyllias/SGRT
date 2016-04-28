@@ -12,7 +12,6 @@ use App\Http\Requests;
 class CoordService extends Controller
 {
     function addProf(){
-        DB::enableQueryLog();
         $ens = [
             'ens_login' => request()->input('ens_login'),
             'ens_alias' => request()->input('ens_alias'),
@@ -21,23 +20,11 @@ class CoordService extends Controller
             'ens_coordonateur' => intval(request()->input('ens_coordonateur'))
         ];
 
-        
-        $ensId = App\Enseignant::getId($ens['ens_alias']);
-
-        if($ensId > 0){
-            $result = DB::table('enseignant_ens')
-                ->where('ens_id', '=', $ensId[0]->ens_id)
-                ->update($ens);
-        } else {
-            $result = DB::table('enseignant_ens')
-                ->insert($ens);
-        }
-        DB::disableQueryLog();
-        return response()->json(DB::getQueryLog());
+        return response()->json("LOL");
     }
 
     //
     function test(){
-        return response()->json(App\Enseignant::getId('ml'));
+        return response()->json(App\Enseignant::getIdFromLogin('robert.aube'));
     }
 }

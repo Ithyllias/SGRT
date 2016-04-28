@@ -12,22 +12,21 @@ class Enseignant extends Model
     //
 
     /**
-     * @param $alias Alias to fetch the ID from
+     * @param $alias String Alias to fetch the ID from
      * @return mixed The actual id in the table
      */
     public static function getIdFromAlias($alias){
-        return Enseignant::where('ens_alias', '=', $alias)->first()->ens_id;
+        return Enseignant::where('ens_alias', '=', $alias)->firstOrFail()->ens_id;
     }
 
     /**
-     * @param $login Login to fetch the ID from
+     * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table
      */
     public static function getIdFromLogin($login){
-        return Enseignant::where('ens_login', '=', $login)->first()->ens_id;
+        return Enseignant::where('ens_login', '=', $login)->firstOrFail()->ens_id;
     }
 
     public static function addOrUpdate($id, $data){
-        $ens = Enseignant::find($id);
     }
 }
