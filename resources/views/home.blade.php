@@ -10,11 +10,9 @@
  * Date: 2016-04-21
  * Time: 12:00
  */
-$courses = json_decode(file_get_contents(url('choix/getTasks')));
 
 ?>
 @section('content')
    <?php
-          curlCall(url('/choix'), array(), array('Authorization: Bearer '.Session::get('jwt')));
    ?>
 @endsection

@@ -12,9 +12,7 @@
 */
 
 Route::group(['middleware' => 'jwt.auth'], function(){
-    Route::get('/home', ['as' => 'home', function () {
-        return view('home');
-    }]);
+
     Route::get('gestion', ['as' => 'gestion', function () {
         return view('gestion');
     }]);
@@ -54,6 +52,9 @@ Route::group(['middleware' => 'jwt.auth'], function(){
     });
 });
 Route::group([], function(){
+    Route::get('/home', ['as' => 'home', function () {
+        return view('home');
+    }]);
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
 });
