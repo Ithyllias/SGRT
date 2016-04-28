@@ -15,7 +15,6 @@
     {
 
         $courses = json_decode(file_get_contents(url('choix/getTasks')));
-
         if(sizeof($_POST) > 0)
         {
 
@@ -98,14 +97,14 @@
         </div>
             <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix')?>">
                 {{ csrf_field() }}
-                <h1><?=trans('choix.listC')?></h1>
+                <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
                 <table>
                     <?php foreach ($courses as $c): ?>
                         <tr>
-                            <td><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
+                            <td class="cours"><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                             <td>
-                                <div id="<?php echo $c->cdn_id; ?>" class="elements" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                <input type="text" value="" name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
+                                <div id="<?php echo $c->cou_no; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                <input type="text" value="" name="<?php echo $c->cou_no; ?>"  hidden readonly/>
                             </td>
                         </tr>
                         <?php endforeach; ?>

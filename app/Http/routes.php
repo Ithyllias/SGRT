@@ -17,9 +17,6 @@ Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {
         return view('home');
     }]);
-    Route::get('billes', ['as' => 'billes', function () {
-        return view('billes');
-    }]);
     Route::get('gestion', ['as' => 'gestion', function () {
         return view('gestion');
     }]);
@@ -38,6 +35,26 @@ Route::group([], function(){
         Route::post('choix/submit', 'ChoixService@submit');
         Route::post('choix/test', 'ChoixService@getChoix');
     });
+
+    // Group for billes routes
+    Route::group([], function() {
+        Route::get('billes', ['as' => 'billes', function () {
+            return view('billes');
+        }]);
+        Route::post('billes/getBilles', 'BillesService@getBilles');
+        Route::post('billes/getProfs', 'BillesService@getProfs');
+        Route::post('billes/test', 'BillesService@test');
+    });
+
+    // Group for coordo routes
+    Route::group([], function() {
+        Route::get('coord', ['as' => 'coord', function () {
+            return view('coordo');
+        }]);
+        Route::post('coord/addProf', 'CoordService@addProf');
+        Route::post('coord/test', 'CoordService@test');
+    });
+
     Route::group(['prefix' => 'api'], function(){
         Route::post('/authenticate', 'AuthenticateController@authenticate');
     });
