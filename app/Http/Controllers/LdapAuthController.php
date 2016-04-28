@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enseignant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
@@ -36,9 +37,10 @@ class LdapAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $id = $this->getEnseignantId($request->input("username"));
+        $id = Enseignant::getIdFromLogin($request->input("username"));
+        $user = false;
 
-        if($id > -1){
+        if($id > 0){
             $user = auth()->attempt($request->only('username', 'password'));
         }
 
@@ -54,7 +56,7 @@ class LdapAuthController extends Controller
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
             //Redirect to indented page or fall back to index page
-            return redirect()->intended('/home');
+            return redirect()->intended('/home')->with("jwt", $token);
         }
 
         return redirect()->back()->with('error', 'Username and/or Password are not matching!');
@@ -71,16 +73,4 @@ class LdapAuthController extends Controller
 
         return redirect('/');
     }
-
-    private function getEnseignantId($login){
-        $result = DB::table('enseignant_ens')->select('ens_id')->where('ens_login', '=', $login)->get();
-        $retour = -1;
-
-        if(sizeof($result) == 1 && $result[0]->ens_id){
-            $retour = $result[0]->ens_id;
-        }
-
-        return $retour;
-    }
-
 }
