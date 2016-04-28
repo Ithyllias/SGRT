@@ -59,7 +59,7 @@ return [
     | e.g. 'Acme\Entities\User'
     |
     */
-    'user' => 'Krenor\LdapAuth\Objects\LdapUser',
+    'user' => 'App\User',
     /*
     |--------------------------------------------------------------------------
     | User identifier

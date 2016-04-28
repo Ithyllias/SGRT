@@ -39,6 +39,6 @@ Route::group([], function(){
         Route::post('choix/test', 'ChoixService@getChoix');
     });
     Route::group(['prefix' => 'api'], function(){
-        Route::post('authenticate', 'AuthenticateController@authenticate');
+        Route::post('/authenticate', 'AuthenticateController@authenticate');
     });
 });
