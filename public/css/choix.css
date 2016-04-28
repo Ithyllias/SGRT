@@ -21,6 +21,7 @@ p{
 #fixer{
     position: fixed;
     margin-left: 1050px;
+    margin-top: 75px;
     border: 1px solid black;
     height: 150px;
     width:200px;
