@@ -54,8 +54,4 @@ Route::group([], function(){
         Route::post('coord/addProf', 'CoordService@addProf');
         Route::post('coord/test', 'CoordService@test');
     });
-
-    Route::group(['prefix' => 'api'], function(){
-        Route::post('/authenticate', 'AuthenticateController@authenticate');
-    });
 });
