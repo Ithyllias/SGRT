@@ -50,7 +50,8 @@ Route::group([], function(){
         return view('home');
     }]);
     Route::get('changeLang/{locale}', function ($locale) {
-        return redirect()->back()->with('newLang', $locale);
+        Session::put('locale', $locale);
+        return redirect()->back();
     });
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');

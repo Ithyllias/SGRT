@@ -8,7 +8,15 @@
 </head>
 <body>
 <div id="header">
-    <a href="<?=url('changeLang/' . trans('master.nextLanguage'))?>" id="language"> <?=trans('master.nextLanguage')?></a>
+
+    <a href="<?=url('changeLang/' . trans('master.nextLanguage'))?>" class="hautDroit"> <?=trans('master.nextLanguage')?></a>
+    <?php if(Session::get("jwt") == null){
+        echo "<a href=" . url('/'). " class=" . "hautDroit" . "> " . trans('master.login') . " &nbsp&nbsp </a>'";
+    }
+    else{
+        echo "<a href=" . url('/logout') . " class=" . "hautDroit" . "> ". trans('master.logout') . " &nbsp&nbsp </a>";
+    }
+    ?>
     <div id="title">
         <a href="<?=url('/')?>"> <img src="{{ URL::asset('images/logo.jpg') }}"></a>
                 <span>
