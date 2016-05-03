@@ -27,6 +27,14 @@ class Enseignant extends Model
         return Enseignant::where('ens_login', '=', $login)->firstOrFail()->ens_id;
     }
 
+    /**
+     * @param $login String Login to fetch the ID from
+     * @return mixed The actual id in the table
+     */
+    public static function getLoginFromId($id){
+        return Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_login;
+    }
+
     public static function addOrUpdate($id, $data){
     }
 }
