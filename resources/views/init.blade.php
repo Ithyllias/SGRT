@@ -1,5 +1,23 @@
 <script src="{{ URL::asset('js/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ URL::asset('js/services.js') }}" type="text/javascript"></script>
+<script>
+    function gotoPost(url, data){
+        $.ajax({
+            url : url,
+            type : "POST",
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            data : JSON.stringify(data),
+            crossDomain : true,
+            beforesend : function(req){
+                req.setRequestHeader('Authorization', "bearer " + <?=Session::get('jwt')?> + "");
+            },
+            success : function(){
+
+            }
+        });
+    }
+</script>
 <?php
     $lang = Session::get('locale');
     if(isset($lang)){
