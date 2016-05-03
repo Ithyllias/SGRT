@@ -160,7 +160,7 @@ return [
          * External libraries Providers
          */
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Krenor\LdapAuth\LdapAuthServiceProvider::class,
+        Krenor\LdapAuth\LdapAuthServiceProvider::class
     ],
 
     /*

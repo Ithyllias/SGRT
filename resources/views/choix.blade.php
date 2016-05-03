@@ -9,7 +9,7 @@
     $data = [
             'ensId' => $enseignantID
     ];
-    $choixFait = json_decode(curlCall($url,$data));
+    $choixFait = json_decode(curlCall($url,$data,[]));
 
     if($choixFait[0]->choixFait == false)
     {

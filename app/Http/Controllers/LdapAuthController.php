@@ -56,8 +56,7 @@ class LdapAuthController extends Controller
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
             //Redirect to indented page or fall back to index page
-            //TODO this does not set the headers correctly
-            return redirect()->intended('/home')->header('Authorization', 'Bearer '.$token)->with("jwt", $token);
+            return redirect()->intended('/home')->with("jwt", $token);
         }
 
         return redirect()->back()->with('error', 'Username and/or Password are not matching!');
