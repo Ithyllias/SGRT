@@ -5,8 +5,8 @@
 @section('content')
     <br/>
     <h2><?=trans('login.welcome')?></h2>
+    <?php if(!isset($_SESSION["jwt"])) { ?>
     <h3><?=trans('login.connection')?></h3>
-    <br/>
     <form action="<?=url('login')?>" method="post">
         {{ csrf_field() }}
         <span class="error"><?=session('error'); ?></span></br></br>
@@ -17,4 +17,6 @@
         <input id="password" type="password" name="password" value=""><br/><br/>
         <input type="submit" value="<?=trans('login.connect')?>">
     </form>
+    <br/>
+    <?php } ?>
 @endsection
