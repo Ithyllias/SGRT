@@ -4,18 +4,20 @@
 <script src="{{ URL::asset('js/choix.js') }}" type="text/javascript"></script>
 @extends('master')
 <?php
-    $headers = ['Authorization' => 'Bearer ' . Session::get('jwt')];
     $enseignantID = 1;
+    $url = url('choix/choixStatus/');
     $data = [
             'ensId' => $enseignantID
     ];
-    $choixFait = json_decode(curlCall(url('choix/choixStatus/'),$data,$headers));
+    $choixFait = json_decode(curlCall($url,$data,[]));
 
     if($choixFait[0]->choixFait == false)
     {
-        $courses = json_decode(curlCall(url('choix/getTasks')));
+
+        $courses = json_decode(file_get_contents(url('choix/getTasks')));
         if(sizeof($_POST) > 0)
         {
+
             $No1 = "";
             $No2 = "";
             $No3 = "";
@@ -50,6 +52,7 @@
             }
             else
             {
+                $url = url('choix/submit/');
                 $data = [
                         'ensId' => $enseignantID,
                         'values' => [
@@ -60,7 +63,7 @@
                                 'e' => $No5
                         ]
                 ];
-                $worked = curlCall(url('choix/submit/'),$data,$headers);
+                $worked = curlCall($url,$data);
                 echo $worked;
 
                 echo '<script language="javascript">';
@@ -78,7 +81,7 @@
                  'ensId' => $enseignantID
          ];
 
-         $tacheEns = json_decode(curlCall($url,$data,$headers));
+         $tacheEns = json_decode(curlCall($url,$data));
 
      }
 ?>
@@ -93,6 +96,7 @@
             <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
         </div>
             <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix')?>">
+                {{ csrf_field() }}
                 <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
                 <table>
                     <?php foreach ($courses as $c): ?>
@@ -100,10 +104,10 @@
                             <td class="cours"><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                             <td>
                                 <div id="<?php echo $c->cou_no; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                <input type="text" value="" name="<?=$c->cou_no; ?>" hidden readonly/>
+                                <input type="text" value="" name="<?php echo $c->cou_no; ?>"  hidden readonly/>
                             </td>
                         </tr>
-                        <?php endforeach;?>
+                        <?php endforeach; ?>
                 </table>
                 <br/>
                 <input type="submit" onclick="return confirm('<?=trans('choix.confirm')?>')" value="<?=trans('choix.bouton')?>">

@@ -10,22 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::group(['middleware' => 'jwt.auth'], function(){
-
     Route::get('gestion', ['as' => 'gestion', function () {
         return view('gestion');
     }]);
-    Route::get('changeLang/{locale}', function ($locale) {
-        return redirect()->back()->with('newLang', $locale);
-    });
 
     // Group for choix routes
     Route::group([], function() {
         Route::any('choix', ['as' => 'choix', function () {
             return view('choix');
         }]);
-        Route::get('choix/getTasks', 'ChoixService@getTasks');
+        Route::post('choix/getTasks', 'ChoixService@getTasks');
         Route::post('choix/getChoix', 'ChoixService@getChoix');
         Route::post('choix/choixStatus', 'ChoixService@choixStatus');
         Route::post('choix/submit', 'ChoixService@submit');
@@ -55,6 +50,9 @@ Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {
         return view('home');
     }]);
+    Route::get('changeLang/{locale}', function ($locale) {
+        return redirect()->back()->with('newLang', $locale);
+    });
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
 });

@@ -14,5 +14,6 @@
 ?>
 @section('content')
    <?php
+     $_SESSION['jwt'] = Session::get('jwt');
    ?>
 @endsection
