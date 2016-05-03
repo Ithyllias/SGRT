@@ -1,4 +1,4 @@
-@include("init");
+@include("init")
 
 <link href="{{ URL::asset('css/choix.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script src="{{ URL::asset('js/choix.js') }}" type="text/javascript"></script>
@@ -14,6 +14,7 @@
 ?>
 @section('content')
    <?php
-     $_SESSION['jwt'] = Session::get('jwt');
+     echo Session::get('jwt');
    ?>
+    My life is a fucking joke
 @endsection

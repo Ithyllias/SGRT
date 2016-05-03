@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -55,4 +54,5 @@ Route::group([], function(){
     });
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
+    Route::any('/logout', 'LdapAuthController@getLogout');
 });

@@ -5,7 +5,7 @@
 @section('content')
     <br/>
     <h2><?=trans('login.welcome')?></h2>
-    <?php if(!isset($_SESSION["jwt"])) { ?>
+    <?php if(Session::get('jwt') === null) { ?>
     <h3><?=trans('login.connection')?></h3>
     <form action="<?=url('login')?>" method="post">
         {{ csrf_field() }}
@@ -18,5 +18,6 @@
         <input type="submit" value="<?=trans('login.connect')?>">
     </form>
     <br/>
-    <?php } ?>
+    <?php }?>
+    <?=trans('login.connectedMessage')?>
 @endsection

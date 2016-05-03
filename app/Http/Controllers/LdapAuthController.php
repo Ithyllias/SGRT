@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\Session;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -37,7 +38,9 @@ class LdapAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $id = Enseignant::getIdFromLogin($request->input("username"));
+        $username = $request->input('username');
+
+        $id = Enseignant::getIdFromLogin($username);
         $user = false;
 
         if($id > 0){
@@ -56,7 +59,9 @@ class LdapAuthController extends Controller
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
             //Redirect to indented page or fall back to index page
-            return redirect()->intended('/home')->with("jwt", $token);
+            Session::put('jwt',$token);
+            Session::put('connected_user', $username);
+            return redirect()->intended('/home');
         }
 
         return redirect()->back()->with('error', 'Username and/or Password are not matching!');
@@ -69,7 +74,8 @@ class LdapAuthController extends Controller
      */
     public function getLogout()
     {
-        auth()->logout();
+        Session::forget('jwt');
+        Session::forget('connected_user');
 
         return redirect('/');
     }
