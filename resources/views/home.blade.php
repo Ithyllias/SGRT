@@ -13,8 +13,7 @@
 
 ?>
 @section('content')
-   <?php
-     echo Session::get('jwt');
-   ?>
-    My life is a fucking joke
+   <br/>
+   <h2><?=trans('login.welcome')?></h2>
+   <?=trans('login.connectedMessage')?>
 @endsection

@@ -39,12 +39,19 @@ class LdapAuthController extends Controller
         ]);
 
         $username = $request->input('username');
+        $password = $request->input('password');
 
+        $this->authenticate($username, $password, true);
+
+        return redirect()->back()->with('error', 'Username and/or Password are not matching!');
+    }
+
+    public function authenticate($username, $password, $web = false){
         $id = Enseignant::getIdFromLogin($username);
         $user = false;
 
         if($id > 0){
-            $user = auth()->attempt($request->only('username', 'password'));
+            $user = auth()->attempt(array('username' => $username, 'password' => $password));
         }
 
         if ( $user ) {
@@ -52,19 +59,24 @@ class LdapAuthController extends Controller
             try {
                 // verify the credentials and create a token for the user
                 if (! $token = JWTAuth::fromId($id)) {
-                    return response()->json(['error' => 'invalid_credentials'], 401);
+                    http_response_code(401);
+                    return json_encode(['error' => 'invalid_credentials']);
                 }
             } catch (JWTException $e) {
                 // something went wrong
-                return response()->json(['error' => 'could_not_create_token'], 500);
+                http_response_code(500);
+                return (['error' => 'could_not_create_token']);
             }
-            //Redirect to indented page or fall back to index page
-            Session::put('jwt',$token);
-            Session::put('connected_user', $username);
-            return redirect()->intended('/home');
-        }
+            if($web){
+                Session::put('jwt',$token);
+                Session::put('connected_user', $username);
+            }
 
-        return redirect()->back()->with('error', 'Username and/or Password are not matching!');
+            $response = array('jwt' => $token,'connected_user' => $username);
+
+            http_response_code(200);
+            return json_encode($response);
+        }
     }
 
     /**

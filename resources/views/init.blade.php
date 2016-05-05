@@ -2,23 +2,18 @@
 <script src="{{ URL::asset('js/services.js') }}" type="text/javascript"></script>
 <script>
     function gotoPost(url, data){
+        console.log(url);
         $.ajax({
             url : url,
             type : "POST",
-            contentType : "application/json; charset=utf-8",
-            dataType : "html",
+            dataType : "json",
             data : JSON.stringify(data),
             crossDomain : true,
-            beforeSend : function(req){
-                req.setRequestHeader('Authorization', "bearer <?=Session::get('jwt')?>");
+            beforesend : function(req){
+                req.setRequestHeader('Authorization', "bearer " + <?=Session::get('jwt')?> + "");
             },
-            success : function(data){
-                $("html").html(data);
-            },
-            error : function(xhr, ajaxOptions, thrownError){
-                console.log(xhr);
-                console.log(ajaxOptions);
-                console.log(thrownError);
+            success : function(){
+
             }
         });
     }

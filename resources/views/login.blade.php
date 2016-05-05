@@ -19,5 +19,9 @@
     </form>
     <br/>
     <?php }?>
-    <?=trans('login.connectedMessage')?>
+    <?php if(Session::get('jwt') !== null) {?>
+        <script type="text/javascript">
+            window.location = "{{url('/home')}}"
+        </script>
+    <?php }?>
 @endsection

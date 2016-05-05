@@ -9,14 +9,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
+Route::group(['middleware' => 'jwt.auth'], function(){
     Route::get('gestion', ['as' => 'gestion', function () {
         return view('gestion');
     }]);
 
     // Group for choix routes
     Route::group([], function() {
-        Route::get('choix', ['as' => 'choix', function () {
+        Route::post('choix', ['as' => 'choix', function () {
             return view('choix');
         }]);
         Route::post('choix/getTasks', 'ChoixService@getTasks');
@@ -55,5 +55,6 @@ Route::group([], function(){
     });
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
+    Route::post('/login/authenticate', 'LdapAuthController@authenticate');
     Route::any('/logout', 'LdapAuthController@getLogout');
 });
