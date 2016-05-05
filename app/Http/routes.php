@@ -9,41 +9,34 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
-    Route::get('gestion', ['as' => 'gestion', function () {
+Route::group([], function(){
+    Route::get('gestion', ['as' => 'gestion', ['middleware' => ['jwt.auth', 'header.manager']], function () {
         return view('gestion');
     }]);
 
-    // Group for choix routes
-    Route::group([], function() {
-        Route::get('choix', ['as' => 'choix', function () {
-            return view('choix');
-        }]);
-        Route::post('choix/getTasks', 'ChoixService@getTasks');
-        Route::post('choix/getChoix', 'ChoixService@getChoix');
-        Route::post('choix/choixStatus', 'ChoixService@choixStatus');
-        Route::post('choix/submit', 'ChoixService@submit');
-        Route::post('choix/test', 'ChoixService@getChoix');
-    });
+    Route::get('choix', ['as' => 'choix', ['middleware' => ['jwt.auth', 'header.manager']], function () {
+        return view('choix');
+    }]);
+    
+    Route::post('choix/getTasks', 'ChoixService@getTasks', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('choix/getChoix', 'ChoixService@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('choix/choixStatus', 'ChoixService@choixStatus', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::get('choix/submit', 'ChoixService@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('choix/test', 'ChoixService@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
+    
+    Route::get('billes', ['as' => 'billes', ['middleware' => ['jwt.auth', 'header.manager']], function () {
+        return view('billes');
+    }]);
+    Route::post('billes/getBilles', 'BillesService@getBilles', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('billes/getProfs', 'BillesService@getProfs', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('billes/test', 'BillesService@test', ['middleware' => ['jwt.auth', 'header.manager']]);
 
-    // Group for billes routes
-    Route::group([], function() {
-        Route::get('billes', ['as' => 'billes', function () {
-            return view('billes');
-        }]);
-        Route::post('billes/getBilles', 'BillesService@getBilles');
-        Route::post('billes/getProfs', 'BillesService@getProfs');
-        Route::post('billes/test', 'BillesService@test');
-    });
-
-    // Group for coordo routes
-    Route::group([], function() {
-        Route::get('coord', ['as' => 'coord', function () {
-            return view('coordo');
-        }]);
-        Route::post('coord/addProf', 'CoordService@addProf');
-        Route::post('coord/test', 'CoordService@test');
-    });
+    Route::get('coord', ['as' => 'coord', ['middleware' => ['jwt.auth', 'header.manager']], function () {
+        return view('coordo');
+    }]);
+    
+    Route::post('coord/addProf', 'CoordService@addProf', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('coord/test', 'CoordService@test', ['middleware' => ['jwt.auth', 'header.manager']]);
 });
 Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {

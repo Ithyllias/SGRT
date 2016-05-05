@@ -11,15 +11,6 @@ class ChoixService extends Controller
 
     function getTasks(){
         return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
-        /*
-        $courses = DB::table('cours_cou')
-            ->select('cou_no')
-            ->addSelect('cou_titre')
-            ->addSelect('cdn_id')
-            ->join('cours_donne_cdn', 'cdn_cou_no', '=', 'cou_no')
-            ->get();
-
-        return;*/
     }
 
     function getChoix(){

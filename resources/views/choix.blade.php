@@ -58,7 +58,7 @@
                                 'e' => $No5
                         ]
                 ];
-                $worked = curlCall(url('choix/submit/'),$data);
+                $worked = curlCall(url('choix/submit'),$data);
 
                 echo '<script language="javascript">';
                 if($worked != true)
