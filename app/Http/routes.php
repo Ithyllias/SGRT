@@ -9,7 +9,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => 'jwt.auth'], function(){
+Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
     Route::get('gestion', ['as' => 'gestion', function () {
         return view('gestion');
     }]);
