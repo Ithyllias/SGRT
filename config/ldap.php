@@ -30,6 +30,7 @@ return [
     |
     */
     'base_dn' => 'CN=Users,DC=info01,DC=local',
+    //'base_dn' => 'OU=groupeTest,OU=325,DC=info01,DC=local',
 
     /*
     |--------------------------------------------------
