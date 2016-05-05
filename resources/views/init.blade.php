@@ -6,14 +6,19 @@
             url : url,
             type : "POST",
             contentType : "application/json; charset=utf-8",
-            dataType : "json",
+            dataType : "html",
             data : JSON.stringify(data),
             crossDomain : true,
-            beforesend : function(req){
-                req.setRequestHeader('Authorization', "bearer " + <?=Session::get('jwt')?> + "");
+            beforeSend : function(req){
+                req.setRequestHeader('Authorization', "bearer <?=Session::get('jwt')?>");
             },
-            success : function(){
-
+            success : function(data){
+                $("html").html(data);
+            },
+            error : function(xhr, ajaxOptions, thrownError){
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
             }
         });
     }
