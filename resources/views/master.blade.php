@@ -28,7 +28,7 @@
     <ul id="menu">
         <li><a href="<?=url('')?>"><?=trans('master.home')?></a></li>
         <?php if(Session::get("jwt") !== null){ ?>
-        <li><a onclick="gotoPost('<?=url('choix')?>');"><?=trans('master.choix')?></a></li>
+        <li><a href="<?=url('choix')?>"><?=trans('master.choix')?></a></li>
         <li><a href="<?=url('billes')?>"><?=trans('master.billes')?></a></li>
         <li><a href="<?=url('gestion')?>"><?=trans('master.gestion')?></a></li>
         <?php } ?>

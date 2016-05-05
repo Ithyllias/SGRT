@@ -16,7 +16,7 @@ class HeaderManager
      */
     public function handle($request, Closure $next)
     {
-        if(!Session::get('jwt') === null) {
+        if(!(Session::get('jwt') === null)) {
             $request->headers->set('Authorization', 'bearer ' . Session::get('jwt'));
         }
         return $next($request);
