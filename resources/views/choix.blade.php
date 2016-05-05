@@ -8,9 +8,8 @@
     $data = [
             'ensId' => $enseignantID
     ];
-    $choixFait = curlCall(url('choix/choixStatus/'),$data);
-        var_dump($choixFait);
-    /*if($choixFait[0]->choixFait == false)
+    $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
+    if($choixFait[0]->choixFait == false)
     {
         $courses = json_decode(curlCall(url('choix/getTasks'), []));
         if(sizeof($_POST) > 0)
@@ -76,10 +75,10 @@
 
          $tacheEns = json_decode(curlCall(url('choix/getChoix/'),$data));
 
-     }*/
+     }
 ?>
 @section('content')
-    <?php /*if($choixFait[0]->choixFait == false) { ?>
+    <?php if($choixFait[0]->choixFait == false) { ?>
         <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
             <h1><?=trans('choix.priorities')?></h1>
             <p id="1" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
@@ -125,5 +124,5 @@
         </table>
     <br/>
     <br/>
-    <?php } /*?>
+    <?php } ?>
 @endsection
