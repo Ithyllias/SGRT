@@ -16,7 +16,7 @@ Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
 
     // Group for choix routes
     Route::group([], function() {
-        Route::post('choix', ['as' => 'choix', function () {
+        Route::get('choix', ['as' => 'choix', function () {
             return view('choix');
         }]);
         Route::post('choix/getTasks', 'ChoixService@getTasks');
