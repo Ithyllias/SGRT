@@ -16,7 +16,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
     // Group for choix routes
     Route::group([], function() {
-        Route::any('choix', ['as' => 'choix', function () {
+        Route::post('choix', ['as' => 'choix', function () {
             return view('choix');
         }]);
         Route::post('choix/getTasks', 'ChoixService@getTasks');
@@ -55,5 +55,6 @@ Route::group([], function(){
     });
     Route::get('/', 'LdapAuthController@getLogin');
     Route::post('/login', 'LdapAuthController@postLogin');
+    Route::post('/login/authenticate', 'LdapAuthController@authenticate');
     Route::any('/logout', 'LdapAuthController@getLogout');
 });

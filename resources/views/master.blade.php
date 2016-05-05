@@ -8,10 +8,9 @@
 </head>
 <body>
 <div id="header">
-
     <a href="<?=url('changeLang/' . trans('master.nextLanguage'))?>" class="hautDroit"> <?=trans('master.nextLanguage')?></a>
     <?php if(Session::get("jwt") == null){
-        echo "<a href=" . url('/'). " class=" . "hautDroit" . "> " . trans('master.login') . " &nbsp&nbsp </a>'";
+        echo "<a href=" . url('/'). " class=" . "hautDroit" . "> " . trans('master.login') . " &nbsp&nbsp </a>";
     }
     else{
         echo "<a href=" . url('/logout') . " class=" . "hautDroit" . "> ". trans('master.logout') . " &nbsp&nbsp </a>";
@@ -29,7 +28,7 @@
     <ul id="menu">
         <li><a href="<?=url('')?>"><?=trans('master.home')?></a></li>
         <?php if(Session::get("jwt") !== null){ ?>
-        <li><a href="<?=url('choix')?>"><?=trans('master.choix')?></a></li>
+        <li><a onclick="gotoPost('<?=url('choix')?>');"><?=trans('master.choix')?></a></li>
         <li><a href="<?=url('billes')?>"><?=trans('master.billes')?></a></li>
         <li><a href="<?=url('gestion')?>"><?=trans('master.gestion')?></a></li>
         <?php } ?>
