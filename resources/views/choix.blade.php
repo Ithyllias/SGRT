@@ -5,19 +5,15 @@
 @extends('master')
 <?php
     $enseignantID = 1;
-    $url = url('choix/choixStatus/');
     $data = [
             'ensId' => $enseignantID
     ];
-    $choixFait = json_decode(curlCall($url,$data,[]));
-
+    $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
     if($choixFait[0]->choixFait == false)
     {
-
-        $courses = json_decode(file_get_contents(url('choix/getTasks')));
+        $courses = json_decode(curlCall(url('choix/getTasks'), []));
         if(sizeof($_POST) > 0)
         {
-
             $No1 = "";
             $No2 = "";
             $No3 = "";
@@ -52,7 +48,6 @@
             }
             else
             {
-                $url = url('choix/submit/');
                 $data = [
                         'ensId' => $enseignantID,
                         'values' => [
@@ -63,8 +58,7 @@
                                 'e' => $No5
                         ]
                 ];
-                $worked = curlCall($url,$data);
-                echo $worked;
+                $worked = curlCall(url('choix/submit/'),$data);
 
                 echo '<script language="javascript">';
                 if($worked != true)
@@ -75,13 +69,11 @@
      }
      else
      {
-
-         $url = url('choix/getChoix/');
          $data = [
                  'ensId' => $enseignantID
          ];
 
-         $tacheEns = json_decode(curlCall($url,$data));
+         $tacheEns = json_decode(curlCall(url('choix/getChoix/'),$data));
 
      }
 ?>
