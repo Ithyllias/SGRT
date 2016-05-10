@@ -6,8 +6,8 @@
 @section('content')
     <div id="menuBilles">
         <ul>
-            <li id="bBilles" onclick="clickBilles()">Compteur Billes</li>
-            <li id="bFois" onclick="clickFois()">Compteur Fois</li>
+            <li id="bBilles" onclick="clickBilles()"><?=trans('choix.comptB')?></li>
+            <li id="bFois" onclick="clickFois()"><?=trans('choix.comptF')?></li>
         </ul>
     </div>
 

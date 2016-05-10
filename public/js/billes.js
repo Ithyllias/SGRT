@@ -321,9 +321,9 @@ function clickProfs(pId)
     html += "<h3>" + pId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"clickBilles()\">FOIS</th>";
+    html += "<th onclick=\"clickFois()\">FOIS</th>";
     html += "<th onclick=\"clickBilles()\">BILLES</th>";
-    html += "<th onclick=\"clickBilles()\">BID</th>";
+    html += "<th onclick=\"\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)
     {
@@ -350,9 +350,9 @@ function clickCours(cId)
     html += "<h3>" + cId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"clickBilles()\">FOIS</th>";
+    html += "<th onclick=\"clickFois()\">FOIS</th>";
     html += "<th onclick=\"clickBilles()\">BILLES</th>";
-    html += "<th onclick=\"clickBilles()\">BID</th>";
+    html += "<th onclick=\"\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)
     {

@@ -39,8 +39,8 @@
                         <tr>
                             <td class="cours"><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                             <td>
-                                <div id="<?php echo $c->cou_no; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                <input type="text" value="" name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
+                                <div id="<?php echo $c->cdn_id; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                <input type="text" value=""  name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
                             </td>
                         </tr>
                         <?php endforeach; ?>
