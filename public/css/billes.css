@@ -1,33 +1,5 @@
-#menuBilles ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
 
-#menuBilles li {
-    float: left;
-    width: 50%;
-    cursor: pointer;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 30px;
-}
 
-#menuBilles li:hover {
-    background-color: #111;
-}
-
-.selected{
-    background-color: #111;
-}
 table {
     font-family:Arial, Helvetica, sans-serif;
     color: #222222;

@@ -91,3 +91,34 @@ ul#menu li a:hover {
     color: red;
     font-weight: bold;
 }
+
+#menuB ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#menuB li {
+    float: left;
+    width: 100%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 30px;
+}
+
+#menuB li:hover {
+    background-color: #111;
+}
+
+.selected{
+    background-color: #111;
+    cursor: default;
+}

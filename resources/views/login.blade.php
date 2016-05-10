@@ -4,7 +4,11 @@
 
 @section('content')
     <br/>
-    <h2><?=trans('login.welcome')?></h2>
+    <div id="menuB">
+        <ul>
+            <li id="bC" class="selected" onclick="clickTableau()"><h2><?=trans('login.welcome')?></h2></li>
+        </ul>
+    </div>
     <?php if(Session::get('jwt') === null) { ?>
     <h3><?=trans('login.connection')?></h3>
     <form action="<?=url('login')?>" method="post">

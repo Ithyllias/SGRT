@@ -4,10 +4,9 @@
 @extends('master')
 
 @section('content')
-    <div id="menuBilles">
+    <div id="menuB">
         <ul>
-            <li id="bBilles" onclick="clickBilles()"><?=trans('choix.comptB')?></li>
-            <li id="bFois" onclick="clickFois()"><?=trans('choix.comptF')?></li>
+            <li id="bC" onclick="clickTableau()"><?=trans('choix.compt')?></li>
         </ul>
     </div>
 

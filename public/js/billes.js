@@ -1,3 +1,7 @@
+window.onload = function() {
+    clickTableau();
+};
+
 var Dummy = [
     {
         'cours' : 'cours1',
@@ -261,13 +265,12 @@ var Dummy = [
     }
 ];
 
-function clickBilles()
+function clickTableau()
 {
-    document.getElementById("bBilles").className = "selected";
-    document.getElementById("bFois").className = "";
+    document.getElementById("bC").className = "selected";
     var html = "";
     html += "<table id='tabBilles'>";
-    html += "<tr> <th onclick=\"clickBilles()\">BILLES</th>";
+    html += "<tr> <th onclick=\"clickTableau()\">BILLES</th>";
     for(var lProfs in Dummy[0].ens)
     {
         html += "<th onclick=\"clickProfs(\'" + Dummy[0].ens[lProfs].p + "\')\">" + Dummy[0].ens[lProfs].p + "</th>";
@@ -279,39 +282,12 @@ function clickBilles()
         html += "<th onclick=\"clickCours(\'" + Dummy[lCours].cours + "\')\">" + Dummy[lCours].cours + "</th>";
         for(var lProfs in Dummy[lCours].ens)
         {
-            html += "<td>" + Dummy[lCours].ens[lProfs].val + "</td>";
+            html += "<td>" + "Billes: " + Dummy[lCours].ens[lProfs].val + "<br /> Fois: " + Dummy[lCours].ens[lProfs].val2 + "</td>";
         }
         html += "</tr>";
     }
     html += "</table>";
     document.getElementById("contentBilles").innerHTML = html;
-}
-
-function clickFois()
-{
-    document.getElementById("bBilles").className = "";
-    document.getElementById("bFois").className = "selected";
-    var html = "";
-    html += "<table id='tabFois'>";
-    html += "<tr> <th onclick=\"clickFois()\">FOIS</th>";
-    for(var lProfs in Dummy[0].ens)
-    {
-        html += "<th onclick=\"clickProfs(\'" + Dummy[0].ens[lProfs].p + "\')\">" + Dummy[0].ens[lProfs].p + "</th>";
-    }
-    html += "</tr>";
-    for(var lCours in Dummy)
-    {
-        html += "<tr>";
-        html += "<th onclick=\"clickCours(\'" + Dummy[lCours].cours + "\')\">" + Dummy[lCours].cours + "</th>";
-        for(var lProfs in Dummy[lCours].ens)
-        {
-            html += "<td>" + Dummy[lCours].ens[lProfs].val2 + "</td>";
-        }
-        html += "</tr>";
-    }
-    html += "</table>";
-    document.getElementById("contentBilles").innerHTML = html;
-
 }
 
 function clickProfs(pId)
@@ -321,8 +297,8 @@ function clickProfs(pId)
     html += "<h3>" + pId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"clickFois()\">FOIS</th>";
-    html += "<th onclick=\"clickBilles()\">BILLES</th>";
+    html += "<th onclick=\"\">FOIS</th>";
+    html += "<th onclick=\"\">BILLES</th>";
     html += "<th onclick=\"\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)
@@ -350,9 +326,9 @@ function clickCours(cId)
     html += "<h3>" + cId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"clickFois()\">FOIS</th>";
-    html += "<th onclick=\"clickBilles()\">BILLES</th>";
-    html += "<th onclick=\"\">BID</th>";
+    html += "<th onclick=\"clickTriFois(" + cId + ")\">FOIS</th>";
+    html += "<th onclick=\"clickTriBilles(" + cId + ")\">BILLES</th>";
+    html += "<th onclick=\"clickTriBid(" + cId + ")\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)
     {

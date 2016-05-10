@@ -14,6 +14,12 @@
 ?>
 @section('content')
    <br/>
-   <h2><?=trans('login.welcome')?></h2>
+   <div id="menuB">
+      <ul>
+         <li id="bC" class="selected" onclick="clickTableau()"><h2><?=trans('login.welcome')?></h2></li>
+      </ul>
+   </div>
+
    <?=trans('login.connectedMessage')?>
+   <br/>
 @endsection
