@@ -24,11 +24,12 @@ class Cours extends Model
      */
     public static function getAllTasks(){
         $returnArray = [];
-        $coursDonnes = CoursDonne::all();
+        $maxTache = CoursDonne::all()->max('cdn_tac_id');
+        $coursDonnes = CoursDonne::where('cdn_tac_id', $maxTache)->get();
 
         foreach($coursDonnes as $coursDonne){
             array_push($returnArray, array('cou_titre' => $coursDonne->cours->cou_titre, 'cou_no' => $coursDonne->cours->cou_no, 'cdn_id' => $coursDonne->attributes['cdn_id']));
         }
-        return $returnArray;
+        return array($returnArray);
     }
 }

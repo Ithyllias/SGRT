@@ -12,60 +12,6 @@
     if($choixFait[0]->choixFait == false)
     {
         $courses = json_decode(curlCall(url('choix/getTasks'), []));
-        if(sizeof($_POST) > 0)
-        {
-            $No1 = "";
-            $No2 = "";
-            $No3 = "";
-            $No4 = "";
-            $No5 = "";
-
-            foreach ($_POST as $key => $value){
-                switch ($value) {
-                    case 1:
-                        $No1 = $key;
-                        break;
-                    case 2:
-                        $No2 = $key;
-                        break;
-                    case 3:
-                        $No3 = $key;
-                        break;
-                    case 4:
-                        $No4 = $key;
-                        break;
-                    case 5:
-                        $No5 = $key;
-                        break;
-                }
-            }
-
-            if(strlen($No1) == 0 || strlen($No2) == 0 || strlen($No3) == 0 || strlen($No4) == 0 || strlen($No5) == 0)
-            {
-                echo '<script language="javascript">';
-                echo 'alert("' . trans('choix.error') . '")';
-                echo '</script>';
-            }
-            else
-            {
-                $data = [
-                        'ensId' => $enseignantID,
-                        'values' => [
-                                'a' => $No1,
-                                'b' => $No2,
-                                'c' => $No3,
-                                'd' => $No4,
-                                'e' => $No5
-                        ]
-                ];
-                $worked = curlCall(url('choix/submit'),$data);
-
-                echo '<script language="javascript">';
-                if($worked != true)
-                    echo 'alert("' . trans('choix.notWork') . '")';
-                echo '</script>';
-            }
-        }
      }
      else
      {
@@ -74,7 +20,6 @@
          ];
 
          $tacheEns = json_decode(curlCall(url('choix/getChoix/'),$data));
-
      }
 ?>
 @section('content')
@@ -87,16 +32,15 @@
             <p id="4" draggable="true" ondragstart="drag(event)">&nbsp;4&nbsp;</p>
             <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
         </div>
-            <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix')?>">
-                {{ csrf_field() }}
+            <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix/submit')?>">
                 <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
                 <table>
-                    <?php foreach ($courses as $c): ?>
+                    <?php foreach ($courses[0] as $c): ?>
                         <tr>
                             <td class="cours"><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
                             <td>
                                 <div id="<?php echo $c->cou_no; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                <input type="text" value="" name="<?php echo $c->cou_no; ?>"  hidden readonly/>
+                                <input type="text" value="" name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
                             </td>
                         </tr>
                         <?php endforeach; ?>

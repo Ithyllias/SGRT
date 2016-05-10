@@ -21,7 +21,7 @@ Route::group([], function(){
     Route::post('choix/getTasks', 'ChoixService@getTasks', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('choix/getChoix', 'ChoixService@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('choix/choixStatus', 'ChoixService@choixStatus', ['middleware' => ['jwt.auth', 'header.manager']]);
-    Route::get('choix/submit', 'ChoixService@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('choix/submit', 'ChoixService@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('choix/test', 'ChoixService@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
     
     Route::get('billes', ['as' => 'billes', ['middleware' => ['jwt.auth', 'header.manager']], function () {

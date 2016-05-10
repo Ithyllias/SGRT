@@ -33,18 +33,44 @@ class ChoixService extends Controller
 
     function submit()
     {
-        $ensId = request()->input('ensId');
-        $values = request()->input('values');
+        $values = request()->input();
+        $ensId = request()->input('ensId');/*
+        $choices = [];
 
-        $insertData = [];
-        $i = 1;
-        foreach ($values as $value) {
+        foreach ($values as $key => $value){
+            if($key != 'ensId') {
+                switch ($value) {
+                    case 1:
+                        $choices['1'] = $key;
+                        break;
+                    case 2:
+                        $choices['2'] = $key;
+                        break;
+                    case 3:
+                        $choices['3'] = $key;
+                        break;
+                    case 4:
+                        $choices['4'] = $key;
+                        break;
+                    case 5:
+                        $choices['5'] = $key;
+                        break;
+                }
+            }
+        }
+
+        if(strlen($choices['1']) == 0 || strlen($choices['2']) == 0 || strlen($choices['3']) == 0 || strlen($choices['4']) == 0 || strlen($choices['5']) == 0)
+        {
+            //TODO: validation choix en js
+            return redirect()->route('choix');
+        }
+
+        foreach ($choices as $key => $value) {
             array_push($insertData, [
-                'chx_priorite' => $i,
+                'chx_priorite' => $key,
                 'chx_cdn_id' => $value,
                 'chx_ens_id' => $ensId
             ]);
-            $i++;
         }
 
         $response = DB::table('choix_chx')->insert($insertData);
@@ -53,7 +79,8 @@ class ChoixService extends Controller
             return redirect()->route('choix');
         } else {
             return "" . $response;
-        }
+        }*/
+        return request()->input();
     }
 
     function choixStatus(){
