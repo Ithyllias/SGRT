@@ -34,8 +34,9 @@ class ChoixService extends Controller
     function submit()
     {
         $values = request()->input();
-        $ensId = request()->input('ensId');/*
+        $ensId = request()->input('ensId');
         $choices = [];
+        $insertData = [];
 
         foreach ($values as $key => $value){
             if($key != 'ensId') {
@@ -67,9 +68,9 @@ class ChoixService extends Controller
 
         foreach ($choices as $key => $value) {
             array_push($insertData, [
-                'chx_priorite' => $key,
+                'chx_ens_id' => $ensId,
                 'chx_cdn_id' => $value,
-                'chx_ens_id' => $ensId
+                'chx_priorite' => $key,
             ]);
         }
 
@@ -79,8 +80,7 @@ class ChoixService extends Controller
             return redirect()->route('choix');
         } else {
             return "" . $response;
-        }*/
-        return request()->input();
+        }
     }
 
     function choixStatus(){

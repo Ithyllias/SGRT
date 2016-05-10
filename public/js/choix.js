@@ -19,8 +19,8 @@ function drop(ev) {
     }
     if(ev.target.innerHTML == "") {
         ev.target.appendChild(document.getElementById(data));
-        document.getElementsById(ev.target.id).setAttribute("value", data);
-        document.getElementsById(ev.target.id).setAttribute("id", "temp" + data);
+        document.getElementsByName(ev.target.id)[0].setAttribute("value", data);
+        document.getElementsByName(ev.target.id)[0].setAttribute("id", "temp" + data);
     }else if(ev.target.getAttribute('id') == 'fixer')
     {
         ev.target.appendChild(document.getElementById(data));

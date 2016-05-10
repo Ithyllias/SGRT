@@ -9,6 +9,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+ini_set('xdebug.max_nesting_level', 500);
+
 Route::group([], function(){
     Route::get('gestion', ['as' => 'gestion', ['middleware' => ['jwt.auth', 'header.manager']], function () {
         return view('gestion');

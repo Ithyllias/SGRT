@@ -33,6 +33,7 @@
             <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
         </div>
             <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix/submit')?>">
+                <input type="hidden" value="<?=$enseignantID?>" name="ensId" readonly/>
                 <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
                 <table>
                     <?php foreach ($courses[0] as $c): ?>
