@@ -16,6 +16,7 @@
             <?=trans('login.password')?><br>
         <input id="password" type="password" name="password" value=""><br/><br/>
         <input type="submit" value="<?=trans('login.connect')?>">
+        <input type="hidden" value="true" name="web"/>
     </form>
     <br/>
     <?php }?>

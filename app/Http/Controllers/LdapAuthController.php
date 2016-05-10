@@ -38,15 +38,15 @@ class LdapAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $username = $request->input('username');
-        $password = $request->input('password');
-
-        $this->authenticate($username, $password, true);
+        $this->authenticate($request);
 
         return redirect()->back()->with('error', 'Username and/or Password are not matching!');
     }
 
-    public function authenticate($username, $password, $web = false){
+    public function authenticate(Request $request){
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $web = $request->input('web');
         $id = Enseignant::getIdFromLogin($username);
         $user = false;
 
