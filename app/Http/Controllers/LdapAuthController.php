@@ -67,13 +67,15 @@ class LdapAuthController extends Controller
                 http_response_code(500);
                 return (['error' => 'could_not_create_token']);
             }
+            $user_id = Enseignant::getIdFromLogin($username);
             if($web){
                 Session::put('jwt',$token);
                 Session::put('connected_user', $username);
+                Session::put('user_id', $user_id);
             }
 
-            $response = array('jwt' => $token,'connected_user' => $username);
-
+            $response = array('jwt' => $token,'connected_user' => $username,'user_id' => $user_id);
+            var_dump($response);
             http_response_code(200);
             return json_encode($response);
         }
