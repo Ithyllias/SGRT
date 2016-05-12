@@ -6,11 +6,12 @@
 <?php
     $enseignantID = Session::get('user_id');
     $data = [
-            'ensId' => $enseignantID
+            'user_id' => $enseignantID
     ];
 
     $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
-    if($choixFait[0]->choixFait == false)
+
+    if($choixFait->choixFait == false)
     {
         $courses = json_decode(curlCall(url('choix/getTasks'), []));
      }
@@ -23,7 +24,7 @@
      }
 ?>
 @section('content')
-    <?php if($choixFait[0]->choixFait == false) { ?>
+    <?php if($choixFait->choixFait == false) { ?>
         <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
             <h1><?=trans('choix.priorities')?></h1>
             <p id="01" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
@@ -57,7 +58,7 @@
     <?php }else { ?>
     <div id="menuB">
         <ul>
-            <li id="plein" class="selected"><?=trans('choix.choixTitle') . $choixFait[0]->tac_annee ?></li>
+            <li id="plein" class="selected"><?=trans('choix.choixTitle') . $choixFait->tac_annee ?></li>
         </ul>
     </div>
         <table id="tRes">

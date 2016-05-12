@@ -14,8 +14,8 @@ class ChoixService extends Controller
         return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
     }
 
-    function getChoix(Request $request){
-        return response()->json(App\Choix::getChoixForEnseignant($request->input('user_id')))->header('Access-Control-Allow-Origin', '*');
+    function getChoix(){
+        return response()->json(App\Choix::getChoixForEnseignant(request()->input('user_id')))->header('Access-Control-Allow-Origin', '*');
     }
 
     function submit()
@@ -61,7 +61,7 @@ class ChoixService extends Controller
             ]);
         }
 
-        $response = DB::table('choix_chx')->insert($insertData);
+        $response = App\Choix::addChoix($insertData);
 
         if ($response == true) {
             return redirect()->route('choix');
@@ -71,20 +71,10 @@ class ChoixService extends Controller
     }
 
     function choixStatus(){
-        $ensId = request()->input('ensId');
-        $newestTache = DB::table('tache_tac')->max('tac_id');
-
-        return response()->json(DB::table('choix_chx')
-            ->select(DB::raw('count(*)=5 as choixFait'))
-            ->addSelect('tac_annee')
-            ->join('cours_donne_cdn', 'cdn_id', '=', 'chx_cdn_id')
-            ->join('tache_tac', 'tac_id', '=', 'cdn_tac_id')
-            ->where('tac_id', '=', $newestTache)
-            ->where('chx_ens_id', '=', $ensId)
-            ->get())->header('Access-Control-Allow-Origin', '*');
+        return response()->json(App\Choix::choixStatus(request()->input('user_id')))->header('Access-Control-Allow-Origin', '*');
     }
 
     function test(){
-        return response()->json(App\Choix::getChoixForEnseignant(7));
+        return response()->json(App\Choix::choixStatus(7));
     }
 }
