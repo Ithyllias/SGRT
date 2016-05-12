@@ -9,7 +9,7 @@
             'ensId' => $enseignantID
     ];
 
-        $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
+    $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
     if($choixFait[0]->choixFait == false)
     {
         $courses = json_decode(curlCall(url('choix/getTasks'), []));
