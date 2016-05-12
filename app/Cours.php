@@ -18,6 +18,11 @@ class Cours extends Model
         return $this->hasMany('App\CoursDonne', 'cdn_cou_no', 'cou_no');
     }
 
+    public function billes_depart()
+    {
+        return $this->hasMany('App\BillesDepart', 'bdp_cou_no', 'cou_no');
+    }
+
     /**
      * @param $alias String Alias to fetch the ID from
      * @return mixed The actual id in the table

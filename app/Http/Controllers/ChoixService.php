@@ -98,6 +98,7 @@ class ChoixService extends Controller
     }
 
     function test(){
-
+        var_dump(App\BillesDepart::testClass());
+        return response();
     }
 }

@@ -10,7 +10,16 @@ class Enseignant extends Model
     protected $table = 'enseignant_ens';
     protected $primaryKey = 'ens_id';
     public $timestamps = false;
-    //
+
+    public function billes_depart()
+    {
+        return $this->hasMany('App\BillesDepart', 'bdp_ens_id', 'ens_id');
+    }
+
+    public function choix()
+    {
+        return $this->hasMany('App\Choix', 'chx_ens_id', 'ens_id');
+    }
 
     /**
      * @param $alias String Alias to fetch the ID from
