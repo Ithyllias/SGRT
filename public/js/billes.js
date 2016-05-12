@@ -1,7 +1,6 @@
 window.onload = function() {
     clickTableau();
 };
-
 var Dummy = [
     {
         'cours' : 'cours1',
@@ -270,7 +269,7 @@ function clickTableau()
     document.getElementById("bC").className = "selected";
     var html = "";
     html += "<table id='tabBilles'>";
-    html += "<tr> <th onclick=\"clickTableau()\">BILLES</th>";
+    html += "<tr> <th onclick=\"clickTableau()\">INFO</th>";
     for(var lProfs in Dummy[0].ens)
     {
         html += "<th onclick=\"clickProfs(\'" + Dummy[0].ens[lProfs].p + "\')\">" + Dummy[0].ens[lProfs].p + "</th>";
@@ -282,7 +281,7 @@ function clickTableau()
         html += "<th onclick=\"clickCours(\'" + Dummy[lCours].cours + "\')\">" + Dummy[lCours].cours + "</th>";
         for(var lProfs in Dummy[lCours].ens)
         {
-            html += "<td>" + "Billes: " + Dummy[lCours].ens[lProfs].val + "<br /> Fois: " + Dummy[lCours].ens[lProfs].val2 + "</td>";
+            html += "<td>" + ((langue == "FR") ? "Billes: " : "Marbles: ")  + Dummy[lCours].ens[lProfs].val + ((langue == "FR") ? "<br /> Fois: " : "<br /> Times: ") + Dummy[lCours].ens[lProfs].val2 + "</td>";
         }
         html += "</tr>";
     }
@@ -296,9 +295,9 @@ function clickProfs(pId)
     var html = "";
     html += "<h3>" + pId + "</h3>"
     html += "<table id='tabBilles'>";
-    html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"\">FOIS</th>";
-    html += "<th onclick=\"\">BILLES</th>";
+    html += "<tr> <th>INFO</th>";
+    html += "<th onclick=\"\">" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th onclick=\"\">" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
     html += "<th onclick=\"\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)
@@ -325,9 +324,9 @@ function clickCours(cId)
     var html = "";
     html += "<h3>" + cId + "</h3>"
     html += "<table id='tabBilles'>";
-    html += "<tr> <th>INFOS</th>";
-    html += "<th onclick=\"clickTriFois(" + cId + ")\">FOIS</th>";
-    html += "<th onclick=\"clickTriBilles(" + cId + ")\">BILLES</th>";
+    html += "<tr> <th>INFO</th>";
+    html += "<th onclick=\"clickTriFois(" + cId + ")\">" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th onclick=\"clickTriBilles(" + cId + ")\">" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
     html += "<th onclick=\"clickTriBid(" + cId + ")\">BID</th>";
     html += "</tr>";
     for(var lCours in Dummy)

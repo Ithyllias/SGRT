@@ -1,5 +1,8 @@
 @include("init")
 <link href="{{ URL::asset('css/billes.css') }}" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+     langue = "<?php echo App::getLocale();?>";
+</script>
 <script src="{{ URL::asset('js/billes.js') }}" type="text/javascript"></script>
 @extends('master')
 
