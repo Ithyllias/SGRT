@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests;
 
 class ChoixService extends Controller
 {
@@ -13,22 +14,8 @@ class ChoixService extends Controller
         return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
     }
 
-    function getChoix(){
-        $ensId = request()->input('ensId');
-        $maxId = DB::table('tache_tac')->max('tac_id');
-
-        $courses = DB::table('choix_chx')
-            ->select('chx_priorite')
-            ->addSelect('cou_no')
-            ->addSelect('cou_titre')
-            ->join('cours_donne_cdn', 'cdn_id', '=', 'chx_cdn_id')
-            ->join('cours_cou', 'cou_no', '=', 'cdn_cou_no')
-            ->where('chx_ens_id', '=', $ensId)
-            ->where('cdn_tac_id', '=', $maxId)
-            ->orderBy('chx_priorite')
-            ->get();
-
-        return response()->json($courses)->header('Access-Control-Allow-Origin', '*');
+    function getChoix(Request $request){
+        return response()->json(App\Choix::getChoixForEnseignant($request->input('user_id')))->header('Access-Control-Allow-Origin', '*');
     }
 
     function submit()
@@ -60,7 +47,7 @@ class ChoixService extends Controller
             }
         }
 
-        if(!isset($choices) || sizeOf($choices) != 5 || strlen($choices['1']) == 0 || strlen($choices['2']) == 0 || strlen($choices['3']) == 0 || strlen($choices['4']) == 0 || strlen($choices['5']) == 0)
+        if(!isset($choices) || sizeof($choices) != 5 || strlen($choices['1']) == 0 || strlen($choices['2']) == 0 || strlen($choices['3']) == 0 || strlen($choices['4']) == 0 || strlen($choices['5']) == 0)
         {
             //TODO: validation choix en js
             return redirect()->route('choix');
@@ -98,7 +85,6 @@ class ChoixService extends Controller
     }
 
     function test(){
-        var_dump(App\BillesDepart::testClass());
-        return response();
+        return response()->json(App\Choix::getChoixForEnseignant(7));
     }
 }

@@ -4,11 +4,12 @@
 <script src="{{ URL::asset('js/choix.js') }}" type="text/javascript"></script>
 @extends('master')
 <?php
-    $enseignantID = 1;
+    $enseignantID = Session::get('user_id');
     $data = [
             'ensId' => $enseignantID
     ];
-    $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
+
+        $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
     if($choixFait[0]->choixFait == false)
     {
         $courses = json_decode(curlCall(url('choix/getTasks'), []));
@@ -16,9 +17,8 @@
      else
      {
          $data = [
-                 'ensId' => $enseignantID
+                 'user_id' => $enseignantID
          ];
-
          $tacheEns = json_decode(curlCall(url('choix/getChoix/'),$data));
      }
 ?>
