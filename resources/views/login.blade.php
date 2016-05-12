@@ -3,10 +3,9 @@
 @extends('master')
 
 @section('content')
-    <br/>
     <div id="menuB">
         <ul>
-            <li id="bC" class="selected" onclick="clickTableau()"><h2><?=trans('login.welcome')?></h2></li>
+            <li id="plein" class="selected"><?=trans('login.welcome')?></li>
         </ul>
     </div>
     <?php if(Session::get('jwt') === null) { ?>

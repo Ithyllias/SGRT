@@ -1,13 +1,11 @@
 
-table{
-    margin: 0px auto;
-}
-
 .elements{
     border: 1px solid black;
     width: 40px;
     height: 40px;
     text-align: center;
+    margin-left: 35px;
+    margin-right: 0px;
 }
 
 p{
@@ -20,8 +18,8 @@ p{
 
 #fixer{
     position: fixed;
-    margin-left: 1050px;
-    margin-top: 75px;
+    margin-left: 1100px;
+    margin-top: 100px;
     border: 1px solid black;
     height: 150px;
     width:200px;
@@ -34,11 +32,46 @@ p{
     text-align: left;
 }
 
-tr{
-    text-align: center;
+table {
+    font-family:Arial, Helvetica, sans-serif;
+    color: #222222;
+    font-size:12px;
+    text-shadow: 1px 1px 0px #fff;
+    background:#333;
+    margin:20px;
+    border:#ccc 1px solid;
+    box-shadow: 0 1px 2px #d1d1d1;
+    width : 80%;
+}
+table th {
+    padding:21px 25px 22px 25px;
+    border-top:1px solid #fafafa;
+    border-bottom:1px solid #e0e0e0;
+    cursor: pointer;
+    background: #ededed;
 }
 
-table{
-    font-size: 18px;
-    font-weight: bold;
+
+table tr {
+    text-align: center;
+    padding-left:20px;
+}
+
+table td {
+    padding:18px;
+    border-top: 1px solid #ffffff;
+    border-bottom:1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+
+table tr:hover td {
+    background: #f2f2f2;
+}
+.divDrop{
+    width: 40px;
+}
+
+#tRes{
+    margin-left: 10%;
 }

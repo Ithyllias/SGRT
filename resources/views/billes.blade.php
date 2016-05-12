@@ -6,7 +6,7 @@
 @section('content')
     <div id="menuB">
         <ul>
-            <li id="bC" onclick="clickTableau()"><?=trans('choix.compt')?></li>
+            <li id="bC"  onclick="clickTableau()"><?=trans('choix.compt')?></li>
         </ul>
     </div>
 

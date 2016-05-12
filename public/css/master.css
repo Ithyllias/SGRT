@@ -104,7 +104,6 @@ ul#menu li a:hover {
 
 #menuB li {
     float: left;
-    width: 100%;
     display: inline-block;
     color: white;
     text-align: center;
@@ -121,4 +120,12 @@ ul#menu li a:hover {
 .selected{
     background-color: #111;
     cursor: default;
+}
+#bC{
+    cursor: pointer;
+    width: 100%;
+}
+
+#plein{
+    width: 100%;
 }

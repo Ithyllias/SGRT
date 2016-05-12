@@ -12,7 +12,6 @@ function drop(ev) {
     ev.preventDefault();
 
     var data = ev.dataTransfer.getData("text");
-    console.log(ev);
     if(document.getElementById("temp" + data) != null) {
         document.getElementById("temp" + data).setAttribute("value", "");
         document.getElementById("temp" + data).setAttribute("id", "");

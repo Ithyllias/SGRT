@@ -26,21 +26,26 @@
     <?php if($choixFait[0]->choixFait == false) { ?>
         <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
             <h1><?=trans('choix.priorities')?></h1>
-            <p id="1" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
-            <p id="2" draggable="true" ondragstart="drag(event)">&nbsp;2&nbsp;</p>
-            <p id="3" draggable="true" ondragstart="drag(event)">&nbsp;3&nbsp;</p>
-            <p id="4" draggable="true" ondragstart="drag(event)">&nbsp;4&nbsp;</p>
-            <p id="5" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
+            <p id="01" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
+            <p id="02" draggable="true" ondragstart="drag(event)">&nbsp;2&nbsp;</p>
+            <p id="03" draggable="true" ondragstart="drag(event)">&nbsp;3&nbsp;</p>
+            <p id="04" draggable="true" ondragstart="drag(event)">&nbsp;4&nbsp;</p>
+            <p id="05" draggable="true" ondragstart="drag(event)">&nbsp;5&nbsp;</p>
         </div>
             <form id="FormChoix" name="FormChoix" method="post" action="<?=url('choix/submit')?>">
                 <input type="hidden" value="<?=$enseignantID?>" name="ensId" readonly/>
-                <h1><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></h1>
+                <div id="menuB">
+                    <ul>
+                        <li id="plein" class="selected"><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></li>
+                    </ul>
+                </div>
+
                 <table>
                     <?php foreach ($courses[0] as $c): ?>
                         <tr>
                             <td class="cours"><?php echo $c->cou_no . " " . $c->cou_titre; ?>:</td>
-                            <td>
-                                <div id="<?php echo $c->cdn_id; ?>" class="elements"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <td class="divDrop" >
+                                <div id="<?php echo $c->cdn_id; ?>" class="elements"   ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                 <input type="text" value=""  name="<?php echo $c->cdn_id; ?>"  hidden readonly/>
                             </td>
                         </tr>
@@ -50,24 +55,25 @@
                 <input type="submit" onclick="return confirm('<?=trans('choix.confirm')?>')" value="<?=trans('choix.bouton')?>">
             </form>
     <?php }else { ?>
-        <h1><?=trans('choix.choixTitle') . $choixFait[0]->tac_annee ?></h1>
-    <br/>
-    <br/>
-        <table>
+    <div id="menuB">
+        <ul>
+            <li id="plein" class="selected"><?=trans('choix.choixTitle') . $choixFait[0]->tac_annee ?></li>
+        </ul>
+    </div>
+        <table id="tRes">
             <tr>
                 <th>Cours</th>
                 <th>Priorités</th>
             </tr>
             <?php foreach ($tacheEns as $tache): ?>
                 <tr>
-                    <td class="cours"><?php echo $tache->cou_no . " " . $tache->cou_titre; ?>:</td>
+                    <td class="cours"><?php echo $tache->cou_no . " " . $tache->cou_titre; ?></td>
                     <td>
                         <?php echo $tache->chx_priorite; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
-    <br/>
     <br/>
     <?php } ?>
 @endsection
