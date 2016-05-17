@@ -23,7 +23,7 @@ class CoordService extends Controller
         return response()->json("LOL");
     }
 
-    function getAllEnseignant(){
+    function getEnseignant(){
         return response()->json(App\Enseignant::getAllEnseignant());
     }
 

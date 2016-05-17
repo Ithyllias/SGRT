@@ -2,7 +2,7 @@
 <link href="{{ URL::asset('css/gestion.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     langue = "<?php echo App::getLocale();?>";
-    ens = "<?php echo curlCall(url("gestion/getEnseignant"));?>";
+    ens = $.parseJSON('<?php echo curlCall(url("gestion/getEnseignant"));?>');
     console.log(ens);
 </script>
 <script src="{{ URL::asset('js/gestion.js') }}" type="text/javascript"></script>
