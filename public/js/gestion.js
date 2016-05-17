@@ -1,8 +1,8 @@
 
 
+var compteur = 1;
 
-
-function clickopt1() {
+function clickUsers() {
     document.getElementById("option1").className = "selected";
     document.getElementById("option2").className = "";
     document.getElementById("option3").className = "";
@@ -18,12 +18,11 @@ function clickopt1() {
     html += "</tr>";
     for(var prof in ens)
     {
-        html += "<input type='hidden' value='" + ens[prof].ens_id + "'>";
         html += "<tr>";
-        html += "<td><input type='text' value='" + ens[prof].ens_alias + "'></td>";
-        html += "<td><input type='checkbox' " + ((ens[prof].ens_coordonateur == 1) ? "Checked" : "") + "></td>";
-        html += "<td><input type='checkbox' " + ((ens[prof].ens_inactif == 1) ? "" : "Checked") + "></td>";
-        html += "<td><input type='text' value='" + ens[prof].ens_commentaire + "'></td>";
+        html += "<td><input type='text' name='values[" + ens[prof].ens_id + "][alias]' value='" + ens[prof].ens_alias + "'></td>";
+        html += "<td><input type='checkbox' name='values[" + ens[prof].ens_id + "][coord]' " + ((ens[prof].ens_coordonateur == 1) ? "Checked" : "") + "></td>";
+        html += "<td><input type='checkbox' name='values[" + ens[prof].ens_id + "][actif]' " + ((ens[prof].ens_inactif == 1) ? "" : "Checked") + "></td>";
+        html += "<td><input type='text' name='values[" + ens[prof].ens_id + "][comm]' value='" + ens[prof].ens_commentaire + "'></td>";
         html += "</tr>";
     }
     html += "</table>";
@@ -35,13 +34,13 @@ function clickopt1() {
 
 }
 
-function clickopt2() {
+function clickCours() {
     document.getElementById("option2").className = "selected";
     document.getElementById("option1").className = "";
     document.getElementById("option3").className = "";
 }
 
-function clickopt3() {
+function clickImport() {
     document.getElementById("option3").className = "selected";
     document.getElementById("option1").className = "";
     document.getElementById("option2").className = "";
@@ -58,8 +57,10 @@ function clickAjout() {
     var cell3 = row.insertCell(0);
     var cell4 = row.insertCell(0);
 
-    cell4.innerHTML = "<input type='text' value=''>";
-    cell3.innerHTML = "<input type='checkbox' value=''>";
-    cell2.innerHTML = "<input type='checkbox' value=''>";
-    cell1.innerHTML = "<input type='text' value=''>";
+    cell4.innerHTML = "<input type='text' name='values[new" + compteur + "][alias]' value=''>";
+    cell3.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][coord] value=''>";
+    cell2.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][actif] value=''>";
+    cell1.innerHTML = "<input type='text' name='values[new" + compteur + "][comm] value=''>";
+
+    compteur += 1;
 }

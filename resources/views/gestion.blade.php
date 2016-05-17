@@ -10,9 +10,9 @@
 @section('content')
     <div id="menuB">
         <ul>
-            <li id="option1" onclick="clickopt1()"><?=trans('gestion.util')?></li>
-            <li id="option2" onclick="clickopt2()"><?=trans('gestion.cours')?></li>
-            <li id="option3" onclick="clickopt3()"><?=trans('gestion.import')?></li>
+            <li id="option1" onclick="clickUsers()"><?=trans('gestion.util')?></li>
+            <li id="option2" onclick="clickCours()"><?=trans('gestion.cours')?></li>
+            <li id="option3" onclick="clickImport()"><?=trans('gestion.import')?></li>
         </ul>
     </div>
 
