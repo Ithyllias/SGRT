@@ -36,10 +36,10 @@ Route::group([], function(){
     Route::get('gestion', ['as' => 'coord', ['middleware' => ['jwt.auth', 'header.manager']], function () {
         return view('gestion');
     }]);
-    
+
     Route::post('gestion/addCours', 'CoordService@addCours', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager']]);
-    Route::post('gestion/addEnseignant', 'CoordService@addEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/addEnseignant', 'CoordService@updateEnseignants', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('gestion/getEnseignant', 'CoordService@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
 });
 Route::group([], function(){
