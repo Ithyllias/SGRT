@@ -1,28 +1,4 @@
-var ens = [
-    {
-        'alias' : 'prof1',
-        'coord' : 0,
-        'actif' : 1,
-        'comm' : "Salut"
-    },
-    {
-        'alias' : 'prof2',
-        'coord' : 0,
-        'actif' : 1,
-        'comm' : "Pig123"
-    },
-    {
-        'alias' : 'prof3',
-        'coord' : 0,
-        'actif' : 1,
-        'comm' : ""
-    },
-    {
-        'alias' : 'prof4',
-        'coord' : 1,
-        'actif' : 1,
-        'comm' : "Scala"
-    }];
+
 
 
 
@@ -36,7 +12,7 @@ function clickopt1() {
     html += "<table id='tabUsers'>";
     html += "<tr>";
     html += "<th>Alias</th>";
-    html += "<th>" + ((langue == "FR") ? "Coordonnateur" : "Coord") + "Coordonnateur</th>";
+    html += "<th>" + ((langue == "FR") ? "Coordonnateur" : "Coord") + "</th>";
     html += "<th>" + ((langue == "FR") ? "Actif" : "Active") + "</th>";
     html += "<th>" + ((langue == "FR") ? "Commentaire" : "Comment") + "</th>";
     html += "</tr>";
@@ -62,7 +38,6 @@ function clickopt2() {
     document.getElementById("option2").className = "selected";
     document.getElementById("option1").className = "";
     document.getElementById("option3").className = "";
-
 }
 
 function clickopt3() {
