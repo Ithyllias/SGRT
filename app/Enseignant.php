@@ -60,6 +60,34 @@ class Enseignant extends Model
         return $enseignant;
     }
 
-    public static function addOrUpdate($id, $data){
+    /**
+     * Returns all enseignants
+     */
+    public static function getAllEnseignant(){
+        return Enseignant::all(array('ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur'));
+    }
+
+    /**
+     * @param $list array {[cou_no, cou_compteur_max, cou_commentaire], []...}
+     */
+    public static function updateAllEnseignant($list){
+        $allEns = Collection::make();
+        try{
+            foreach($list as $element){
+                $ens = Enseignant::where('ens_id', $element->ens_id);
+                $ens->ens_alias = $element->ens_alias;
+                $ens->ens_inactif = $element->ens_inactif;
+                $ens->ens_commentaire = $element->ens_commentaire;
+                $ens->ens_coordonateur = $element->ens_coordonateur;
+                $allEns->add($ens);
+            }
+        } catch(Exception $e) {
+            return false;
+        }
+
+        $allEns->each(function ($item) {
+            $item->save();
+        });
+        return true;
     }
 }

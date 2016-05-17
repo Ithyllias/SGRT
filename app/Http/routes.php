@@ -33,12 +33,15 @@ Route::group([], function(){
     Route::post('billes/getProfs', 'BillesService@getProfs', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('billes/test', 'BillesService@test', ['middleware' => ['jwt.auth', 'header.manager']]);
 
-    Route::get('coord', ['as' => 'coord', ['middleware' => ['jwt.auth', 'header.manager']], function () {
+    Route::get('gestion', ['as' => 'coord', ['middleware' => ['jwt.auth', 'header.manager']], function () {
         return view('coordo');
     }]);
     
-    Route::post('coord/addProf', 'CoordService@addProf', ['middleware' => ['jwt.auth', 'header.manager']]);
-    Route::post('coord/test', 'CoordService@test', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/addProf', 'CoordService@addProf', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/addCours', 'CoordService@addCours', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/addEnseignant', 'CoordService@addEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
+    Route::post('gestion/getEnseignant', 'CoordService@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
 });
 Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {
