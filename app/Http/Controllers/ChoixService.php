@@ -75,7 +75,6 @@ class ChoixService extends Controller
     }
 
     function test(){
-        var_dump(App\Choix::choixStatus(7));
-        return response()->json(App\Choix::choixStatus(7));
+        return response()->json(App\Enseignant::test());
     }
 }

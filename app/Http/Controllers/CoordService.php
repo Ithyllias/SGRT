@@ -11,18 +11,6 @@ use App\Http\Requests;
 
 class CoordService extends Controller
 {
-    function addProf(){
-        $ens = App\Enseignant::create([
-            'ens_login' => request()->input('ens_login'),
-            'ens_alias' => request()->input('ens_alias'),
-            'ens_inactif' => intval(request()->input('ens_inactif')),
-            'ens_commentaire' => request()->input('ens_commentaire'),
-            'ens_coordonateur' => intval(request()->input('ens_coordonateur'))
-        ]);
-
-        return response()->json("LOL");
-    }
-
     function getEnseignant(){
         return response()->json(App\Enseignant::getAllEnseignant());
     }

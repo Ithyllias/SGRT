@@ -74,7 +74,16 @@ class Enseignant extends Model
         $allEns = Collection::make();
         try{
             foreach($list as $element){
-                $ens = Enseignant::where('ens_id', $element->ens_id);
+                $ens = Enseignant::where('ens_id', $element->ens_id)->first();
+                if($ens == null){
+                    $ens = Enseignant::create([
+                        'ens_login' => "",
+                        'ens_alias' => $element->ens_alias,
+                        'ens_inactif' => $element->ens_inactif,
+                        'ens_commentaire' => $element->ens_commentaire,
+                        'ens_coordonateur' => $element->ens_coordonateur
+                    ]);
+                }
                 $ens->ens_alias = $element->ens_alias;
                 $ens->ens_inactif = $element->ens_inactif;
                 $ens->ens_commentaire = $element->ens_commentaire;
@@ -89,5 +98,9 @@ class Enseignant extends Model
             $item->save();
         });
         return true;
+    }
+
+    public static function test(){
+        return Enseignant::where('ens_id', 99)->first() == null;
     }
 }

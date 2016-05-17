@@ -37,7 +37,6 @@ Route::group([], function(){
         return view('gestion');
     }]);
     
-    Route::post('gestion/addProf', 'CoordService@addProf', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('gestion/addCours', 'CoordService@addCours', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager']]);
     Route::post('gestion/addEnseignant', 'CoordService@addEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
