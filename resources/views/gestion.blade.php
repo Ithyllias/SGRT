@@ -3,11 +3,10 @@
 <script type="text/javascript">
     langue = "<?php echo App::getLocale();?>";
     ens = $.parseJSON('<?php echo curlCall(url("gestion/getEnseignant"));?>');
-    console.log(ens);
+    routeAddEns = '<?=url('gestion/addEnseignant')?>';
 </script>
 <script src="{{ URL::asset('js/gestion.js') }}" type="text/javascript"></script>
 @extends('master')
-
 @section('content')
     <div id="menuB">
         <ul>
