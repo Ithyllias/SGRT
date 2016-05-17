@@ -8,7 +8,7 @@ function clickopt1() {
     document.getElementById("option3").className = "";
 
     var html = "";
-    html += "<form action=\"\" method=\"post\">";
+    html += "<form action=\""+ routeAddEns + "\" method=\"post\">";
     html += "<table id='tabUsers'>";
     html += "<tr>";
     html += "<th>Alias</th>";
@@ -18,11 +18,12 @@ function clickopt1() {
     html += "</tr>";
     for(var prof in ens)
     {
+        html += "<input type='hidden' value='" + ens[prof].ens_id + "'>";
         html += "<tr>";
-        html += "<td><input type='text' value='" + ens[prof].alias + "'></td>";
-        html += "<td><input type='checkbox' " + ((ens[prof].coord == 1) ? "Checked" : "") + "></td>";
-        html += "<td><input type='checkbox' " + ((ens[prof].actif == 1) ? "Checked" : "") + "></td>";
-        html += "<td><input type='text' value='" + ens[prof].comm + "'></td>";
+        html += "<td><input type='text' value='" + ens[prof].ens_alias + "'></td>";
+        html += "<td><input type='checkbox' " + ((ens[prof].ens_coordonateur == 1) ? "Checked" : "") + "></td>";
+        html += "<td><input type='checkbox' " + ((ens[prof].ens_inactif == 1) ? "" : "Checked") + "></td>";
+        html += "<td><input type='text' value='" + ens[prof].ens_commentaire + "'></td>";
         html += "</tr>";
     }
     html += "</table>";
