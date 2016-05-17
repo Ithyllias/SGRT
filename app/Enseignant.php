@@ -74,10 +74,11 @@ class Enseignant extends Model
         $allEns = Collection::make();
         try{
             foreach($list as $element){
-                $ens = Enseignant::where('ens_id', $element->ens_id)->first();
-                if($ens == null){
+                if($element->ens_id != null) {
+                    $ens = Enseignant::where('ens_id', $element->ens_id)->first();
+                } else {
                     $ens = Enseignant::create([
-                        'ens_login' => "",
+                        'ens_login' => $element->ens_login,
                         'ens_alias' => $element->ens_alias,
                         'ens_inactif' => $element->ens_inactif,
                         'ens_commentaire' => $element->ens_commentaire,
