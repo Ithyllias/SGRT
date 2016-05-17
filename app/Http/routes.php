@@ -34,7 +34,7 @@ Route::group([], function(){
     Route::post('billes/test', 'BillesService@test', ['middleware' => ['jwt.auth', 'header.manager']]);
 
     Route::get('gestion', ['as' => 'coord', ['middleware' => ['jwt.auth', 'header.manager']], function () {
-        return view('coordo');
+        return view('gestion');
     }]);
     
     Route::post('gestion/addProf', 'CoordService@addProf', ['middleware' => ['jwt.auth', 'header.manager']]);

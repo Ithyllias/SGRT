@@ -24,7 +24,7 @@ class CoordService extends Controller
     }
 
     function getAllEnseignant(){
-        return response()->json(App\Enseignant::getAllCours());
+        return response()->json(App\Enseignant::getAllEnseignant());
     }
 
     function updateEnseignants(){
