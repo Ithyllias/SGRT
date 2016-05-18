@@ -22,38 +22,38 @@ class CoordService extends Controller
 
         foreach ($values as $key => $value){
             $user = [];
-            var_dump($value);
             if(!is_int($key))
             {
-                $user['ens_id'] = null;
+                if($value['alias'] == "" || strlen($value['alias']) > 5)
+                {
+                    $user['ens_id'] = "notValid";
+                }
+                else
+                {
+                    $user['ens_id'] = null;
+                }
             }
             else{
                 $user['ens_id'] = $key;
             }
+            if($user['ens_id'] != "notValid") {
+                $user['ens_login'] = "";
+                $user['ens_alias'] = $value['alias'];
+                if (isset($value['actif']) && $value['actif'] == 'on') {
+                    $user['ens_inactif'] = 0;
+                } else {
+                    $user['ens_inactif'] = 1;
+                }
+                if (isset($value['coord']) && $value['coord'] == 'on') {
+                    $user['ens_coordonateur'] = 1;
+                } else {
+                    $user['ens_coordonateur'] = 0;
+                }
 
-            $user['ens_login'] = "";
-            $user['ens_alias'] = $value['alias'];
-            if(isset($value['actif']) && $value['actif'] == 'on')
-            {
-                $user['ens_inactif'] = 0;
+                $user['ens_commentaire'] = $value['comm'];
+                array_push($users, $user);
             }
-            else
-            {
-                $user['ens_inactif'] = 1;
-            }
-            if(isset($value['coord']) && $value['coord'] == 'on')
-            {
-                $user['ens_coordonateur'] = 1;
-            }
-            else
-            {
-                $user['ens_coordonateur'] = 0;
-            }
-
-            $user['ens_commentaire'] = $value['comm'];
-            array_push($users,$user);
         }
-        var_dump($users);
         return response()->json($values);
         //return response()->json(App\Enseignant::updateCours(request()->input('cours_list')));
     }
