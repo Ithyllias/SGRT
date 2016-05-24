@@ -56,12 +56,17 @@ class CoordService extends Controller
                 array_push($users, $user);
             }
         }
+        if(App\Enseignant::updateAllEnseignant($users)){
+        } else {
+        }
+
+        return redirect()->back();
         //return response()->json($users);
-        return response()->json(App\Enseignant::updateAllEnseignant($users));
     }
 
     function addCours(){
         $values = request()->input('values');
+        //App\Cours::updateCours($values);
         return response()->json($values);
         //return response()->json(App\Cours::updateCours(request()->input('cours_list')));
     }

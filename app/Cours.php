@@ -53,9 +53,9 @@ class Cours extends Model
         $allCours = Collection::make();
         try{
             foreach($list as $element){
-                $cours = Cours::where('cou_no', $element->cou_no);
-                $cours->cou_compteur_max = $element->cou_compteur_max;
-                $cours->cou_commentaire = $element->cou_commentaire;
+                $cours = Cours::where('cou_no', $element['cou_no']);
+                $cours->cou_compteur_max = $element['cou_compteur_max'];
+                $cours->cou_commentaire = $element['cou_commentaire'];
                 $allCours->add($cours);
             }
         } catch(Exception $e) {
