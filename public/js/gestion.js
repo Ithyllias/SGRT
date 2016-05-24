@@ -43,7 +43,7 @@ function clickCours() {
     document.getElementById("option3").className = "";
 
     var html = "";
-    html += "<form action=\"\" method=\"post\">";
+    html += "<form action=\""+ routeModifCours + "\" method=\"post\">";
     html += "<table id='tabCours'>";
     html += "<tr>";
     html += "<th>" + ((langue == "FR") ? "Cours" : "Courses") + "</th>";
