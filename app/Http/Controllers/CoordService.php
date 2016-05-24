@@ -31,13 +31,15 @@ class CoordService extends Controller
                 else
                 {
                     $user['ens_id'] = null;
+                    $user['ens_login'] = $value['login'];
                 }
             }
             else{
                 $user['ens_id'] = $key;
+                $user['ens_login'] = $value['login'];
             }
             if($user['ens_id'] != "notValid") {
-                $user['ens_login'] = "";
+
                 $user['ens_alias'] = $value['alias'];
                 if (isset($value['actif']) && $value['actif'] == 'on') {
                     $user['ens_inactif'] = 0;
@@ -54,7 +56,7 @@ class CoordService extends Controller
                 array_push($users, $user);
             }
         }
-        return response()->json($values);
+        return response()->json($users);
         //return response()->json(App\Enseignant::updateCours(request()->input('cours_list')));
     }
 

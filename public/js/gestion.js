@@ -12,6 +12,7 @@ function clickUsers() {
     html += "<form action=\""+ routeAddEns + "\" method=\"post\">";
     html += "<table id='tabUsers'>";
     html += "<tr>";
+    html += "<th>" + ((langue == "FR") ? "Connection" : "Login") + "</th>";
     html += "<th>Alias</th>";
     html += "<th>" + ((langue == "FR") ? "Coordonnateur" : "Coord") + "</th>";
     html += "<th>" + ((langue == "FR") ? "Actif" : "Active") + "</th>";
@@ -20,6 +21,7 @@ function clickUsers() {
     for(var prof in ens)
     {
         html += "<tr>";
+        html += "<th><input type='hidden' class='inputtxt' name='values[" + ens[prof].ens_id + "][login]' value='" + ens[prof].ens_login + "'>" + ens[prof].ens_login + "</th>";
         html += "<td><input type='text' class='inputtxt' name='values[" + ens[prof].ens_id + "][alias]' value='" + ens[prof].ens_alias + "'></td>";
         html += "<td><input type='checkbox' name='values[" + ens[prof].ens_id + "][coord]' " + ((ens[prof].ens_coordonateur == 1) ? "Checked" : "") + "></td>";
         html += "<td><input type='checkbox' name='values[" + ens[prof].ens_id + "][actif]' " + ((ens[prof].ens_inactif == 1) ? "" : "Checked") + "></td>";
@@ -81,11 +83,13 @@ function clickAjout() {
     var cell2 = row.insertCell(0);
     var cell3 = row.insertCell(0);
     var cell4 = row.insertCell(0);
+    var cell5 = row.insertCell(0);
 
-    cell4.innerHTML = "<input type='text' name='values[new" + compteur + "][alias]' value=''>";
+    cell5.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][login]' value=''>";
+    cell4.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][alias]' value=''>";
     cell3.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][coord] value=''>";
     cell2.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][actif] value=''>";
-    cell1.innerHTML = "<input type='text' name='values[new" + compteur + "][comm] value=''>";
+    cell1.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][comm] value=''>";
 
     compteur += 1;
 }
