@@ -80,7 +80,11 @@ class CoordService extends Controller
             }
         }
 
-        App\Cours::updateCours($cours);
+        if(App\Cours::updateCours($cours)){
+        } else {
+        }
+
+        return redirect()->back();
         //return response()->json($cours);
     }
 
