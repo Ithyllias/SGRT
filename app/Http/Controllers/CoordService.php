@@ -24,7 +24,7 @@ class CoordService extends Controller
             $user = [];
             if(!is_int($key))
             {
-                if($value['alias'] == "" || strlen($value['alias']) > 5)
+                if($value['alias'] == "" || strlen($value['alias']) > 5 || $value['login'] == "" || strlen($value['login']) > 50 )
                 {
                     $user['ens_id'] = "notValid";
                 }
@@ -56,12 +56,14 @@ class CoordService extends Controller
                 array_push($users, $user);
             }
         }
-        return response()->json($users);
-        //return response()->json(App\Enseignant::updateCours(request()->input('cours_list')));
+        //return response()->json($users);
+        return response()->json(App\Enseignant::updateAllEnseignant($users));
     }
 
     function addCours(){
-        return response()->json(App\Cours::updateCours(request()->input('cours_list')));
+        $values = request()->input('values');
+        return response()->json($values);
+        //return response()->json(App\Cours::updateCours(request()->input('cours_list')));
     }
 
     function getCours(){
