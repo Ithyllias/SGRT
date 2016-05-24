@@ -61,14 +61,27 @@ class CoordService extends Controller
         }
 
         return redirect()->back();
-        //return response()->json($users);
     }
 
     function addCours(){
         $values = request()->input('values');
-        //App\Cours::updateCours($values);
-        return response()->json($values);
-        //return response()->json(App\Cours::updateCours(request()->input('cours_list')));
+        $cours = [];
+
+        foreach ($values as $key => $value){
+            $cour = [];
+
+            $cour['cou_no'] = $key;
+            $cour['cou_commentaire'] = $value['comm'];
+
+            if($value['compt_max'] > 0 )
+            {
+                $cour['cou_compteur_max'] = $value['compt_max'];
+                array_push($cours, $cour);
+            }
+        }
+
+        App\Cours::updateCours($cours);
+        //return response()->json($cours);
     }
 
     function getCours(){
