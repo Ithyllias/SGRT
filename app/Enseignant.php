@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Collection;
 
 class Enseignant extends Model
 {
     protected $table = 'enseignant_ens';
     protected $primaryKey = 'ens_id';
     public $timestamps = false;
+    protected $fillable = array('ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur', 'ens_login');
 
     public function billes_depart()
     {
@@ -74,21 +76,21 @@ class Enseignant extends Model
         $allEns = Collection::make();
         try{
             foreach($list as $element){
-                if($element->ens_id != null) {
-                    $ens = Enseignant::where('ens_id', $element->ens_id)->first();
+                if($element['ens_id'] != null) {
+                    $ens = Enseignant::where('ens_id', $element['ens_id'])->first();
                 } else {
                     $ens = Enseignant::create([
-                        'ens_login' => $element->ens_login,
-                        'ens_alias' => $element->ens_alias,
-                        'ens_inactif' => $element->ens_inactif,
-                        'ens_commentaire' => $element->ens_commentaire,
-                        'ens_coordonateur' => $element->ens_coordonateur
+                        'ens_login' => $element['ens_login'],
+                        'ens_alias' => $element['ens_alias'],
+                        'ens_inactif' => $element['ens_inactif'],
+                        'ens_commentaire' => $element['ens_commentaire'],
+                        'ens_coordonateur' => $element['ens_coordonateur']
                     ]);
                 }
-                $ens->ens_alias = $element->ens_alias;
-                $ens->ens_inactif = $element->ens_inactif;
-                $ens->ens_commentaire = $element->ens_commentaire;
-                $ens->ens_coordonateur = $element->ens_coordonateur;
+                $ens->ens_alias = $element['ens_alias'];
+                $ens->ens_inactif = $element['ens_inactif'];
+                $ens->ens_commentaire = $element['ens_commentaire'];
+                $ens->ens_coordonateur = $element['ens_coordonateur'];
                 $allEns->add($ens);
             }
         } catch(Exception $e) {
