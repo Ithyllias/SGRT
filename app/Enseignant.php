@@ -64,7 +64,7 @@ class Enseignant extends Model
      * Returns all enseignants
      */
     public static function getAllEnseignant(){
-        return Enseignant::all(array('ens_id', 'ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur'));
+        return Enseignant::all(array('ens_id', 'ens_login', 'ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur'));
     }
 
     /**
