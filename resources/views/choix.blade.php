@@ -24,9 +24,7 @@
      }
 ?>
 @section('content')
-    <?php if($choixFait->choixFait == false)
-    //LOL MAT
-     { ?>
+    <?php if($choixFait->choixFait == false) { ?>
         <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
             <h1><?=trans('choix.priorities')?></h1>
             <p id="01" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
@@ -39,7 +37,7 @@
                 <input type="hidden" value="<?=$enseignantID?>" name="ensId" readonly/>
                 <div id="menuB">
                     <ul>
-                        <li id="plein" class="selected"><?=trans('choix.listC') . " " . $choixFait[0]->tac_annee ?></li>
+                        <li id="plein" class="selected"><?=trans('choix.listC') . " " . $choixFait->tac_annee ?></li>
                     </ul>
                 </div>
 
