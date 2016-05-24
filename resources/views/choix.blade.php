@@ -24,7 +24,9 @@
      }
 ?>
 @section('content')
-    <?php if($choixFait->choixFait == false) { ?>
+    <?php if($choixFait->choixFait == false)
+    //LOL MAT
+     { ?>
         <div ondrop="drop(event)" ondragover="allowDrop(event)" id="fixer" >
             <h1><?=trans('choix.priorities')?></h1>
             <p id="01" draggable="true" ondragstart="drag(event)">&nbsp;1&nbsp;</p>
