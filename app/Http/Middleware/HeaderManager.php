@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enseignant;
 use Closure;
 use Illuminate\Support\Facades\Session;
 
@@ -16,9 +17,16 @@ class HeaderManager
      */
     public function handle($request, Closure $next)
     {
-        var_dump(Session::get('jwt'));
-        var_dump($request->getRequestUri());
-        if(!(Session::get('jwt') === null)) {
+        if(Session::get('connected_user') !== null){
+            $id = Enseignant::getIdFromLogin(Session::get('connected_user'));
+            if($id === null){
+                Session::forget('jwt');
+                Session::forget('connected_user');
+                Session::forget('user_id');
+            }
+        }
+
+        if(Session::get('jwt') !== null) {
             $request->headers->set('Authorization', 'bearer ' . Session::get('jwt'));
         }
         return $next($request);

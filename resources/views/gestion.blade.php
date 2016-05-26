@@ -5,7 +5,7 @@
     ens = $.parseJSON('<?php echo curlCall(url("gestion/getEnseignant"));?>');
     routeAddEns = '<?=url('gestion/addEnseignant')?>';
     routeModifCours = '<?=url('gestion/addCours')?>';
-    cours = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("gestion/getCours")));?>');
+    cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
 </script>
 <script src="{{ URL::asset('js/gestion.js') }}" type="text/javascript"></script>
 @extends('master')

@@ -71,6 +71,7 @@ class LdapAuthController extends Controller
                 Session::put('jwt',$token);
                 Session::put('connected_user', $username);
                 Session::put('user_id', $id);
+                Session::put('is_admin', Enseignant::getIsCoordoFromId($id));
             }
 
             $response = array('jwt' => $token,'connected_user' => $username,'user_id' => $id);
@@ -88,7 +89,8 @@ class LdapAuthController extends Controller
     {
         Session::forget('jwt');
         Session::forget('connected_user');
-
+        Session::forget('user_id');
+        
         return redirect('/');
     }
 }
