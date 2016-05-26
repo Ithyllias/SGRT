@@ -93,6 +93,6 @@ class CoordService extends Controller
     }
     //
     function test(){
-        return response()->json(App\Enseignant::getIdFromLogin('robert.aube'));
+        return response()->json(App\BillesCompteur::getBillesCompteur());
     }
 }
