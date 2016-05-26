@@ -14,20 +14,20 @@ class BillesService extends Controller
         $bct = App\BillesCompteur::getBillesCompteur();
 
         foreach($bct as $bc){
-            if(!array_key_exists($bc->bc_cou_titre, $array)){
-                $array[$bc->bct_cou_no] = [
-                    'cours' => $bc->bct_cou_titre,
-                    'ens' => array()
+            if(!array_key_exists($bc->bct_alias, $array)){
+                $array[$bc->bct_alias] = [
+                    'cours' => array(),
                 ];
             }
 
-            array_push($array[$bc->bct_cou_no]['ens'], [
-                'ens' => $bc->bct_ens_login,
+            $array[$bc->bct_ens_alias]['cours'][$bc->bct_cou_no] = [
+                'cours' => $bc->bct_cou_titre,
                 'billes' => $bc->bct_billes,
                 'compteur' => $bc->bct_compteurs,
                 'bid' => 0
-            ]);
+            ];
         }
+        
         return response()->json($array)->header('Access-Control-Allow-Origin', '*');
     }
 
