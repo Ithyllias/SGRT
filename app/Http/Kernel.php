@@ -52,5 +52,6 @@ class Kernel extends HttpKernel
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
         'header.manager' => \App\Http\Middleware\HeaderManager::class,
+        'coordonator.manager' => \App\Http\Middleware\CoordonatorManager::class,
     ];
 }

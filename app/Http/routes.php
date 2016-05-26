@@ -25,7 +25,9 @@ Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
     }]);
     Route::post('billes/getBilles', 'BillesService@getBilles');
     Route::post('billes/getProfs', 'BillesService@getProfs');
+});
 
+Route::group(['middleware' => ['header.manager', 'jwt.auth', 'coordonator.manager']], function(){
     Route::get('gestion', ['as' => 'coord', function () {
         return view('gestion');
     }]);

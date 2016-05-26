@@ -40,7 +40,7 @@ class LdapAuthController extends Controller
 
         $this->authenticate($request);
 
-        return redirect()->back()->with('error', 'Username and/or Password are not matching!');
+        return redirect()->back()->with('error', trans('error.loginFailed'));
     }
 
     public function authenticate(Request $request){

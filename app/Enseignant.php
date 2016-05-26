@@ -38,7 +38,7 @@ class Enseignant extends Model
 
     public static function getIsCoordoFromId($id){
         try {
-            $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur == 1;
+            $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur;
         } catch (ModelNotFoundException $e){
             $ens = false;
         }

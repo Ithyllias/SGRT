@@ -30,11 +30,14 @@
         <?php if(Session::get("jwt") !== null){ ?>
         <li><a href="<?=url('choix')?>"><?=trans('master.choix')?></a></li>
         <li><a href="<?=url('billes')?>"><?=trans('master.billes')?></a></li>
-        <li><a href="<?=url('gestion')?>"><?=trans('master.gestion')?></a></li>
+            <?php if(App\Enseignant::getIsCoordoFromId(Session::get('user_id')) == 1){ ?>
+            <li><a href="<?=url('gestion')?>"><?=trans('master.gestion')?></a></li>
+            <?php } ?>
         <?php } ?>
     </ul>
 </div>
 <div id="content">
+    <span class="error"><?=session('error'); ?></span></br></br>
     @yield("content")
 </div>
 </body>
