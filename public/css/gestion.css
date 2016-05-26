@@ -54,12 +54,8 @@ table th:hover {
 }
 
 .inputtxt{
-    background:rgba(0,0,0,0);
-    width: 100% ;
+    background:white;
     text-align: center;
-    padding: 10px;
     border: solid 1px #fff;
     box-shadow: inset 1px 1px 2px 0 #707070;
-    transition: box-shadow 0.3s;
-    font: 15px Tahoma, Helvetica, Arial, Sans-Serif;
 }

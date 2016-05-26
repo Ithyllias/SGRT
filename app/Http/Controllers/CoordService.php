@@ -24,20 +24,22 @@ class CoordService extends Controller
             $user = [];
             if(!is_int($key))
             {
-                if($value['alias'] == "" || strlen($value['alias']) > 5)
+                if($value['alias'] == "" || strlen($value['alias']) > 5 || $value['login'] == "" || strlen($value['login']) > 50 )
                 {
                     $user['ens_id'] = "notValid";
                 }
                 else
                 {
                     $user['ens_id'] = null;
+                    $user['ens_login'] = $value['login'];
                 }
             }
             else{
                 $user['ens_id'] = $key;
+                $user['ens_login'] = $value['login'];
             }
             if($user['ens_id'] != "notValid") {
-                $user['ens_login'] = "";
+
                 $user['ens_alias'] = $value['alias'];
                 if (isset($value['actif']) && $value['actif'] == 'on') {
                     $user['ens_inactif'] = 0;
@@ -54,12 +56,36 @@ class CoordService extends Controller
                 array_push($users, $user);
             }
         }
-        return response()->json($values);
-        //return response()->json(App\Enseignant::updateCours(request()->input('cours_list')));
+        if(App\Enseignant::updateAllEnseignant($users)){
+        } else {
+        }
+
+        return redirect()->back();
     }
 
     function addCours(){
-        return response()->json(App\Cours::updateCours(request()->input('cours_list')));
+        $values = request()->input('values');
+        $cours = [];
+
+        foreach ($values as $key => $value){
+            $cour = [];
+
+            $cour['cou_no'] = $key;
+            $cour['cou_commentaire'] = $value['comm'];
+
+            if($value['compt_max'] > 0 )
+            {
+                $cour['cou_compteur_max'] = $value['compt_max'];
+                array_push($cours, $cour);
+            }
+        }
+
+        if(App\Cours::updateCours($cours)){
+        } else {
+        }
+
+        return redirect()->back();
+        //return response()->json($cours);
     }
 
     function getCours(){

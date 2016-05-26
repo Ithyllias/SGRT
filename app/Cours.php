@@ -11,6 +11,7 @@ class Cours extends Model
     protected $primaryKey = 'cou_no';
     public $timestamps = false;
     public $incrementing = false;
+    protected $fillable = array('cou_commentaire', 'cou_compteur_max');
     /*
      * 
     */
@@ -53,9 +54,9 @@ class Cours extends Model
         $allCours = Collection::make();
         try{
             foreach($list as $element){
-                $cours = Cours::where('cou_no', $element->cou_no);
-                $cours->cou_compteur_max = $element->cou_compteur_max;
-                $cours->cou_commentaire = $element->cou_commentaire;
+                $cours = Cours::where('cou_no', $element['cou_no'])->first();
+                $cours->cou_compteur_max = $element['cou_compteur_max'];
+                $cours->cou_commentaire = $element['cou_commentaire'];
                 $allCours->add($cours);
             }
         } catch(Exception $e) {
