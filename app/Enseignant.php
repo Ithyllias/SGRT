@@ -36,6 +36,15 @@ class Enseignant extends Model
         return $id;
     }
 
+    public static function getIsCoordoFromId($id){
+        try {
+            $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur == 1;
+        } catch (ModelNotFoundException $e){
+            $ens = false;
+        }
+        return $ens;
+    }
+
     /**
      * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table

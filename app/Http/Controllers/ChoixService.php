@@ -75,6 +75,6 @@ class ChoixService extends Controller
     }
 
     function test(){
-        return response()->json(App\Enseignant::test());
+        return response()->json(App\Enseignant::getIsCoordoFromId(7));
     }
 }
