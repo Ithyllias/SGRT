@@ -2,6 +2,12 @@
 <link href="{{ URL::asset('css/billes.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
      langue = "<?php echo App::getLocale();?>";
+     Dummy = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
+     console.log(Dummy);
+     if(langue == "" || langue == null)
+     {
+         langue = "FR";
+     }
 </script>
 <script src="{{ URL::asset('js/billes.js') }}" type="text/javascript"></script>
 @extends('master')

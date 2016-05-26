@@ -2,6 +2,10 @@
 <link href="{{ URL::asset('css/gestion.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     langue = "<?php echo App::getLocale();?>";
+    if(langue == "" || langue == null)
+    {
+        langue = "FR";
+    }
     ens = $.parseJSON('<?php echo curlCall(url("gestion/getEnseignant"));?>');
     routeAddEns = '<?=url('gestion/addEnseignant')?>';
     routeModifCours = '<?=url('gestion/addCours')?>';

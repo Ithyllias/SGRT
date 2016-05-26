@@ -51,7 +51,7 @@ class Enseignant extends Model
      */
     public static function getIdFromLogin($login){
         try {
-            $id = Enseignant::where('ens_login', '=', $login)->firstOrFail()->ens_id;
+            $id = Enseignant::where('ens_login', '=', $login)->where('ens_inactif', '=', 0)->firstOrFail()->ens_id;
         } catch (ModelNotFoundException $e){
             $id = null;
         }
