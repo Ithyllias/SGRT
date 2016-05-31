@@ -1,4 +1,6 @@
-
+window.onload = function() {
+    clickUsers();
+};
 
 var compteur = 1;
 
