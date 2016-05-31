@@ -38,9 +38,12 @@ class LdapAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $this->authenticate($request);
+        $auth_result = $this->authenticate($request);
+        if(strpos($auth_result, 'jwt') === false){
+            return redirect()->back()->with('error', trans('error.loginFailed'));
+        };
 
-        return redirect()->back()->with('error', trans('error.loginFailed'));
+        return redirect()->intended('home');
     }
 
     public function authenticate(Request $request){

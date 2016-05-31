@@ -6,6 +6,11 @@
         App::setLocale($lang);
     }
 
+    if(session('error')) {
+        Session::forget('jwt');
+        Session::forget('connected_user');
+        Session::forget('user_id');
+    }
     /**
      * @param $url String Url to call
      * @param array $data Array Data to send in the POST
