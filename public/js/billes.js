@@ -1,7 +1,34 @@
 window.onload = function() {
-    //clickTableau();
-};
+    ArrayBilles = [];
 
+    for(var i = 0; i < cours.length;i++)
+    {
+        ArrayBilles[i] = [];
+        ArrayBilles[i].titre = cours[i]["cou_titre"];
+        ArrayBilles[i].no = cours[i]["cou_no"];
+        cmpt = 0;
+        for(var j = 0; j < ens.length;j++)
+        {
+            if(ens[j]["ens_inactif"] == 0)
+            {
+                ArrayBilles[i][cmpt] = [];
+                ArrayBilles[i][cmpt].alias = ens[j]["ens_alias"];
+                if (Dummy[ens[j]["ens_alias"]] == null || Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
+                    ArrayBilles[i][cmpt].billes = 0;
+                    ArrayBilles[i][cmpt].fois = 0;
+                    ArrayBilles[i][cmpt].bid = 0;
+                }
+                else {
+                    ArrayBilles[i][cmpt].billes = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
+                    ArrayBilles[i][cmpt].fois = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
+                    ArrayBilles[i][cmpt].bid = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid;
+                }
+                cmpt++;
+            }
+        }
+    }
+    clickTableau();
+};
 
 function clickTableau()
 {
@@ -9,18 +36,24 @@ function clickTableau()
     var html = "";
     html += "<table id='tabBilles'>";
     html += "<tr> <th onclick=\"clickTableau()\">INFO</th>";
-    for(var lProfs in Dummy[0].ens)
+    for(var i = 0; i < ArrayBilles[0].length;i++)
     {
-        html += "<th onclick=\"clickProfs(\'" + Dummy[0].ens[lProfs].p + "\')\">" + Dummy[0].ens[lProfs].p + "</th>";
+        if(ArrayBilles[0][i].alias != null)
+        {
+            html += "<th onclick=\"clickProfs(\'" + ArrayBilles[0][i].alias + "\')\">" + ArrayBilles[0][i].alias + "</th>";
+        }
+
     }
     html += "</tr>";
-    for(var lCours in Dummy)
+    for(var i = 0; i < ArrayBilles.length;i++)
     {
         html += "<tr>";
-        html += "<th onclick=\"clickCours(\'" + Dummy[lCours].cours + "\')\">" + Dummy[lCours].cours + "</th>";
-        for(var lProfs in Dummy[lCours].ens)
+        html += "<th onclick=\"clickCours(\'" + ArrayBilles[i].no + "\')\">" + ArrayBilles[i].titre + "</th>";
+        for(var j = 0; j < ArrayBilles[i].length;j++)
         {
-            html += "<td>" + ((langue == "FR") ? "Billes: " : "Marbles: ")  + Dummy[lCours].ens[lProfs].val + ((langue == "FR") ? "<br /> Fois: " : "<br /> Times: ") + Dummy[lCours].ens[lProfs].val2 + "</td>";
+            if(ArrayBilles[i][j].alias != null) {
+                html += "<td>" + ((langue == "FR") ? "Billes: " : "Marbles: ") + ArrayBilles[i][j].billes + ((langue == "FR") ? "<br /> Fois: " : "<br /> Times: ") + ArrayBilles[i][j].fois + "</td>";
+            }
         }
         html += "</tr>";
     }
@@ -35,21 +68,22 @@ function clickProfs(pId)
     html += "<h3>" + pId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFO</th>";
-    html += "<th onclick=\"\">" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
-    html += "<th onclick=\"\">" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
-    html += "<th onclick=\"\">BID</th>";
+    html += "<th>" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th>" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
+    html += "<th>BID</th>";
     html += "</tr>";
-    for(var lCours in Dummy)
+    for(var i = 0; i < ArrayBilles.length;i++)
     {
 
-            for (var lProfs in Dummy[lCours].ens) {
-                if(Dummy[lCours].ens[lProfs].p == pId)
+        for(var j = 0; j < ArrayBilles[i].length;j++)
+        {
+                if(ArrayBilles[i][j].alias == pId)
                 {
                     html += "<tr>";
-                    html += "<th onclick=\"clickCours(\'" + Dummy[lCours].cours + "\')\">" + Dummy[lCours].cours + "</th>";
-                    html += "<td>" + Dummy[lCours].ens[lProfs].val + "</td>";
-                    html += "<td>" + Dummy[lCours].ens[lProfs].val2 + "</td>";
-                    html += "<td>" + Dummy[lCours].ens[lProfs].val3 + "</td>";
+                    html += "<th onclick=\"clickCours(\'" + ArrayBilles[i].no + "\')\">" + ArrayBilles[i].titre + "</th>";
+                    html += "<td>" + ArrayBilles[i][j].billes + "</td>";
+                    html += "<td>" + ArrayBilles[i][j].fois + "</td>";
+                    html += "<td>" + ArrayBilles[i][j].bid + "</td>";
                     html += "</tr>";
                 }
             }
@@ -60,24 +94,30 @@ function clickProfs(pId)
 
 function clickCours(cId)
 {
+    for(var i = 0; i < ArrayBilles.length;i++) {
+        if(ArrayBilles[i].no == cId){
+            titre = ArrayBilles[i].titre;
+        }
+    }
     var html = "";
-    html += "<h3>" + cId + "</h3>"
+    html += "<h3>" + cId + ":" + titre + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFO</th>";
-    html += "<th onclick=\"clickTriFois(" + cId + ")\">" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
-    html += "<th onclick=\"clickTriBilles(" + cId + ")\">" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
-    html += "<th onclick=\"clickTriBid(" + cId + ")\">BID</th>";
+    html += "<th>" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th>" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
+    html += "<th>BID</th>";
     html += "</tr>";
-    for(var lCours in Dummy)
+    for(var i = 0; i < ArrayBilles.length;i++)
     {
-        if(Dummy[lCours].cours == cId)
+        if(ArrayBilles[i].no == cId)
         {
-            for (var lProfs in Dummy[lCours].ens) {
+            for(var j = 0; j < ArrayBilles[i].length;j++)
+            {
                 html += "<tr>";
-                html += "<th onclick=\"clickProfs(\'" + Dummy[lCours].ens[lProfs].p + "\')\">" + Dummy[lCours].ens[lProfs].p + "</th>";
-                html += "<td>" + Dummy[lCours].ens[lProfs].val + "</td>";
-                html += "<td>" + Dummy[lCours].ens[lProfs].val2 + "</td>";
-                html += "<td>" + Dummy[lCours].ens[lProfs].val3 + "</td>";
+                html += "<th onclick=\"clickProfs(\'" + ArrayBilles[i][j].alias + "\')\">" + ArrayBilles[i][j].alias + "</th>";
+                html += "<td>" + ArrayBilles[i][j].billes + "</td>";
+                html += "<td>" + ArrayBilles[i][j].fois + "</td>";
+                html += "<td>" + ArrayBilles[i][j].bid + "</td>";
                 html += "</tr>";
             }
         }
