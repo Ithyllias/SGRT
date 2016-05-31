@@ -56,8 +56,12 @@ class CoordService extends Controller
                 array_push($users, $user);
             }
         }
-        if(App\Enseignant::updateAllEnseignant($users)){
-        } else {
+        try {
+            if (App\Enseignant::updateAllEnseignant($users)) {
+            } else {
+            }
+        } catch(QueryException $e){
+            return redirect()->back()->with('error', trans('error.dberror'));
         }
 
         return redirect()->back();
