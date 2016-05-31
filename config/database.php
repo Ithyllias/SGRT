@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => 'www.info.climoilou.qc.ca',
+            'host' => '10.209.55.124',
             'port' => '3306',
-            'database' => '420-669-e16-02',
-            'username' => '1261669',
-            'password' => 'DEMA17079205',
+            'database' => 'sgrt_prod',
+            'username' => 'mesarth',
+            'password' => 'SGRT4ppus£r3d!70r',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
