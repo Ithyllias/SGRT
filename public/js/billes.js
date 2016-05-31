@@ -27,10 +27,6 @@ window.onload = function() {
             }
         }
     }
-    console.log(Dummy);
-    console.log(ens);
-    console.log(cours);
-    console.log(ArrayBilles);
     clickTableau();
 };
 
@@ -56,7 +52,7 @@ function clickTableau()
         for(var j = 0; j < ArrayBilles[i].length;j++)
         {
             if(ArrayBilles[i][j].alias != null) {
-                html += "<td>" + ((langue == "FR") ? "Billes: " : "Marbles: ") + ArrayBilles[i][j].billes + ((langue == "FR") ? "<br /> Fois: " : "<br /> Times: ") + ArrayBilles[i][j].fois + "</td>";
+                html += "<td>" + ((langue == "EN") ? "Marbles: " : "Billes: ") + ArrayBilles[i][j].billes + ((langue == "EN") ? "<br /> Times: " : "<br /> Fois: ") + ArrayBilles[i][j].fois + "</td>";
             }
         }
         html += "</tr>";
@@ -72,8 +68,8 @@ function clickProfs(pId)
     html += "<h3>" + pId + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFO</th>";
-    html += "<th>" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Marbles" : "Billes") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Times" : "Fois") + "</th>";
     html += "<th>BID</th>";
     html += "</tr>";
     for(var i = 0; i < ArrayBilles.length;i++)
@@ -107,8 +103,8 @@ function clickCours(cId)
     html += "<h3>" + cId + ":" + titre + "</h3>"
     html += "<table id='tabBilles'>";
     html += "<tr> <th>INFO</th>";
-    html += "<th>" + ((langue == "FR") ? "BILLES" : "MARBLES") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "FOIS" : "TIMES") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Marbles" : "Billes") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Times" : "Fois") + "</th>";
     html += "<th>BID</th>";
     html += "</tr>";
     for(var i = 0; i < ArrayBilles.length;i++)

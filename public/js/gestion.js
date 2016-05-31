@@ -12,11 +12,11 @@ function clickUsers() {
     html += "<form action=\""+ routeAddEns + "\" method=\"post\">";
     html += "<table id='tabUsers'>";
     html += "<tr>";
-    html += "<th>" + ((langue == "FR") ? "Connection" : "Login") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Login" : "Connection") + "</th>";
     html += "<th>Alias</th>";
-    html += "<th>" + ((langue == "FR") ? "Coordonnateur" : "Coord") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "Actif" : "Active") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "Commentaire" : "Comment") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Coord" : "Coordonnateur") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Active" : "Actif") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Comment" : "Commentaire") + "</th>";
     html += "</tr>";
     for(var prof in ens)
     {
@@ -29,9 +29,9 @@ function clickUsers() {
         html += "</tr>";
     }
     html += "</table>";
-    html += "<input type='submit' value='" + ((langue == "FR") ? "Envoyer" : "Submit") + "'>";
+    html += "<input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
     html += "\t";
-    html += "<input type='button' onclick='clickAjout()' value='" + ((langue == "FR") ? "Ajout" : "Add") + "'>";
+    html += "<input type='button' onclick='clickAjout()' value='" + ((langue == "EN") ? "Add" : "Ajout") + "'>";
     html += "</form>"
     document.getElementById("contentGestion").innerHTML = html;
 
@@ -46,9 +46,9 @@ function clickCours() {
     html += "<form action=\""+ routeModifCours + "\" method=\"post\">";
     html += "<table id='tabCours'>";
     html += "<tr>";
-    html += "<th>" + ((langue == "FR") ? "Cours" : "Courses") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "valeur de compteur fois max" : "max value for times counter") + "</th>";
-    html += "<th>" + ((langue == "FR") ? "Commentaire" : "Comment") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "max value for times counter" : "valeur de compteur fois max") + "</th>";
+    html += "<th>" + ((langue == "EN") ? "Comment" : "Commentaire") + "</th>";
     html += "</tr>";
     for(var cour in cours)
     {
@@ -59,7 +59,7 @@ function clickCours() {
         html += "</tr>";
     }
     html += "</table>";
-    html += "<input type='submit' value='" + ((langue == "FR") ? "Envoyer" : "Submit") + "'>";
+    html += "<input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
     html += "</form>"
     document.getElementById("contentGestion").innerHTML = html;
 
