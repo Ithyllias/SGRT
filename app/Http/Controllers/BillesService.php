@@ -24,7 +24,7 @@ class BillesService extends Controller
                 'cours' => $bc->bct_cou_titre,
                 'billes' => $bc->bct_billes,
                 'compteur' => $bc->bct_compteurs,
-                'bid' => App\Choix::getBidForCoursForAlias($bc->bct_ens_alias, $bc->bct_cou_no)
+                //'bid' => App\Choix::getBidForCoursForAlias($bc->bct_ens_alias, $bc->bct_cou_no)
             ];
         }
         
