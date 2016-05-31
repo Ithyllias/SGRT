@@ -49,7 +49,6 @@ class ChoixService extends Controller
 
         if(!isset($choices) || sizeof($choices) != 5 || strlen($choices['1']) == 0 || strlen($choices['2']) == 0 || strlen($choices['3']) == 0 || strlen($choices['4']) == 0 || strlen($choices['5']) == 0)
         {
-            //TODO: validation choix en js
             return redirect()->route('choix');
         }
 
