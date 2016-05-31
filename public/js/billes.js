@@ -52,7 +52,7 @@ function clickTableau()
         for(var j = 0; j < ArrayBilles[i].length;j++)
         {
             if(ArrayBilles[i][j].alias != null) {
-                html += "<td>" + ((langue == "EN") ? "Marbles: " : "Billes: ") + ArrayBilles[i][j].billes + ((langue == "EN") ? "<br /> Times: " : "<br /> Fois: ") + ArrayBilles[i][j].fois + "</td>";
+                html += "<td>" + ((langue == "EN") ? "Marbles: " : "Billes: ") + ArrayBilles[i][j].billes + ((langue == "EN") ? "<br /> Times: " : "<br /> Fois: ") + ArrayBilles[i][j].fois + "<br /> Bid: " + ArrayBilles[i][j].bid +"</td>";
             }
         }
         html += "</tr>";
