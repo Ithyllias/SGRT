@@ -13,5 +13,6 @@ return [
     'token_invalid' => 'Invalid token provided.',
     'token_expired' => 'Provided token is expired, please login again.',
     'token_not_provided' => 'No token has been provided, user identity validation impossible.',
-    'user_not_found' => 'User could not be found in our system, please contact a coordinator.'
+    'user_not_found' => 'User could not be found in our system, please contact a coordinator.',
+    'dberror' => 'Data is not valid or has duplicate entries for unique fields.'
 ];
