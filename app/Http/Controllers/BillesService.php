@@ -24,7 +24,7 @@ class BillesService extends Controller
                 'cours' => $bc->bct_cou_titre,
                 'billes' => $bc->bct_billes,
                 'compteur' => $bc->bct_compteurs,
-                'bid' => 0
+                'bid' => App\Choix::getBidForCoursForAlias($bc->bct_ens_alias, $bc->bct_cou_no)
             ];
         }
         
@@ -37,10 +37,6 @@ class BillesService extends Controller
             ->where("ens_inactif", "=", "0")
             ->get();
         return response()->json($profs)->header('Access-Control-Allow-Origin', '*');
-    }
-
-    function getBillesCompteur(){
-
     }
     
     //

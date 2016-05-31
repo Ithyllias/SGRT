@@ -29,7 +29,7 @@ class Enseignant extends Model
      */
     public static function getIdFromAlias($alias){
         try {
-            $id = Enseignant::where('ens_login', '=', $alias)->firstOrFail()->ens_id;
+            $id = Enseignant::where('ens_alias', '=', $alias)->firstOrFail()->ens_id;
         } catch (ModelNotFoundException $e){
             $id = null;
         }
