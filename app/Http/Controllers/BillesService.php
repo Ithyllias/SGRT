@@ -32,11 +32,7 @@ class BillesService extends Controller
     }
 
     function getProfs(){
-        $profs = DB::table('enseignant_ens')
-            ->select("ens_alias")
-            ->where("ens_inactif", "=", "0")
-            ->get();
-        return response()->json($profs)->header('Access-Control-Allow-Origin', '*');
+        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');
     }
     
     //

@@ -30,9 +30,8 @@ function clickUsers() {
         html += "</tr>";
     }
     html += "</table>";
-    html += "<input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
-    html += "\t";
-    html += "<input type='button' onclick='clickAjout()' value='" + ((langue == "EN") ? "Add" : "Ajout") + "'>";
+    html += "<input type='button' onclick='clickAjout()' value='+''>";
+    html += " </br> </br> <input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
     html += "</form>"
     document.getElementById("contentGestion").innerHTML = html;
 
@@ -47,6 +46,7 @@ function clickCours() {
     html += "<form action=\""+ routeModifCours + "\" method=\"post\">";
     html += "<table id='tabCours'>";
     html += "<tr>";
+    html += "<th>No.</th>";
     html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
     html += "<th>" + ((langue == "EN") ? "max value for times counter" : "valeur de compteur fois max") + "</th>";
     html += "<th>" + ((langue == "EN") ? "Comment" : "Commentaire") + "</th>";
@@ -54,13 +54,15 @@ function clickCours() {
     for(var cour in cours)
     {
         html += "<tr>";
+        html += "<td><input type='hidden' name='values[" + cours[cour].cou_no + "][no]' value='" + cours[cour].cou_no + "'>" + cours[cour].cou_no + "</td>";
         html += "<td><input type='hidden' name='values[" + cours[cour].cou_no + "][titre]' value='" + cours[cour].cou_titre + "'>" + cours[cour].cou_titre + "</td>";
         html += "<td><input type='text' class='inputtxt' name='values[" + cours[cour].cou_no + "][compt_max]' value='" + cours[cour].cou_compteur_max + "'></td>";
         html += "<td><input type='text' class='inputtxt' name='values[" + cours[cour].cou_no + "][comm]' value='" + cours[cour].cou_commentaire + "'></td>";
         html += "</tr>";
     }
     html += "</table>";
-    html += "<input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
+    html += "<input type='button' onclick='clickAjoutC()' value='+''>";
+    html += " </br> </br> <input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
     html += "</form>";
     document.getElementById("contentGestion").innerHTML = html;
 
@@ -105,6 +107,43 @@ function clickAjout() {
     cell4.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][alias]' value=''>";
     cell3.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][coord] value=''>";
     cell2.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][actif] value=''>";
+    cell1.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][comm] value=''>";
+
+    compteur += 1;
+}
+function clickAjout() {
+    var table = document.getElementById("tabUsers");
+
+    var row = table.insertRow();
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(0);
+    var cell3 = row.insertCell(0);
+    var cell4 = row.insertCell(0);
+    var cell5 = row.insertCell(0);
+
+    cell5.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][login]' value=''>";
+    cell4.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][alias]' value=''>";
+    cell3.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][coord] value=''>";
+    cell2.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][actif] value=''>";
+    cell1.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][comm] value=''>";
+
+    compteur += 1;
+}
+
+function clickAjoutC() {
+    var table = document.getElementById("tabCours");
+
+    var row = table.insertRow();
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(0);
+    var cell3 = row.insertCell(0);
+    var cell4 = row.insertCell(0);
+
+    cell4.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][no]' value=''>";
+    cell3.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][titre] value=''>";
+    cell2.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][compt_max] value=''>";
     cell1.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][comm] value=''>";
 
     compteur += 1;

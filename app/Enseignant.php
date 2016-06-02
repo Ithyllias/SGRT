@@ -79,6 +79,13 @@ class Enseignant extends Model
     }
 
     /**
+     * Returns all enseignants
+     */
+    public static function getAllActiveEnseignantAliases(){
+        return Enseignant::all(array('ens_id', 'ens_alias'))->where('inactif', '=', 0);
+    }
+
+    /**
      * @param $list array {[cou_no, cou_compteur_max, cou_commentaire], []...}
      */
     public static function updateAllEnseignant($list){

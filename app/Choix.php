@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Choix extends Model
 {
+    const NB_PRIO = 5;
     protected $table = 'choix_chx';
     protected $primaryKey = 'chx_id';
     public $timestamps = false;
@@ -20,13 +21,13 @@ class Choix extends Model
     }
 
     public static function getChoixForEnseignant($ensId){
-        $returnChoix = array();
+        $returnChoix = array('1'=>[],'2'=>[],'3'=>[]);
         $maxTac = Tache::all()->max('tac_id');
         $choices = Choix::with(['cours_donne' => function ($query) use ($maxTac) {
             $query->where('cdn_tac_id', $maxTac);
         }])->where('chx_ens_id', $ensId)->orderBy('chx_priorite')->get();
         foreach($choices as $choix){
-            array_push($returnChoix, [
+            array_push($returnChoix[$choix->cours_donne->cdn_ses_id], [
                 'chx_priorite' => $choix->chx_priorite,
                 'cou_no' => $choix->cours_donne->cours->cou_no,
                 'cou_titre' => $choix->cours_donne->cours->cou_titre
@@ -52,15 +53,26 @@ class Choix extends Model
 
     public static function choixStatus($ensId)
     {
+        $count = array(1=>0,2=>0,3=>0);
         $maxTac = Tache::all()->max('tac_id');
         $tacAnnee = Tache::where('tac_id', $maxTac)->first()->tac_annee;
 
         $choices = Choix::with(['cours_donne' => function ($query) use ($maxTac) {
             $query->where('cdn_tac_id', $maxTac);
-        }])->where('chx_ens_id', $ensId)->count();
+        }])->where('chx_ens_id', $ensId)->get();
+
+        foreach($choices as $choix){
+            if($choix->cours_donne != null ){
+                $count[$choix->cours_donne->cdn_ses_id]++;
+            }
+        }
 
         return [
-            'choixFait' => $choices === 5,
+            'choixFait' => [
+                'A' => $count[1] === self::NB_PRIO,
+                'H' => $count[2] === self::NB_PRIO,
+                'E' => $count[3] === self::NB_PRIO,
+            ],
             'tac_annee' => $tacAnnee
         ];
     }
