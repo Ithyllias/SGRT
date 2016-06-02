@@ -1,5 +1,4 @@
 window.onload = function() {
-    clickUsers();
 };
 
 var compteur = 1;
@@ -62,7 +61,7 @@ function clickCours() {
     }
     html += "</table>";
     html += "<input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
-    html += "</form>"
+    html += "</form>";
     document.getElementById("contentGestion").innerHTML = html;
 
 }
@@ -73,6 +72,21 @@ function clickImport() {
     document.getElementById("option2").className = "";
 
     var html = "";
+    html += "<form action=\""+ "a" + "\" method=\"post\">";
+    html += "<h3>" + ((langue == "EN") ? "New Task" : "Tâche Vierge") + "</h3> </br>";
+    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    html += "</form>";
+    html += "<form action=\""+ "b" + "\" method=\"post\">";
+    html += "<h3>" + ((langue == "EN") ? "Completed Task" : "Tâche Complété") + "</h3> </br>";
+    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    html += "</form>";
+    html += "<form action=\""+ "c" + "\" method=\"post\">";
+    html += "<h3>" + ((langue == "EN") ? "Starting Marbles" : "Billes Départ") + "</h3> </br>";
+    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    html += "</form>";
     document.getElementById("contentGestion").innerHTML = html;
 }
 

@@ -35,7 +35,12 @@ class CoordService extends Controller
                 }
             }
             else{
-                $user['ens_id'] = $key;
+                if($value['alias'] != "" && strlen($value['alias']) <= 5) {
+                    $user['ens_id'] = $key;
+                }
+                else{
+                    $user['ens_id'] = "notValid";
+                }
                 $user['ens_login'] = $value['login'];
             }
             if($user['ens_id'] != "notValid") {
