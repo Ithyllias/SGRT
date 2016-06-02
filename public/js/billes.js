@@ -104,10 +104,10 @@ function clickCours(cId)
         }
     }
     listFois.sort(function(a,b) {
-        return a.val + b.val;
+        return b.val - a.val;
     });
     listBilles.sort(function(a,b) {
-        return a.val + b.val;
+        return b.val - a.val;
     });
 
 
