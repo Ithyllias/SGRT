@@ -41,3 +41,8 @@ table th:hover {
     background: aliceblue;
 
 }
+
+button{
+    float : left;
+    margin-left: 100px;
+}
