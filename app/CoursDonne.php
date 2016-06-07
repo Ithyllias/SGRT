@@ -49,4 +49,12 @@ class CoursDonne extends Model
             return false;
         }
     }
+
+    public static function getCDNId($taskId, $sessId, $cou_no){
+        try{
+            return CoursDonne::where('cdn_tac_id', $taskId)->where('cdn_ses_id', $sessId)->where('cdn_cou_no', $cou_no)->first()->cdn_id;
+        } catch(\Exception $e){
+            return -1;
+        }
+    }
 }

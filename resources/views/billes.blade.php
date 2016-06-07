@@ -3,7 +3,7 @@
 <script type="text/javascript">
      langue = "<?php echo App::getLocale();?>";
      Dummy = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
-     ens = $.parseJSON('<?php echo curlCall(url("gestion/getEnseignant"));?>');
+     ens = $.parseJSON('<?php echo curlCall(url("billes/getActiveAliases"));?>');
      cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
 </script>
 <script src="{{ URL::asset('js/billes.js') }}" type="text/javascript"></script>
