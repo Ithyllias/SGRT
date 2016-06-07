@@ -18,7 +18,7 @@ class BillesDepart extends Model
     public function enseignant(){
         return $this->belongsTo('App\Enseignant', 'bdp_ens_id', 'ens_id');
     }
-
+    
     public static function addSingle($ensId, $cou_no, $billes){
         try{
             BillesDepart::create([
@@ -26,6 +26,15 @@ class BillesDepart extends Model
                 'bdp_cou_no' => $cou_no,
                 'bdp_nb' => $billes,
             ]);
+            return true;
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
+
+    public static function checkEmpty(){
+        try{
+            $table = BillesDepart::firstOrFail();
             return true;
         } catch(\Exception $e) {
             return false;
