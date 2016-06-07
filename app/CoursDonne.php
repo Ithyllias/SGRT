@@ -9,6 +9,7 @@ class CoursDonne extends Model
     protected $table = 'cours_donne_cdn';
     protected $primaryKey = 'cdn_id';
     public $timestamps = false;
+    protected $fillable = array('cdn_nb_etudiants', 'cdn_tac_id', 'cdn_cou_no', 'cdn_ses_id');
 
     public function cours()
     {
@@ -33,5 +34,19 @@ class CoursDonne extends Model
     public function tache_reelle()
     {
         return $this->hasMany('App\TacheReelle', 'trl_cdn_id', 'cdn_id');
+    }
+
+    public static function addSingle($cdn_nb_etudiants, $cdn_tac_id, $cdn_cou_no, $cdn_ses_id){
+        try{
+            CoursDonne::create([
+                'cdn_nb_etudiants' => $cdn_nb_etudiants,
+                'cdn_tac_id' => $cdn_tac_id,
+                'cdn_cou_no' => $cdn_cou_no,
+                'cdn_ses_id' => $cdn_ses_id
+            ]);
+            return true;
+        } catch(Exception $e) {
+            return false;
+        }
     }
 }
