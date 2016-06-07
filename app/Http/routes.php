@@ -33,6 +33,8 @@ Route::group(['middleware' => ['header.manager', 'jwt.auth', 'coordonator.manage
     Route::post('gestion/addCours', 'CoordService@addCours');
     Route::post('gestion/addEnseignant', 'CoordService@updateEnseignants');
 });
+
+Route::post('billes/getActiveAliases', 'BillesService@getActiveAliases', ['middleware' => ['jwt.auth', 'header.manager']]);
 Route::post('billes/getBilles', 'BillesService@getBilles', ['middleware' => ['jwt.auth', 'header.manager']]);
 Route::post('billes/getProfs', 'BillesService@getProfs', ['middleware' => ['jwt.auth', 'header.manager']]);
 Route::post('choix/getTasks', 'ChoixService@getTasks', ['middleware' => ['jwt.auth', 'header.manager']]);

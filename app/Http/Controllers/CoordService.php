@@ -111,6 +111,7 @@ class CoordService extends Controller
     }
 
     function test(){
+        var_dump(App\Enseignant::getAllActiveEnseignantAliases());
         return response();
     }
 }

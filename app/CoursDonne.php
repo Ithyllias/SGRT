@@ -45,7 +45,7 @@ class CoursDonne extends Model
                 'cdn_ses_id' => $cdn_ses_id
             ]);
             return true;
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return false;
         }
     }
