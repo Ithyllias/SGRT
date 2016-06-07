@@ -40,8 +40,14 @@ Route::post('choix/getChoix', 'ChoixService@getChoix', ['middleware' => ['jwt.au
 Route::post('choix/choixStatus', 'ChoixService@choixStatus', ['middleware' => ['jwt.auth', 'header.manager']]);
 Route::post('choix/submit', 'ChoixService@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
 
-Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('gestion/getEnseignant', 'CoordService@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/getEnseignant', 'CoordService@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+
+Route::post('gestion/generateImportForm','ExcelController@ImportForm', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+
+Route::post('gestion/addNewTask','ExcelController@NewTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/completeTask','ExcelController@RealTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/initialMarbles','ExcelController@StartMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
 Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {
