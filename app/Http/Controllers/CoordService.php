@@ -111,7 +111,6 @@ class CoordService extends Controller
     }
 
     function test(){
-        App\Tache::getTacheIdForYear("20153-2016");
         return response();
     }
 }
