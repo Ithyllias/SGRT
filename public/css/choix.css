@@ -54,22 +54,22 @@ table th {
 
 table tr {
     text-align: center;
-    padding-left:20px;
 }
 
 table td {
-    padding:18px;
+    padding-left:10px;
     border-top: 1px solid #ffffff;
     border-bottom:1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
     background: #fafafa;
+    text-align: center;
 }
 
 table tr:hover td {
     background: #f2f2f2;
 }
 .divDrop{
-    width: 40px;
+    width: 50px;
 }
 
 #tRes{

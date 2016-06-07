@@ -9,8 +9,6 @@ window.onload = function() {
         cmpt = 0;
         for(var j = 0; j < ens.length;j++)
         {
-            if(ens[j]["ens_inactif"] == 0)
-            {
                 ArrayBilles[i][cmpt] = [];
                 ArrayBilles[i][cmpt].alias = ens[j]["ens_alias"];
                 if (Dummy[ens[j]["ens_alias"]] == null || Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
@@ -22,7 +20,6 @@ window.onload = function() {
                     ArrayBilles[i][cmpt].fois = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
                 }
                 cmpt++;
-            }
         }
     }
     clickTableau();
