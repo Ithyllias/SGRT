@@ -109,8 +109,9 @@ class CoordService extends Controller
     function getCours(){
         return response()->json(App\Cours::getAllCours());
     }
-    //
+
     function test(){
-        return response()->json(App\BillesCompteur::getBillesCompteur());
+        App\Tache::getTacheIdForYear("20153-2016");
+        return response();
     }
 }
