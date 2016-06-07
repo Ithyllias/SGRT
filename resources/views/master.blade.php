@@ -40,7 +40,7 @@ $nomUser = Session::get('connected_user');
     </ul>
 </div>
 <div id="content">
-    <span class="error"><?=session('error'); ?></span><span class="error"><?=session('minorError'); ?></span></br></br>
+    <span class="error"><?=session('error'); ?></span><span class="error"><?=session('minorError'); ?></span><span class="success"><?=session('success'); ?></span></br></br>
     @yield("content")
 </div>
 </body>

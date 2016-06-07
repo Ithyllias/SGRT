@@ -32,7 +32,7 @@ function clickUsers() {
     html += "</table>";
     html += "<input type='button' onclick='clickAjout()' value='+''>";
     html += " </br> </br> <input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
-    html += "</form>"
+    html += "</form>";
     document.getElementById("contentGestion").innerHTML = html;
 
 }
@@ -68,28 +68,41 @@ function clickCours() {
 
 }
 
-function clickImport() {
+function clickImport(url) {
     document.getElementById("option3").className = "selected";
     document.getElementById("option1").className = "";
     document.getElementById("option2").className = "";
 
-    var html = "";
-    html += "<form action=\""+ "a" + "\" method=\"post\">";
-    html += "<h3>" + ((langue == "EN") ? "New Task" : "Tâche Vierge") + "</h3> </br>";
-    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    html += "</form>";
-    html += "<form action=\""+ "b" + "\" method=\"post\">";
-    html += "<h3>" + ((langue == "EN") ? "Completed Task" : "Tâche Complété") + "</h3> </br>";
-    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    html += "</form>";
-    html += "<form action=\""+ "c" + "\" method=\"post\">";
-    html += "<h3>" + ((langue == "EN") ? "Starting Marbles" : "Billes Départ") + "</h3> </br>";
-    html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    html += "</form>";
-    document.getElementById("contentGestion").innerHTML = html;
+    console.log(url);
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        complete: function (response) {
+            $('#contentGestion').html(response.responseText);
+        },
+        error: function () {
+            $('#contentGestion').html('Bummer: there was an error!');
+        }
+    });
+
+    // var html = "";
+    // html += "<form action=\""+ addNewTask + "\" method=\"post\" enctype=\"multipart/form-data\">";
+    // html += "<h3>" + ((langue == "EN") ? "New Task" : "Tâche Vierge") + "</h3> </br>";
+    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    // html += "</form>";
+    // html += "<form action=\""+ completeTask + "\" method=\"post\">";
+    // html += "<h3>" + ((langue == "EN") ? "Completed Task" : "Tâche Complétée") + "</h3> </br>";
+    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    // html += "</form>";
+    // html += "<form action=\""+ initMarbles + "\" method=\"post\">";
+    // html += "<h3>" + ((langue == "EN") ? "Starting Marbles" : "Billes Départ") + "</h3> </br>";
+    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
+    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
+    // html += "</form>";
+    // document.getElementById("contentGestion").innerHTML = html;
 }
 
 function clickAjout() {

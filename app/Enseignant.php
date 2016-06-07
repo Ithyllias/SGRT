@@ -40,7 +40,7 @@ class Enseignant extends Model
         try {
             $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur;
         } catch (ModelNotFoundException $e){
-            $ens = false;
+            $ens = -1;
         }
         return $ens;
     }

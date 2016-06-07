@@ -21,7 +21,7 @@ class BillesDepart extends Model
 
     public static function addSingle($ensId, $cou_no, $billes){
         try{
-            TacheReelle::create([
+            BillesDepart::create([
                 'bdp_ens_id' => $ensId,
                 'bdp_cou_no' => $cou_no,
                 'bdp_nb' => $billes,

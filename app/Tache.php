@@ -20,9 +20,10 @@ class Tache extends Model
         $tacId = Tache::where('tac_annee', $year)->first();
         if($tacId == null){
             $tacId = Tache::create([
-                'tac_annee' => $year,
-                'tac_complete' => 0
+                'tac_annee' => $year
             ])->tac_id;
+        } else {
+            $tacId = $tacId->tac_id;
         }
         return $tacId;
     }

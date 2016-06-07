@@ -92,6 +92,11 @@ ul#menu li a:hover {
     font-weight: bold;
 }
 
+.success{
+    color: green;
+    font-weight: bold;
+}
+
 #menuB ul {
     list-style-type: none;
     margin: 0;

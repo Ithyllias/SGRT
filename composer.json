@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "tymon/jwt-auth": "0.5.*",
-        "krenor/ldap-auth": "^2.1"
+        "krenor/ldap-auth": "^2.1",
+		"maatwebsite/excel": "~2.1.0",
+		"laravelcollective/html":"5.2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

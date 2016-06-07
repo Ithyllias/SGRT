@@ -4,5 +4,10 @@ return [
 
     'util' => 'Utilisateurs',
     'cours' => 'Cours',
-    'import' => 'Importation'
+    'import' => 'Importation',
+    'newTask' => 'Nouvelle tâche',
+    'completedTask' => 'Tâche complétée',
+    'initMarbles' => 'Billes de départ',
+    'send' => 'Envoyer',
+    'success' => 'L\'import à été effectué avec succès.'
 ];
