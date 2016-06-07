@@ -82,7 +82,7 @@ class Enseignant extends Model
      * Returns all enseignants
      */
     public static function getAllActiveEnseignantAliases(){
-        return Enseignant::all(array('ens_id', 'ens_alias'))->where('inactif', '=', 0);
+        return Enseignant::where('ens_inactif', '0')->select('ens_id', 'ens_alias')->get();
     }
 
     /**

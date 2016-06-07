@@ -36,7 +36,7 @@ class BillesService extends Controller
     }
 
     function getActiveAliases(){
-        return response()->json(App\Enseignant::getAllActiveEnseignantAliases());
+        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');;
     }
     
     //
