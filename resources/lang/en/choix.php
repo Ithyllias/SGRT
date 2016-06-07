@@ -10,5 +10,9 @@ return [
     'work' => 'Your priorities have been saved!',
     'notWork' => 'An error occured while saving your priorities.',
     'choixTitle' => 'Courses choice for the task of ',
-    'compt' => 'Counters'
+    'compt' => 'Counters',
+    'A' => 'Fall',
+    'H' => 'Winter',
+    'E' => 'Summer',
+    'Bienvenu' => 'Welcome to the course selection. Please select a session to begin.'
 ];

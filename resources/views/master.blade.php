@@ -6,6 +6,9 @@
     <link href="{{ URL::asset('css/master.css') }}" media="all" rel="stylesheet" type="text/css" />
     <script src="{{ URL::asset('js/master.js') }}" type="text/javascript"></script>
 </head>
+<?php
+$nomUser = Session::get('connected_user');
+?>
 <body>
 <div id="header">
     <a href="<?=url('changeLang/' . trans('master.nextLanguage'))?>" class="hautDroit"> <?=trans('master.nextLanguage')?></a>
@@ -13,7 +16,7 @@
         echo "<a href=" . url('/'). " class=" . "hautDroit" . "> " . trans('master.login') . " &nbsp&nbsp </a>";
     }
     else{
-        echo "<a href=" . url('/logout') . " class=" . "hautDroit" . "> ". trans('master.logout') . " &nbsp&nbsp </a>";
+        echo "<a href=" . url('/logout') . " class=" . "hautDroit" . "> ". trans('master.logout') . " (". $nomUser . ") &nbsp&nbsp </a>";
     }
     ?>
     <div id="title">

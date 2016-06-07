@@ -19,7 +19,7 @@ p{
 #fixer{
     position: fixed;
     margin-left: 1100px;
-    margin-top: 100px;
+    margin-top: 50px;
     border: 2px solid black;
     height: 150px;
     width:200px;
@@ -74,4 +74,16 @@ table tr:hover td {
 
 #tRes{
     margin-left: 10%;
+}
+#option1{
+    cursor: pointer;
+    width: 33%;
+}
+#option2{
+    cursor: pointer;
+    width: 33%;
+}
+#option3{
+    cursor: pointer;
+    width: 33%;
 }

@@ -10,5 +10,9 @@ return [
     'work' => 'Vos prioritées ont été sauvegarder!',
     'notWork' => 'Il y a eu une erreur lors de la sauvegarde de vos prioritées.',
     'choixTitle' => 'Voici vos choix pour la tâche de ',
-    'compt' => 'Compteurs'
+    'compt' => 'Compteurs',
+    'A' => 'Automne',
+    'H' => 'Hiver',
+    'E' => 'Été',
+    'Bienvenu' => 'Bienvenue dans l\'onglet de choix de cours. Veuillez choisir une session.' 
 ];
