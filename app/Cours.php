@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Cours extends Model
 {
@@ -11,7 +12,7 @@ class Cours extends Model
     protected $primaryKey = 'cou_no';
     public $timestamps = false;
     public $incrementing = false;
-    protected $fillable = array('cou_commentaire', 'cou_compteur_max');
+    protected $fillable = array('cou_no', 'cou_titre', 'cou_commentaire', 'cou_compteur_max');
     /*
      * 
     */
@@ -30,14 +31,15 @@ class Cours extends Model
      * @return mixed The actual id in the table
      */
     public static function getAllTasks(){
-        $returnArray = [];
+        $returnArray = array(1=>array(),2=>array(),3=>array());
         $maxTache = CoursDonne::all()->max('cdn_tac_id');
         $coursDonnes = CoursDonne::where('cdn_tac_id', $maxTache)->get();
 
         foreach($coursDonnes as $coursDonne){
-            array_push($returnArray, array('cou_titre' => $coursDonne->cours->cou_titre, 'cou_no' => $coursDonne->cours->cou_no, 'cdn_id' => $coursDonne->attributes['cdn_id']));
+            array_push($returnArray[$coursDonne->cdn_ses_id], array('cou_titre' => $coursDonne->cours->cou_titre, 'cou_no' => $coursDonne->cours->cou_no, 'cdn_id' => $coursDonne->cdn_id));
         }
-        return array($returnArray);
+
+        return $returnArray;
     }
 
     /**
@@ -52,20 +54,36 @@ class Cours extends Model
      */
     public static function updateCours($list){
         $allCours = Collection::make();
-        try{
-            foreach($list as $element){
-                $cours = Cours::where('cou_no', $element['cou_no'])->first();
-                $cours->cou_compteur_max = $element['cou_compteur_max'];
-                $cours->cou_commentaire = $element['cou_commentaire'];
+        $uniqueCours = array();
+        $returnNonUniques = array();
+        try {
+            foreach ($list as $element) {
+                if (!in_array($element['cou_no'], $uniqueCours)) {
+                    try {
+                        $cours = Cours::where('cou_no', $element['cou_no'])->firstOrFail();
+                        $cours->cou_commentaire = $element['cou_commentaire'];
+                        $cours->cou_compteur_max = $element['cou_compteur_max'];
+                    } catch (ModelNotFoundException $e) {
+                        $cours = Cours::create([
+                            'cou_no' => $element['cou_no'],
+                            'cou_titre' => $element['cou_titre'],
+                            'cou_commentaire' => $element['cou_commentaire'],
+                            'cou_compteur_max' => $element['cou_compteur_max'],
+                        ]);
+                    }
+                } else {
+                    array_push($returnNonUniques, $element['cou_no']);
+                }
+                array_push($uniqueCours, $element['cou_no']);
                 $allCours->add($cours);
             }
-        } catch(Exception $e) {
+        }catch(Exception $e) {
             return false;
         }
 
         $allCours->each(function ($item) {
             $item->save();
         });
-        return true;
+        return $returnNonUniques;
     }
 }

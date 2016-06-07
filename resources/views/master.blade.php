@@ -37,7 +37,7 @@
     </ul>
 </div>
 <div id="content">
-    <span class="error"><?=session('error'); ?></span></br></br>
+    <span class="error"><?=session('error'); ?></span><span class="error"><?=session('minorError'); ?></span></br></br>
     @yield("content")
 </div>
 </body>

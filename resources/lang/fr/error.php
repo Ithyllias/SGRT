@@ -14,5 +14,6 @@ return [
     'token_expired' => 'Le jeton reçu est expiré, veuillez vous reconnecter.',
     'token_not_provided' => 'Aucun jeton fourni, impossible de valider l\'identité de l\'utilisateur.',
     'user_not_found' => 'Votre utilisateur est introuvable dans notre sytème, veuillez contacter un coordonnateur.',
-    'dberror' => 'Les données ne sont pas valides ou les champs uniques ne le sont pas.'
+    'dberror' => 'Erreur lors de la mise à jour des données',
+    'uniqueError' => 'Erreur lors de la mise à jour de ces entrées : '
 ];

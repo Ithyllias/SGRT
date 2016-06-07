@@ -90,19 +90,28 @@ class Enseignant extends Model
      */
     public static function updateAllEnseignant($list){
         $allEns = Collection::make();
+        $uniqueLogin = array();
+        $uniqueAlias = array();
+        $returnNonUniques = array();
         try{
             foreach($list as $element){
-                if($element['ens_id'] != null) {
-                    $ens = Enseignant::where('ens_id', $element['ens_id'])->first();
+                if (!in_array($element['ens_alias'], $uniqueAlias) && !in_array($element['ens_login'], $uniqueLogin)) {
+                    if ($element['ens_id'] != null) {
+                        $ens = Enseignant::where('ens_id', $element['ens_id'])->first();
+                    } else {
+                        $ens = Enseignant::create([
+                            'ens_login' => $element['ens_login'],
+                            'ens_alias' => $element['ens_alias'],
+                            'ens_inactif' => $element['ens_inactif'],
+                            'ens_commentaire' => $element['ens_commentaire'],
+                            'ens_coordonateur' => $element['ens_coordonateur']
+                        ]);
+                    }
                 } else {
-                    $ens = Enseignant::create([
-                        'ens_login' => $element['ens_login'],
-                        'ens_alias' => $element['ens_alias'],
-                        'ens_inactif' => $element['ens_inactif'],
-                        'ens_commentaire' => $element['ens_commentaire'],
-                        'ens_coordonateur' => $element['ens_coordonateur']
-                    ]);
+                    array_push($returnNonUniques, $element['ens_login']);
                 }
+                array_push($uniqueLogin, $element['ens_login']);
+                array_push($uniqueAlias, $element['ens_login']);
                 $ens->ens_alias = $element['ens_alias'];
                 $ens->ens_inactif = $element['ens_inactif'];
                 $ens->ens_commentaire = $element['ens_commentaire'];
@@ -116,7 +125,7 @@ class Enseignant extends Model
         $allEns->each(function ($item) {
             $item->save();
         });
-        return true;
+        return $returnNonUniques;
     }
 
     public static function test(){

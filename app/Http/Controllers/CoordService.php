@@ -62,11 +62,13 @@ class CoordService extends Controller
             }
         }
         try {
-            if (App\Enseignant::updateAllEnseignant($users)) {
+            $update = App\Enseignant::updateAllEnseignant($users);
+            if (count($update) > 0) {
+                return redirect()->back()->with('minorError', trans('error.uniqueError') . implode(", ", $update));
             } else {
             }
         } catch(QueryException $e){
-            return redirect()->back()->with('error', trans('error.dberror'));
+            return redirect()->back()->with('minorError', trans('error.dberror'));
         }
 
         return redirect()->back();
@@ -91,12 +93,17 @@ class CoordService extends Controller
             }
         }
 
-        if(App\Cours::updateCours($cours)){
-        } else {
+        try {
+            $update = App\Cours::updateCours($cours);
+            if (count($update) > 0) {
+                return redirect()->back()->with('minorError', trans('error.uniqueError') . implode(", ", $update));
+            } else {
+            }
+        } catch(QueryException $e){
+            return redirect()->back()->with('minorError', trans('error.dberror'));
         }
 
         return redirect()->back();
-        //return response()->json($cours);
     }
 
     function getCours(){
