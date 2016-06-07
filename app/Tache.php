@@ -26,4 +26,15 @@ class Tache extends Model
         }
         return $tacId;
     }
+
+    public static function closeTache($tacId){
+        try {
+            $tac = Tache::where('tac_id', $tacId)->get();
+            $tac->tac_complete = 1;
+            $tac->save();
+            return true;
+        } catch(\Exception $e){
+            return false;
+        }
+    }
 }
