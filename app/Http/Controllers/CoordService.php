@@ -79,12 +79,14 @@ class CoordService extends Controller
         foreach ($values as $key => $value){
             $cour = [];
 
-            $cour['cou_no'] = $key;
+            $cour['cou_no'] = $value['no'];
+            $cour['cou_titre'] = $value['titre'];
             $cour['cou_commentaire'] = $value['comm'];
+            $cour['cou_compteur_max'] = $value['compt_max'];
 
-            if($value['compt_max'] > 0 )
+            $temp = str_split($cour['cou_no']);
+            if($cour['cou_compteur_max'] > 0 && $cour['cou_no'] != "" && $cour['cou_titre'] != "" && sizeof($temp) == 10 && $temp[3] == "-" && $temp[7] == "-")
             {
-                $cour['cou_compteur_max'] = $value['compt_max'];
                 array_push($cours, $cour);
             }
         }
