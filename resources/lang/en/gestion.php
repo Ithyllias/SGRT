@@ -9,5 +9,10 @@ return [
     'completedTask' => 'Completed task',
     'initMarbles' => 'Starting marbles',
     'send' => 'Send',
-    'success' => 'Import successfully compelted.'
+    'importSuccess' => 'Import successfully compelted.',
+    'other' => 'Miscellaneous',
+    'closeTask' => 'Close current task',
+    'resetMarbles' => 'Reset starting marbles',
+    'resetSuccess' => 'Successfully reset the marbles.',
+    'closeSuccess' => 'Successfully closed current task.'
 ];

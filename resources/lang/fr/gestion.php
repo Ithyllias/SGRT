@@ -9,5 +9,10 @@ return [
     'completedTask' => 'Tâche complétée',
     'initMarbles' => 'Billes de départ',
     'send' => 'Envoyer',
-    'success' => 'L\'import à été effectué avec succès.'
+    'importSuccess' => 'L\'import à été effectué avec succès.',
+    'other' => 'Divers',
+    'closeTask' => 'Fermer la tâche actuelle',
+    'resetMarbles' => 'Réinitialiser les billes de départ',
+    'resetSuccess' => 'Réinitialisation des billes de départ effectuée avec succès',
+    'closeSuccess' => 'La tâche actuelle a été fermée avec succès.'
 ];

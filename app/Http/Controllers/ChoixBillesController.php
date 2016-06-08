@@ -2,26 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App;
+
 use App\Http\Requests;
 
-class ChoixService extends Controller
+class ChoixBillesController extends Controller
 {
+    public function getBilles(Request $request){
+        $array = array();
+        $bct = App\BillesCompteur::getBillesCompteur();
 
-    function getTasks(){
-        return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
+        foreach($bct as $bc){
+            if(!array_key_exists($bc->bct_alias, $array)){
+                $array[$bc->bct_alias] = [
+                    'cours' => array(),
+                ];
+            }
+
+            $array[$bc->bct_ens_alias]['cours'][$bc->bct_cou_no] = [
+                'cours' => $bc->bct_cou_titre,
+                'billes' => $bc->bct_billes,
+                'compteur' => $bc->bct_compteurs
+            ];
+        }
+
+        return response()->json($array)->header('Access-Control-Allow-Origin', '*');
     }
 
-    function getChoix(){
-        return response()->json(App\Choix::getChoixForEnseignant(request()->input('user_id')))->header('Access-Control-Allow-Origin', '*');
-    }
-
-    function submit()
+    function submit(Request $request)
     {
-        $values = request()->input();
-        $ensId = request()->input('ensId');
+        $values = $request->input();
+        $ensId = $request->input('ensId');
         $choices = [];
         $insertData = [];
 
@@ -69,11 +81,26 @@ class ChoixService extends Controller
         }
     }
 
-    function choixStatus(){
+    public function getProfs(Request $request){
+        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');
+    }
+
+    public function getActiveAliases(Request $request){
+        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');;
+    }
+    function getTasks(Request $request){
+        return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
+    }
+
+    function getChoix(Request $request){
+        return response()->json(App\Choix::getChoixForEnseignant(request()->input('user_id')))->header('Access-Control-Allow-Origin', '*');
+    }
+
+    function choixStatus(Request $request){
         return response()->json(App\Choix::choixStatus(request()->input('user_id')))->header('Access-Control-Allow-Origin', '*');
     }
 
-    function test(){
+    function test(Request $request){
         return response()->json(App\Choix::getChoixForEnseignant(7));
     }
 }

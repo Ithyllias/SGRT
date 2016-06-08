@@ -32,9 +32,19 @@ class BillesDepart extends Model
         }
     }
 
+    public static function truncateBillesDepart(){
+        try{
+            BillesDepart::truncate();
+            return true;
+        } catch(\Exception $e) {
+            var_dump($e->getMessage());
+            return false;
+        }
+    }
+
     public static function checkEmpty(){
         try{
-            $table = BillesDepart::firstOrFail();
+            BillesDepart::firstOrFail();
             return true;
         } catch(\Exception $e) {
             return false;

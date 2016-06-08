@@ -8,15 +8,68 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Request;
 
-class CoordService extends Controller
+class GestionController extends Controller
 {
-    function getEnseignant(){
+    function addCours(Request $request){
+        $values = $request->input('values');
+        $cours = [];
+
+        foreach ($values as $key => $value){
+            $cour = [];
+
+            $cour['cou_no'] = $value['no'];
+            $cour['cou_titre'] = $value['titre'];
+            $cour['cou_commentaire'] = $value['comm'];
+            $cour['cou_compteur_max'] = $value['compt_max'];
+
+            $temp = str_split($cour['cou_no']);
+            if($cour['cou_compteur_max'] > 0 && $cour['cou_no'] != "" && $cour['cou_titre'] != "" && sizeof($temp) == 10 && $temp[3] == "-" && $temp[7] == "-")
+            {
+                array_push($cours, $cour);
+            }
+        }
+
+        try {
+            $update = App\Cours::updateCours($cours);
+            if (count($update) > 0) {
+                return redirect()->back()->with('error', trans('error.uniqueError') . implode(", ", $update));
+            } else {
+            }
+        } catch(QueryException $e){
+            return redirect()->back()->with('error', trans('error.dberror'));
+        }
+
+        return redirect()->back();
+    }
+
+    function closeTask(Request $request){
+        if(App\Tache::closeLastTask()){
+            return redirect()->back()->with('success', trans('gestion.closeSuccess'));
+        } else {
+            return redirect()->t();//back()->with('error', trans('error.closeError'));
+        }
+    }
+
+    function getCours(Request $request){
+        return response()->json(App\Cours::getAllCours());
+    }
+
+    function getEnseignant(Request $request){
         return response()->json(App\Enseignant::getAllEnseignant());
     }
 
-    function updateEnseignants(){
-        $values = request()->input('values');
+    public function resetMarbles(Request $request){
+        if(App\BillesDepart::truncateBillesDepart()){
+            return redirect()->back()->with('success', trans('gestion.resetSuccess'));
+        } else {
+            return redirect()->back()->with('error', trans('error.resetError'));
+        }
+    }
+
+    function updateEnseignants(Request $request){
+        $values = $request->input('values');
         $users = [];
 
 
@@ -74,43 +127,7 @@ class CoordService extends Controller
         return redirect()->back();
     }
 
-    function addCours(){
-        $values = request()->input('values');
-        $cours = [];
-
-        foreach ($values as $key => $value){
-            $cour = [];
-
-            $cour['cou_no'] = $value['no'];
-            $cour['cou_titre'] = $value['titre'];
-            $cour['cou_commentaire'] = $value['comm'];
-            $cour['cou_compteur_max'] = $value['compt_max'];
-
-            $temp = str_split($cour['cou_no']);
-            if($cour['cou_compteur_max'] > 0 && $cour['cou_no'] != "" && $cour['cou_titre'] != "" && sizeof($temp) == 10 && $temp[3] == "-" && $temp[7] == "-")
-            {
-                array_push($cours, $cour);
-            }
-        }
-
-        try {
-            $update = App\Cours::updateCours($cours);
-            if (count($update) > 0) {
-                return redirect()->back()->with('error', trans('error.uniqueError') . implode(", ", $update));
-            } else {
-            }
-        } catch(QueryException $e){
-            return redirect()->back()->with('error', trans('error.dberror'));
-        }
-
-        return redirect()->back();
-    }
-
-    function getCours(){
-        return response()->json(App\Cours::getAllCours());
-    }
-
-    function test(){
+    function test(Request $request){
         var_dump(App\Enseignant::getAllActiveEnseignantAliases());
         return response();
     }

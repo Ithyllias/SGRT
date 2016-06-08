@@ -8,7 +8,7 @@ use Excel;
 
 use App\Http\Requests;
 
-class ExcelController extends Controller
+class ImportController extends Controller
 {
     /**
      *
@@ -78,7 +78,7 @@ class ExcelController extends Controller
             return redirect()->back()->with('error', trans('error.importError').implode("\n",$errors));
         }
 
-        return redirect()->back()->with('success', trans('gestion.success'));
+        return redirect()->back()->with('success', trans('gestion.importSuccess'));
     }
 
     /**
@@ -167,7 +167,7 @@ class ExcelController extends Controller
             return redirect()->toto();//back()->with('error', trans('error.importError').implode("\n",$errors));
         }
 
-        return redirect()->back()->with('success', trans('gestion.success'));
+        return redirect()->back()->with('success', trans('gestion.importSuccess'));
     }
 
     /**
@@ -212,6 +212,6 @@ class ExcelController extends Controller
             return redirect()->back()->with('error', trans('error.importError').implode("\n",$errors));
         }
 
-        return redirect()->back()->with('success', trans('gestion.success'));
+        return redirect()->back()->with('success', trans('gestion.importSuccess'));
     }
 }

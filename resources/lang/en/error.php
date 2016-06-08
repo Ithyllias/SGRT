@@ -24,5 +24,7 @@ return [
     'noTeacher' => 'The teacher ":name" does not exist in our systems and so cannot have any corresponding task.</br>',
     'noTask' => 'No element of current task exists for ":cours" in semester ":sess"</br>',
     'realTaskInsert' => 'An error occured while saving data for ":prof" in course ":cours" of semester ":sess".</br>',
-    'marbleInsert' => 'An error occured while saving data of starting marbles for ":prof" with course ":cours".</br>'
+    'marbleInsert' => 'An error occured while saving data of starting marbles for ":prof" with course ":cours".</br>',
+    'resetError' => 'An error occured while trying to reset the starting marbles.',
+    'closeError' => 'An error occured while trying to close the current task.'
 ];

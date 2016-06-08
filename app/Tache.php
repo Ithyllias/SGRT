@@ -16,6 +16,20 @@ class Tache extends Model
         return $this->hasMany('App\CoursDonne', 'cdn_tac_id', 'tac_id');
     }
 
+    public static function closeLastTask(){
+        try {
+            $lastTaskId = Tache::all()->max('tac_id');
+            $lastTask = Tache::where('tac_id', $lastTaskId)->first();
+            var_dump($lastTask);
+            $lastTask->tac_complete = 1;
+            $lastTask->save();
+            return true;
+        } catch(\Exception $e){
+            var_dump($e->getMessage());
+            return false;
+        }
+    }
+
     public static function getTacheIdForYear($year){
         $tacId = Tache::where('tac_annee', $year)->first();
         if($tacId == null){
@@ -31,7 +45,7 @@ class Tache extends Model
     public static function closeTache($tacId){
         try {
             $tac = Tache::where('tac_id', $tacId)->get();
-            $tac->tac_complete = 1;
+            $tac->tac_complete = true;
             $tac->save();
             return true;
         } catch(\Exception $e){

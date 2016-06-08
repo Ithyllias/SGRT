@@ -6,7 +6,7 @@
         App::setLocale($lang);
     }
 
-    if(session('error')) {
+    if(session('criticalError')) {
         Session::forget('jwt');
         Session::forget('connected_user');
         Session::forget('user_id');

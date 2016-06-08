@@ -30,26 +30,29 @@ Route::group(['middleware' => ['header.manager', 'jwt.auth', 'coordonator.manage
         return view('gestion');
     }]);
 
-    Route::post('gestion/addCours', 'CoordService@addCours');
-    Route::post('gestion/addEnseignant', 'CoordService@updateEnseignants');
+    Route::post('gestion/addCours', 'GestionController@addCours');
+    Route::post('gestion/addEnseignant', 'GestionController@updateEnseignants');
 });
 
-Route::post('billes/getActiveAliases', 'BillesService@getActiveAliases', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('billes/getBilles', 'BillesService@getBilles', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('billes/getProfs', 'BillesService@getProfs', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('choix/getTasks', 'ChoixService@getTasks', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('choix/getChoix', 'ChoixService@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('choix/choixStatus', 'ChoixService@choixStatus', ['middleware' => ['jwt.auth', 'header.manager']]);
-Route::post('choix/submit', 'ChoixService@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('billes/getActiveAliases', 'ChoixBillesController@getActiveAliases', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('billes/getBilles', 'ChoixBillesController@getBilles', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('billes/getProfs', 'ChoixBillesController@getProfs', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('choix/getTasks', 'ChoixBillesController@getTasks', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('choix/getChoix', 'ChoixBillesController@getChoix', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('choix/choixStatus', 'ChoixBillesController@choixStatus', ['middleware' => ['jwt.auth', 'header.manager']]);
+Route::post('choix/submit', 'ChoixBillesController@submit', ['middleware' => ['jwt.auth', 'header.manager']]);
 
-Route::post('gestion/getCours', 'CoordService@getCours', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
-Route::post('gestion/getEnseignant', 'CoordService@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/getCours', 'GestionController@getCours', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/getEnseignant', 'GestionController@getEnseignant', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
-Route::post('gestion/generateImportForm','ExcelController@ImportForm', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/generateImportForm','ImportController@ImportForm', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
-Route::post('gestion/addNewTask','ExcelController@NewTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
-Route::post('gestion/completeTask','ExcelController@RealTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
-Route::post('gestion/initialMarbles','ExcelController@StartMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/addNewTask','ImportController@NewTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/completeTask','ImportController@RealTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/initialMarbles','ImportController@StartMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+
+Route::post('gestion/closeTask', 'GestionController@closeTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/resetMarbles', 'GestionController@resetMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
 Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {

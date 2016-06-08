@@ -24,5 +24,13 @@
     <div id="contentGestion">
         <h3>Bienvenue dans l'onglet de gestion pour coordonnateurs.</h3>
     </div>
-
+    <div>
+        <h3><?=trans('gestion.other')?></h3> </br>
+        {!! Form::open(array('url' => url('gestion/closeTask'), 'files' => true, 'onsubmit' => 'return confirmClose()')) !!}
+        <input type="submit" value="<?=trans('gestion.closeTask')?>">
+        {!! Form::close() !!}
+        {!! Form::open(array('url' => url('gestion/resetMarbles'), 'files' => true, 'onsubmit' => 'return confirmReset()')) !!}
+        <input type="submit" value="<?=trans('gestion.resetMarbles')?>">
+        {!! Form::close() !!}
+    </div>
 @endsection

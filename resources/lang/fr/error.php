@@ -25,5 +25,7 @@ return [
     'noTeacher' => 'L\'enseignant ":name" n\'existe pas dans notre système et ne peut donc pas avoir de tâche réelle correspondante.</br>',
     'noTask' => 'Aucun élément de la tâche actuel n\'existe pour le cours ":cours" à la session ":sess"</br>',
     'realTaskInsert' => 'Une erreur est survenue lors de la sauvegarde des données pour ":prof" dans le cours ":cours" de la session ":sess".</br>',
-    'marbleInsert' => 'Une erreur est survenu lors de la sauvegarde des données de billes de départ pour ":prof" avec le cours ":cours".</br>'
+    'marbleInsert' => 'Une erreur est survenu lors de la sauvegarde des données de billes de départ pour ":prof" avec le cours ":cours".</br>',
+    'resetError' => 'Une erreur est survenue lors de la suppression des billes de départ.',
+    'closeError' => 'Une erreur est survenue lors de la fermeture de la tâche actuelle.'
 ];

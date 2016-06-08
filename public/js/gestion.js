@@ -37,6 +37,18 @@ function clickUsers() {
 
 }
 
+function confirmReset(){
+    var result = confirm(((langue == "EN") ? "This action will permanently delete all current starting marbles, are you certain you wish to proceed?" : "Cette action supprimera de façon permanente toutes les entrés actuelles de billes de départ, êtes-vous certain de vouloir continuer?"));
+    console.log(result);
+    return result;
+}
+
+function confirmClose(){
+    var result = confirm(((langue == "EN") ? "This action will permanently close the current task, are you certain you wish to proceed?" : "Cette action fermera de façon permanente la tâche actuelle, êtes-vous certain de vouloir continuer?"));
+    console.log(result);
+    return result;
+}
+
 function clickCours() {
     document.getElementById("option2").className = "selected";
     document.getElementById("option1").className = "";
