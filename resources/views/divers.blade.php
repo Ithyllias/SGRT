@@ -20,8 +20,8 @@
                     <select name="sessionList">
                         <option value=""><?=trans('gestion.session.null')?></option>
                         <option value="1"><?=trans('gestion.session.automne')?></option>
-                        <option value="3"><?=trans('gestion.session.hiver')?></option>
-                        <option value="2"><?=trans('gestion.session.ete')?></option>
+                        <option value="2"><?=trans('gestion.session.hiver')?></option>
+                        <option value="3"><?=trans('gestion.session.ete')?></option>
                     </select>
                 </td>
             </tr>
