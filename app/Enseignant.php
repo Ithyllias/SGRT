@@ -137,7 +137,7 @@ class Enseignant extends Model
                 }
 
                 array_push($returnValues, [
-                    'ens_alias' => "",
+                    'ens_alias' => $choix->ens_alias,
                     'session' => $tempChoix,
                 ]);
             }
