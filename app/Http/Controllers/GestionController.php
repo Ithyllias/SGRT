@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Request;
 
 class GestionController extends Controller
 {
-    function addCours(Request $request){
+    public function addCours(Request $request){
         $values = $request->input('values');
         $cours = [];
 
@@ -44,20 +44,24 @@ class GestionController extends Controller
         return redirect()->back();
     }
 
-    function closeTask(Request $request){
+    public function closeTask(Request $request){
         if(App\Tache::closeLastTask()){
             return redirect()->back()->with('success', trans('gestion.closeSuccess'));
         } else {
-            return redirect()->t();//back()->with('error', trans('error.closeError'));
+            return redirect()->back()->with('error', trans('error.closeError'));
         }
     }
 
-    function getCours(Request $request){
+    public function getCours(Request $request){
         return response()->json(App\Cours::getAllCours());
     }
 
-    function getEnseignant(Request $request){
+    public function getEnseignant(Request $request){
         return response()->json(App\Enseignant::getAllEnseignant());
+    }
+
+    public function getUnfinishedChoices(Request $request){
+        return response()->json(App\)
     }
 
     public function resetMarbles(Request $request){
@@ -68,7 +72,7 @@ class GestionController extends Controller
         }
     }
 
-    function updateEnseignants(Request $request){
+    public function updateEnseignants(Request $request){
         $values = $request->input('values');
         $users = [];
 
@@ -127,7 +131,7 @@ class GestionController extends Controller
         return redirect()->back();
     }
 
-    function test(Request $request){
+    public function test(Request $request){
         var_dump(App\Enseignant::getAllActiveEnseignantAliases());
         return response();
     }
