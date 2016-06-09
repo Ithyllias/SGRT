@@ -92,6 +92,7 @@ class Choix extends Model
         $maxTac = Tache::all()->max('tac_id');
         $ensId = Enseignant::getIdFromAlias($alias);
         $cdnId = CoursDonne::where('cdn_cou_no', '=', $couno)->where('cdn_tac_id', '=', $maxTac)->first()->cdn_id;
-        return Choix::where('chx_ens_id', '=', $ensId)->where('chx_cdn_id', '=', $cdnId)->first()->chx_priorite;
+        $bid = Choix::where('chx_ens_id', '=', $ensId)->where('chx_cdn_id', '=', $cdnId)->first();
+        return $bid == null ? $bid : $bid->chx_priorite;
     }
 }

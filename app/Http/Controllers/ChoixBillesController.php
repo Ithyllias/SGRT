@@ -91,7 +91,7 @@ class ChoixBillesController extends Controller
     }
 
     public function getActiveAliases(Request $request){
-        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');;
+        return response()->json(App\Enseignant::getAllActiveEnseignantAliases())->header('Access-Control-Allow-Origin', '*');
     }
     function getTasks(Request $request){
         return response()->json(App\Cours::getAllTasks())->header('Access-Control-Allow-Origin', '*');
