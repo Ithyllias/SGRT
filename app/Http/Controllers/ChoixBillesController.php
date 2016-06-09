@@ -25,6 +25,10 @@ class ChoixBillesController extends Controller
                 'billes' => $bc->bct_billes,
                 'compteur' => $bc->bct_compteurs
             ];
+            
+            if(App\Tache::isTaskClosed()){
+                $array[$bc->bct_ens_alias]['cours'][$bc->bct_cou_no]['bid'] = App\Choix::getBidForCoursForAlias($bc->bct_ens_alias, $bc->bct_cou_no);
+            }
         }
 
         return response()->json($array)->header('Access-Control-Allow-Origin', '*');
