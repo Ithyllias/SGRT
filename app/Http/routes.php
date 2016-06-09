@@ -71,5 +71,5 @@ Route::group([], function(){
     Route::post('/login', 'LdapAuthController@postLogin');
     Route::post('/login/authenticate', 'LdapAuthController@authenticate');
     Route::any('/logout', 'LdapAuthController@getLogout');
-    Route::any('test', 'GestionController@test');
+    Route::any('test', 'ChoixBillesController@test');
 });

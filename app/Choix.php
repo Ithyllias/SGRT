@@ -110,7 +110,7 @@ class Choix extends Model
         $choix = Choix::where('chx_ens_id', $ensId)->get();
 
         foreach($choix as $single){
-            if($single->cours_donne->ses_id == $sesId){
+            if($single->cours_donne->cdn_ses_id == $sesId){
                 $single->delete();
             }
         }
