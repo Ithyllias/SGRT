@@ -52,11 +52,13 @@ function confirmClose(url){
         async: false,
         complete: function (response) {
             var obj = JSON.parse(response.responseText);
-            // $.each(obj, function(k,v){
-            //     console.log(k);
-            //     console.log(v);
-            // });
-            console.log(obj);
+            $.each(obj, function(ok,ov){
+                ov.session.forEach(function(sk,sv){
+                    if(sv == false){
+                        console.log(ov.ens_alias + ' : ' + sk);
+                    }
+                });
+            });
         },
         error: function () {
             $('#contentGestion').html('Error!!!');
