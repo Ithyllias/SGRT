@@ -39,7 +39,6 @@ function clickUsers() {
 
 function confirmReset(){
     var result = confirm(((langue == "EN") ? "This action will permanently delete all current starting marbles, are you certain you wish to proceed?" : "Cette action supprimera de façon permanente toutes les entrés actuelles de billes de départ, êtes-vous certain de vouloir continuer?"));
-    console.log(result);
     return result;
 }
 
@@ -50,8 +49,16 @@ function confirmClose(url){
     $.ajax({
         url: url,
         method: 'POST',
+        async: false,
         complete: function (response) {
-            console.log(response.responseText);
+            var obj = JSON.parse(response.responseText);
+            $.each(obj, function(ok,ov){
+                ov.session.forEach(function(sk,sv){
+                    if(sv == false){
+                        console.log(ov.ens_alias + ' : ' + sk);
+                    }
+                });
+            });
         },
         error: function () {
             $('#contentGestion').html('Error!!!');

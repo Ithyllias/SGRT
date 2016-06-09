@@ -26,7 +26,7 @@
     </div>
     <div>
         <h3><?=trans('gestion.other')?></h3> </br>
-        {!! Form::open(array('url' => url('gestion/closeTask'), 'files' => true, 'onsubmit' => 'return confirmClose('.url('gestion/unfinished').')')) !!}
+        {!! Form::open(array('url' => url('gestion/closeTask'), 'files' => true, 'onsubmit' => 'return confirmClose(\''.url('gestion/unfinished').'\')')) !!}
         <input type="submit" value="<?=trans('gestion.closeTask')?>">
         {!! Form::close() !!}
         {!! Form::open(array('url' => url('gestion/resetMarbles'), 'files' => true, 'onsubmit' => 'return confirmReset()')) !!}

@@ -61,7 +61,7 @@ class GestionController extends Controller
     }
 
     public function getUnfinishedChoices(Request $request){
-        return response()->json(App\)
+        return response()->json(App\Enseignant::getMissingChoix());
     }
 
     public function resetMarbles(Request $request){
@@ -131,6 +131,7 @@ class GestionController extends Controller
     }
 
     public function test(Request $request){
-        App\Enseignant::getMissingChoix();        return response();
+        App\Enseignant::getMissingChoix();
+        return response();
     }
 }
