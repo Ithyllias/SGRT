@@ -2,7 +2,7 @@
 <link href="{{ URL::asset('css/billes.css') }}" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
      langue = "<?php echo App::getLocale();?>";
-     Dummy = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
+     cmptEtBilles = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
      ens = $.parseJSON('<?php echo curlCall(url("billes/getActiveAliases"));?>');
      cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
 </script>

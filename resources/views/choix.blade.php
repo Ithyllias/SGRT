@@ -18,6 +18,9 @@
     tache = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url('choix/getChoix/'),$data));?>');
     ensId = "<?=$enseignantID ?>";
     RouteSubmit = '<?=url('choix/submit')?>';
+    cmptEtBilles = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
+    ens = $.parseJSON('<?php echo curlCall(url("billes/getActiveAliases"));?>');
+    cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
 </script>
 @section('content')
     <div id="menuB">

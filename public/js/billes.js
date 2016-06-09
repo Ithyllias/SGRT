@@ -11,13 +11,13 @@ window.onload = function() {
         {
                 ArrayBilles[i][cmpt] = [];
                 ArrayBilles[i][cmpt].alias = ens[j]["ens_alias"];
-                if (Dummy[ens[j]["ens_alias"]] == null || Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
+                if (cmptEtBilles[ens[j]["ens_alias"]] == null || cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
                     ArrayBilles[i][cmpt].billes = 0;
                     ArrayBilles[i][cmpt].fois = 0;
                 }
                 else {
-                    ArrayBilles[i][cmpt].billes = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
-                    ArrayBilles[i][cmpt].fois = Dummy[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
+                    ArrayBilles[i][cmpt].billes = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
+                    ArrayBilles[i][cmpt].fois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
                 }
                 cmpt++;
         }

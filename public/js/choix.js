@@ -1,4 +1,39 @@
 window.onload = function() {
+    ArrayBilles = [];
+
+    for(var i = 0; i < cours.length;i++)
+    {
+        ArrayBilles[i] = [];
+        ArrayBilles[i].titre = cours[i]["cou_titre"];
+        ArrayBilles[i].no = cours[i]["cou_no"];
+        ArrayBilles[i].maxBilles = 0;
+        ArrayBilles[i].maxFois = 0;
+        compte = 0;
+        for(var j = 0; j < ens.length;j++)
+        {
+            ArrayBilles[i][compte] = [];
+            ArrayBilles[i][compte].alias = ens[j]["ens_alias"];
+            ArrayBilles[i][compte].id = ens[j]["ens_id"];
+            if (cmptEtBilles[ens[j]["ens_alias"]] == null || cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
+                ArrayBilles[i][compte].billes = 0;
+                ArrayBilles[i][compte].fois = 0;
+            }
+            else {
+                ArrayBilles[i][compte].billes = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
+                ArrayBilles[i][compte].fois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
+                if(cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes > ArrayBilles[i].maxBilles)
+                {
+                    ArrayBilles[i].maxBilles = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
+                }
+
+                if(cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur > ArrayBilles[i].maxFois)
+                {
+                    ArrayBilles[i].maxFois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
+                }
+            }
+            compte++;
+        }
+    }
 };
 
 function allowDrop(ev) {
@@ -48,10 +83,30 @@ function ClickA() {
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
+        html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Marbles" : "Max Billes") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Bid" : "Bid") + "</th>";
         for(var i = 0; i < courses[1].length;i++)
         {
+            for(var k = 0; k < ArrayBilles.length;k++) {
+                if(ArrayBilles[k].no == courses[1][i]["cou_no"])
+                {
+                    maxBilles = ArrayBilles[k].maxBilles;
+                    maxFois = ArrayBilles[k].maxFois;
+                    for(var j = 0; j < ArrayBilles[k].length;j++) {
+                        if(ArrayBilles[k][j].id == ensId)
+                        {
+                            mesBilles = ArrayBilles[k][j].billes;
+                            mesFois = ArrayBilles[k][j].fois;
+                        }
+                    }
+                }
+            }
             html += "<tr>";
             html += "<td class=\"cours\">" + courses[1][i]["cou_no"] + " : " + courses[1][i]["cou_titre"] +"</td>";
+            html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
+            html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
             html += "<td class=\"divDrop\">";
             html += "<div id=\"" + courses[1][i]["cdn_id"] + "\" class=\"elements\"   ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\"></div>";
             html += "<input type=\"text\" value=\"\"  name=\"" + courses[1][i]["cdn_id"] + "\"  hidden readonly/>";
@@ -102,10 +157,30 @@ function ClickH() {
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
+        html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Marbles" : "Max Billes") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Bid" : "Bid") + "</th>";
         for(var i = 0; i < courses[2].length;i++)
         {
+            for(var k = 0; k < ArrayBilles.length;k++) {
+                if(ArrayBilles[k].no == courses[2][i]["cou_no"])
+                {
+                    maxBilles = ArrayBilles[k].maxBilles;
+                    maxFois = ArrayBilles[k].maxFois;
+                    for(var j = 0; j < ArrayBilles[k].length;j++) {
+                        if(ArrayBilles[k][j].id == ensId)
+                        {
+                            mesBilles = ArrayBilles[k][j].billes;
+                            mesFois = ArrayBilles[k][j].fois;
+                        }
+                    }
+                }
+            }
             html += "<tr>";
             html += "<td class=\"cours\">" + courses[2][i]["cou_no"] + " : " + courses[2][i]["cou_titre"] +"</td>";
+            html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
+            html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
             html += "<td class=\"divDrop\">";
             html += "<div id=\"" + courses[2][i]["cdn_id"] + "\" class=\"elements\"   ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\"></div>";
             html += "<input type=\"text\" value=\"\"  name=\"" + courses[2][i]["cdn_id"] + "\"  hidden readonly/>";
@@ -156,10 +231,30 @@ function ClickE() {
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
+        html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Max Marbles" : "Max Billes") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Bid" : "Bid") + "</th>";
         for(var i = 0; i < courses[3].length;i++)
         {
+            for(var k = 0; k < ArrayBilles.length;k++) {
+                if(ArrayBilles[k].no == courses[3][i]["cou_no"])
+                {
+                    maxBilles = ArrayBilles[k].maxBilles;
+                    maxFois = ArrayBilles[k].maxFois;
+                    for(var j = 0; j < ArrayBilles[k].length;j++) {
+                        if(ArrayBilles[k][j].id == ensId)
+                        {
+                            mesBilles = ArrayBilles[k][j].billes;
+                            mesFois = ArrayBilles[k][j].fois;
+                        }
+                    }
+                }
+            }
             html += "<tr>";
             html += "<td class=\"cours\">" + courses[3][i]["cou_no"] + " : " + courses[3][i]["cou_titre"] +"</td>";
+            html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
+            html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
             html += "<td class=\"divDrop\">";
             html += "<div id=\"" + courses[3][i]["cdn_id"] + "\" class=\"elements\"   ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\"></div>";
             html += "<input type=\"text\" value=\"\"  name=\"" + courses[3][i]["cdn_id"] + "\"  hidden readonly/>";

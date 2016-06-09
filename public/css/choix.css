@@ -57,7 +57,6 @@ table tr {
 }
 
 table td {
-    padding-left:10px;
     border-top: 1px solid #ffffff;
     border-bottom:1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
@@ -70,6 +69,7 @@ table tr:hover td {
 }
 .divDrop{
     width: 50px;
+    padding-right:35px;
 }
 
 #tRes{
