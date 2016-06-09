@@ -193,14 +193,14 @@ function clickAjoutC() {
     compteur += 1;
 }
 
-function clickResetChoix() {
+function clickResetChoix(url) {
     document.getElementById("option3").className = "";
     document.getElementById("option1").className = "";
     document.getElementById("option2").className = "";
     document.getElementById("option4").className = "selected";
 
     var html = "";
-    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices" : "Veuiller entrer les paramètres requis pour supprimer les choix") + "</h3>";
+    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices for a teacher." : "Veuiller entrer les paramètres requis pour supprimer les choix d'un enseignant.") + "</h3>";
     html += "<form action=\""+ routeResetChoice + "\" method=\"post\">";
     html += "<div>";
     html += "<table id='tabResetChoice'>";
@@ -230,4 +230,15 @@ function clickResetChoix() {
     html += "</form>";
     document.getElementById("contentGestion").innerHTML = html;
 
+    $.ajax({
+        url: url,
+        method: 'POST',
+        complete: function (response) {
+            console.log(response);
+            $('#contentGestion').append(response.responseText);
+        },
+        error: function () {
+            $('#contentGestion').html('error!');
+        }
+    });
 }

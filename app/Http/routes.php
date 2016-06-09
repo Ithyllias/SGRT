@@ -47,6 +47,8 @@ Route::post('gestion/getEnseignant', 'GestionController@getEnseignant', ['middle
 
 Route::post('gestion/generateImportForm','ImportController@ImportForm', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
+Route::post('gestion/getDivers','GestionController@getDivers', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+
 Route::post('gestion/addNewTask','ImportController@NewTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 Route::post('gestion/completeTask','ImportController@RealTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 Route::post('gestion/initialMarbles','ImportController@StartMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);

@@ -136,7 +136,7 @@ class GestionController extends Controller
         return response();
     }
 
-    function resetChoice(Request $request){
+    public function resetChoice(Request $request){
 
         $alias = Input::get('profList');
         $session = Input::get('sessionList');
@@ -151,5 +151,9 @@ class GestionController extends Controller
         }
 
         return response();
+    }
+
+    public function getDivers(Request $request){
+        return view('divers');
     }
 }
