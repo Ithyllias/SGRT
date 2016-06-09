@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App;
 
 use App\Http\Requests;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ChoixBillesController extends Controller
 {
@@ -105,6 +106,7 @@ class ChoixBillesController extends Controller
     }
 
     function test(Request $request){
-        return response()->json(App\Choix::getChoixForEnseignant(7));
+        
+        return "";
     }
 }
