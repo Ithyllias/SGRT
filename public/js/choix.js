@@ -82,6 +82,7 @@ function ClickA() {
         html += "<p id=\"04\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;4&nbsp;</p>";
         html += "<p id=\"05\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;5&nbsp;</p>";
         html += "</div>";
+        html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
@@ -106,7 +107,7 @@ function ClickA() {
                     }
                 }
             }
-            html += "<tr>";
+            html += "<tr onclick='clickCours(\"" + courses[1][i]["cou_no"] + "\")'>";
             html += "<td class=\"cours\">" + courses[1][i]["cou_no"] + " : " + courses[1][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
@@ -156,6 +157,7 @@ function ClickH() {
         html += "<p id=\"04\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;4&nbsp;</p>";
         html += "<p id=\"05\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;5&nbsp;</p>";
         html += "</div>";
+        html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
@@ -180,7 +182,7 @@ function ClickH() {
                     }
                 }
             }
-            html += "<tr>";
+            html += "<tr onclick='clickCours(\"" + courses[2][i]["cou_no"] + "\")'>";
             html += "<td class=\"cours\">" + courses[2][i]["cou_no"] + " : " + courses[2][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
