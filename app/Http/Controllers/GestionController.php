@@ -76,7 +76,6 @@ class GestionController extends Controller
         $values = $request->input('values');
         $users = [];
 
-
         foreach ($values as $key => $value){
             $user = [];
             if(!is_int($key))
@@ -132,7 +131,6 @@ class GestionController extends Controller
     }
 
     public function test(Request $request){
-        var_dump(App\Enseignant::getAllActiveEnseignantAliases());
-        return response();
+        App\Enseignant::getMissingChoix();        return response();
     }
 }

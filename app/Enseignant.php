@@ -1,28 +1,22 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
-
 class Enseignant extends Model
 {
     protected $table = 'enseignant_ens';
     protected $primaryKey = 'ens_id';
     public $timestamps = false;
     protected $fillable = array('ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur', 'ens_login');
-
     public function billes_depart()
     {
         return $this->hasMany('App\BillesDepart', 'bdp_ens_id', 'ens_id');
     }
-
     public function choix()
     {
         return $this->hasMany('App\Choix', 'chx_ens_id', 'ens_id');
     }
-
     /**
      * @param $alias String Alias to fetch the ID from
      * @return mixed The actual id in the table
@@ -35,7 +29,6 @@ class Enseignant extends Model
         }
         return $id;
     }
-
     public static function getIsCoordoFromId($id){
         try {
             $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur;
@@ -44,7 +37,6 @@ class Enseignant extends Model
         }
         return $ens;
     }
-
     /**
      * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table
@@ -57,7 +49,6 @@ class Enseignant extends Model
         }
         return $id;
     }
-
     /**
      * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table
@@ -70,21 +61,18 @@ class Enseignant extends Model
         }
         return $enseignant;
     }
-
     /**
      * Returns all enseignants
      */
     public static function getAllEnseignant(){
         return Enseignant::all(array('ens_id', 'ens_login', 'ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur'));
     }
-
     /**
      * Returns all enseignants
      */
     public static function getAllActiveEnseignantAliases(){
         return Enseignant::where('ens_inactif', '0')->select('ens_id', 'ens_alias')->get();
     }
-
     /**
      * @param $list array {[cou_no, cou_compteur_max, cou_commentaire], []...}
      */
@@ -121,11 +109,41 @@ class Enseignant extends Model
         } catch(Exception $e) {
             return false;
         }
-
         $allEns->each(function ($item) {
             $item->save();
         });
         return $returnNonUniques;
+    }
+    
+    public static function getMissingChoix(){
+        $returnValues = array();
+        $maxTac = Tache::all()->max('tac_id');
+        $choices = Enseignant::with(['choix' => function ($query) use ($maxTac){
+             $query->with(['cours_donne' => function($query) use ($maxTac){
+                     $query->where('cdn_tac_id', $maxTac);
+                 }]);
+         }])->get();
+
+        $tempChoix = array();
+
+        foreach($choices as $choix) {
+            if ($choix->choix->count() < Choix::NB_PRIO*Choix::NB_SESSION){
+                for ($i = 1; $i <= Choix::NB_SESSION; $i++) {
+                    $tempChoix[$i] = false;
+                }
+
+                foreach ($choix->choix as $single) {
+                    $tempChoix[$single->cours_donne->cdn_ses_id] = true;
+                }
+
+                array_push($returnValues, [
+                    'ens_alias' => "",
+                    'session' => $tempChoix,
+                ]);
+            }
+        }
+        var_dump($returnValues);
+        return $returnValues;
     }
 
     public static function test(){

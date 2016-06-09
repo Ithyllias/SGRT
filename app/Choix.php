@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Choix extends Model
 {
     const NB_PRIO = 5;
+    const NB_SESSION = 3;
     protected $table = 'choix_chx';
     protected $primaryKey = 'chx_id';
     public $timestamps = false;
