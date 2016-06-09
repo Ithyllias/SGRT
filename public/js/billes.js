@@ -62,7 +62,7 @@ function clickProfs(pId)
     var html = "";
     html += "<h3>" + pId + "</h3>"
     html += "<button onclick=\"clickTableau()\">RETOUR</button>";
-    html += "</br> <table id='tabBilles'>";
+    html += "</br> <table id='tabBillesP'>";
     html += "<tr> <th>INFO</th>";
     html += "<th>" + ((langue == "EN") ? "Times" : "Fois") + "</th>";
     html += "<th>" + ((langue == "EN") ? "Marbles" : "Billes") + "</th>";
@@ -73,15 +73,18 @@ function clickProfs(pId)
         {
                 if(ArrayBilles[i][j].alias == pId)
                 {
-                    html += "<tr>";
-                    html += "<th onclick=\"clickCours(\'" + ArrayBilles[i].no + "\')\">" + ArrayBilles[i].no + " : " + ArrayBilles[i].titre + "</th>";
-                    html += "<td>" + ArrayBilles[i][j].fois + "</td>";
-                    html += "<td>" + ArrayBilles[i][j].billes + "</td>";
-                    html += "</tr>";
+                    if(ArrayBilles[i][j].fois != 0 || ArrayBilles[i][j].billes != 0) {
+                        html += "<tr>";
+                        html += "<th onclick=\"clickCours(\'" + ArrayBilles[i].no + "\')\">" + ArrayBilles[i].no + " : " + ArrayBilles[i].titre + "</th>";
+                        html += "<td>" + ArrayBilles[i][j].fois + "</td>";
+                        html += "<td>" + ArrayBilles[i][j].billes + "</td>";
+                        html += "</tr>";
+                    }
                 }
             }
     }
     html += "</table>";
+    html += "</br>";
     document.getElementById("contentBilles").innerHTML = html;
 }
 
@@ -113,29 +116,36 @@ function clickCours(cId)
     html += "<h3>" + cId + " : " + titre + "</h3> </br>"
     html += "<button onclick=\"clickTableau()\">RETOUR</button>";
     html += "</br> <h3>" + ((langue == "EN") ? "Times" : "Fois") + "</h3>";
-    html += "<table id='tabFois'>";
+    html += "<table id='tabFoisC'>";
     html += "<th>" + ((langue == "EN") ? "Alias" : "Alias") + "</th>";
     html += "<th>" + ((langue == "EN") ? "Times" : "Fois") + "</th>";
     for(var i = 0; i < listFois.length;i++)
     {
-        html += "<tr>";
-        html += "<th onclick=\"clickProfs(\'" + listFois[i].key + "\')\">" + listFois[i].key + "</th>";
-        html += "<td>" + listFois[i].val + "</td>";
-        html += "</tr>";
+        if(listFois[i].val != 0)
+        {
+            html += "<tr>";
+            html += "<th onclick=\"clickProfs(\'" + listFois[i].key + "\')\">" + listFois[i].key + "</th>";
+            html += "<td>" + listFois[i].val + "</td>";
+            html += "</tr>";
+        }
     }
     html += "</table>";
 
     html += "<h3>" + ((langue == "EN") ? "Marbles" : "Billes") + "</h3>";
-    html += "<table id='tabBilles'>";
+    html += "<table id='tabBillesC'>";
     html += "<th>" + ((langue == "EN") ? "Alias" : "Alias") + "</th>";
     html += "<th>" + ((langue == "EN") ? "Marbles" : "Billes") + "</th>";
     for(var i = 0; i < listBilles.length;i++)
     {
-        html += "<tr>";
-        html += "<th onclick=\"clickProfs(\'" + listBilles[i].key + "\')\">" + listBilles[i].key + "</th>";
-        html += "<td>" + listBilles[i].val + "</td>";
-        html += "</tr>";
+        if(listBilles[i].val != 0)
+        {
+            html += "<tr>";
+            html += "<th onclick=\"clickProfs(\'" + listBilles[i].key + "\')\">" + listBilles[i].key + "</th>";
+            html += "<td>" + listBilles[i].val + "</td>";
+            html += "</tr>";
+        }
     }
     html += "</table>";
+    html += "</br>";
     document.getElementById("contentBilles").innerHTML = html;
 }

@@ -107,7 +107,7 @@ function ClickA() {
                     }
                 }
             }
-            html += "<tr onclick='clickCours(\"" + courses[1][i]["cou_no"] + "\")'>";
+            html += "<tr onclick='clickCours(\"" + courses[1][i]["cou_no"] + "\")' id='" + courses[1][i]["cou_no"] + "'>";
             html += "<td class=\"cours\">" + courses[1][i]["cou_no"] + " : " + courses[1][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
@@ -182,7 +182,7 @@ function ClickH() {
                     }
                 }
             }
-            html += "<tr onclick='clickCours(\"" + courses[2][i]["cou_no"] + "\")'>";
+            html += "<tr onclick='clickCours(\"" + courses[2][i]["cou_no"] + "\")' id='" + courses[2][i]["cou_no"] + "'>";
             html += "<td class=\"cours\">" + courses[2][i]["cou_no"] + " : " + courses[2][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
@@ -257,7 +257,7 @@ function ClickE() {
                     }
                 }
             }
-            html += "<tr onclick='clickCours(\"" + courses[3][i]["cou_no"] + "\")'>";
+            html += "<tr onclick='clickCours(\"" + courses[3][i]["cou_no"] + "\")' id='" + courses[3][i]["cou_no"] + "'>";
             html += "<td class=\"cours\">" + courses[3][i]["cou_no"] + " : " + courses[3][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
@@ -324,4 +324,7 @@ function clickCours(cId) {
         html += "<p>" + (i + 1) + ". " + listBilles[i].key + " : " + listBilles[i].val + "</p><br/>";
     }
     document.getElementById("infoFixe").innerHTML = html;
+
+    $(".highLight").removeClass("highLight");
+    document.getElementById(cId).className = "highLight";
 }
