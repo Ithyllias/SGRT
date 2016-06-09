@@ -57,6 +57,10 @@ class GestionController extends Controller
     public function getCours(Request $request){
         return response()->json(App\Cours::getAllCours());
     }
+    
+    public function getDivers(Request $request){
+        return view('divers')->with('ens', $this->getEnseignant($request));
+    }
 
     public function getEnseignant(Request $request){
         return response()->json(App\Enseignant::getAllEnseignant());
@@ -131,13 +135,8 @@ class GestionController extends Controller
 
         return redirect()->back();
     }
-
-    public function test(Request $request){
-        App\Enseignant::getMissingChoix();
-        return response();
-    }
-
-    function resetChoice(Request $request){
+    
+    public function resetChoice(Request $request){
 
         $alias = Input::get('profList');
         $session = Input::get('sessionList');
@@ -154,7 +153,8 @@ class GestionController extends Controller
         return redirect()->back()->with('success', trans('gestion.resetChoiceSuccess'));
     }
 
-    public function getDivers(Request $request){
-        return view('divers');
+    public function test(Request $request){
+        App\Enseignant::getMissingChoix();
+        return response();
     }
 }

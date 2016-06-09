@@ -155,25 +155,6 @@ function clickAjout() {
 
     compteur += 1;
 }
-function clickAjout() {
-    var table = document.getElementById("tabUsers");
-
-    var row = table.insertRow();
-
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(0);
-    var cell3 = row.insertCell(0);
-    var cell4 = row.insertCell(0);
-    var cell5 = row.insertCell(0);
-
-    cell5.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][login]' value=''>";
-    cell4.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][alias]' value=''>";
-    cell3.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][coord] value=''>";
-    cell2.innerHTML = "<input type='checkbox' name='values[new" + compteur + "][actif] value=''>";
-    cell1.innerHTML = "<input type='text' class='inputtxt' name='values[new" + compteur + "][comm] value=''>";
-
-    compteur += 1;
-}
 
 function clickAjoutC() {
     var table = document.getElementById("tabCours");
@@ -198,44 +179,13 @@ function clickResetChoix(url) {
     document.getElementById("option1").className = "";
     document.getElementById("option2").className = "";
     document.getElementById("option4").className = "selected";
-
-    var html = "";
-    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices" : "Veuiller entrer les paramètres requis pour supprimer les choix") + "</h3>";
-    html += "<form action=\""+ routeResetChoice + "\" method=\"post\">";
-    html += "<div>";
-    html += "<table id='tabResetChoice'>";
-    html += "<tr>";
-    html += "<th>Alias</th>";
-    html += "<th>Session</th>";
-    html += "</tr>";
-    html += "<tr>";
-    html += "<td><select name='profList'>";
-    html += "<option value='' selected></option>";
-    for(var prof in ens)
-    {
-        html += "<option value='" + ens[prof].ens_id + "'>" + ens[prof].ens_alias + "</option>";
-    }
-    html += "<select></td>";
-    html += "</td>";
-    html += "<td><select name='sessionList'>";
-    html += "<option value='' selected></option>";
-    html += "<option value='1'>" +  ((langue == "EN") ? "Autumn" : "Automne")  + "</option>";
-    html += "<option value='2'>" +  ((langue == "EN") ? "Winter" : "Hiver")  + "</option>";
-    html += "<option value='3'>" +  ((langue == "EN") ? "Summer" : "Été")  + "</option>";
-    html += "<select></td>";
-    html += "</tr>";
-    html += "</table>";
-    html += "</div>";
-    html += " </br> <input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
-    html += "</form>";
-    document.getElementById("contentGestion").innerHTML = html;
-
+    
     $.ajax({
         url: url,
         method: 'POST',
         complete: function (response) {
             console.log(response);
-            $('#contentGestion').append(response.responseText);
+            $('#contentGestion').html(response.responseText);
         },
         error: function () {
             $('#contentGestion').html('error!');

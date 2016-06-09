@@ -9,7 +9,7 @@
 <h3><?=trans('gestion.completedTask')?></h3> </br>
 <input type="file" name="datafile" size="40">
 </br></br>
-<input type="submit" value="<?=trans('gestion.send')?>">
+{!! Form::submit(trans('gestion.send')) !!}
 {!! Form::close() !!}
 
 
@@ -18,7 +18,7 @@
     <h3><?=trans('gestion.initMarbles')?></h3> </br>
     <input type="file" name="datafile" size="40">
     </br></br>
-    <input type="submit" value="<?=trans('gestion.send')?>">
+    {!! Form::submit(trans('gestion.send')) !!}
     {!! Form::close() !!}
 <?php  } ?>
 
