@@ -43,9 +43,23 @@ function confirmReset(){
     return result;
 }
 
-function confirmClose(){
-    var result = confirm(((langue == "EN") ? "This action will permanently close the current task, are you certain you wish to proceed?" : "Cette action fermera de façon permanente la tâche actuelle, êtes-vous certain de vouloir continuer?"));
-    console.log(result);
+function confirmClose(url){
+    var enMessage = "This action will permanently close the current task, are you certain you wish to proceed?";
+    var frMessage = "Cette action fermera de façon permanente la tâche actuelle, êtes-vous certain de vouloir continuer?";
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        complete: function (response) {
+            console.log(response.responseText);
+        },
+        error: function () {
+            $('#contentGestion').html('Error!!!');
+        }
+    });
+
+    var result = confirm(((langue == "EN") ? enMessage : frMessage));
+
     return result;
 }
 
@@ -85,8 +99,6 @@ function clickImport(url) {
     document.getElementById("option1").className = "";
     document.getElementById("option2").className = "";
 
-    console.log(url);
-
     $.ajax({
         url: url,
         method: 'POST',
@@ -97,24 +109,6 @@ function clickImport(url) {
             $('#contentGestion').html('Bummer: there was an error!');
         }
     });
-
-    // var html = "";
-    // html += "<form action=\""+ addNewTask + "\" method=\"post\" enctype=\"multipart/form-data\">";
-    // html += "<h3>" + ((langue == "EN") ? "New Task" : "Tâche Vierge") + "</h3> </br>";
-    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    // html += "</form>";
-    // html += "<form action=\""+ completeTask + "\" method=\"post\">";
-    // html += "<h3>" + ((langue == "EN") ? "Completed Task" : "Tâche Complétée") + "</h3> </br>";
-    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    // html += "</form>";
-    // html += "<form action=\""+ initMarbles + "\" method=\"post\">";
-    // html += "<h3>" + ((langue == "EN") ? "Starting Marbles" : "Billes Départ") + "</h3> </br>";
-    // html += "<input type=\"file\" name=\"datafile\" size=\"40\">";
-    // html += "</br></br> <input type=\"submit\" value=\"Send\">";
-    // html += "</form>";
-    // document.getElementById("contentGestion").innerHTML = html;
 }
 
 function clickAjout() {

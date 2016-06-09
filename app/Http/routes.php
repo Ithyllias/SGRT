@@ -52,6 +52,7 @@ Route::post('gestion/completeTask','ImportController@RealTask', ['middleware' =>
 Route::post('gestion/initialMarbles','ImportController@StartMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
 Route::post('gestion/closeTask', 'GestionController@closeTask', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
+Route::post('gestion/unfinished', 'GestionController@getUnfinishedChoices', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 Route::post('gestion/resetMarbles', 'GestionController@resetMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
 Route::group([], function(){
