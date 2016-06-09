@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Input;
 
 class GestionController extends Controller
 {
@@ -136,7 +137,7 @@ class GestionController extends Controller
         return response();
     }
 
-    public function resetChoice(Request $request){
+    function resetChoice(Request $request){
 
         $alias = Input::get('profList');
         $session = Input::get('sessionList');
@@ -147,10 +148,10 @@ class GestionController extends Controller
         }
         else
         {
-            App\Cours::updateCours($alias, $session);
+            App\Choix::clearChoixForSession($alias, $session);
         }
 
-        return response();
+        return redirect()->back()->with('success', trans('gestion.resetChoiceSuccess'));
     }
 
     public function getDivers(Request $request){

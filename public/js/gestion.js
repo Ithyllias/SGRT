@@ -200,7 +200,7 @@ function clickResetChoix(url) {
     document.getElementById("option4").className = "selected";
 
     var html = "";
-    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices for a teacher." : "Veuiller entrer les paramètres requis pour supprimer les choix d'un enseignant.") + "</h3>";
+    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices" : "Veuiller entrer les paramètres requis pour supprimer les choix") + "</h3>";
     html += "<form action=\""+ routeResetChoice + "\" method=\"post\">";
     html += "<div>";
     html += "<table id='tabResetChoice'>";
