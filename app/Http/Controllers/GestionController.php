@@ -45,11 +45,11 @@ class GestionController extends Controller
     }
 
     public function closeTask(Request $request){
-//        if(App\Tache::closeLastTask()){
-//            return redirect()->back()->with('success', trans('gestion.closeSuccess'));
-//        } else {
-//            return redirect()->back()->with('error', trans('error.closeError'));
-//        }
+        if(App\Tache::closeLastTask()){
+            return redirect()->back()->with('success', trans('gestion.closeSuccess'));
+        } else {
+            return redirect()->back()->with('error', trans('error.closeError'));
+        }
     }
 
     public function getCours(Request $request){
