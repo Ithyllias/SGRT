@@ -12,6 +12,7 @@
 <input type="submit" value="<?=trans('gestion.send')?>">
 {!! Form::close() !!}
 
+
 <?php if(!App\BillesDepart::checkEmpty()){ ?>
     {!! Form::open(array('url' => url('gestion/initialMarbles'), 'files' => true)) !!}
     <h3><?=trans('gestion.initMarbles')?></h3> </br>

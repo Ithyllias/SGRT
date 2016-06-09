@@ -8,7 +8,6 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
 class GestionController extends Controller
@@ -133,23 +132,6 @@ class GestionController extends Controller
 
     public function test(Request $request){
         App\Enseignant::getMissingChoix();
-        return response();
-    }
-
-    function resetChoice(Request $request){
-
-        $alias = Input::get('profList');
-        $session = Input::get('sessionList');
-
-        if($alias == "" || strlen($alias) > 5 || $session < 1 || $session > 3 )
-        {
-            return redirect()->back()->with('error', trans('error.uniqueError') . implode(", ", "error"));
-        }
-        else
-        {
-            App\Cours::updateCours($alias, $session);
-        }
-        
         return response();
     }
 }

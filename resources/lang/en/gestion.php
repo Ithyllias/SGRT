@@ -5,7 +5,6 @@ return [
     'util' => 'Users',
     'cours' => 'Courses',
     'import' => 'Import',
-    'resetChoix' => 'Reset Course Selection',
     'newTask' => 'New task',
     'completedTask' => 'Completed task',
     'initMarbles' => 'Starting marbles',

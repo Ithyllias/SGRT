@@ -55,8 +55,6 @@ Route::post('gestion/closeTask', 'GestionController@closeTask', ['middleware' =>
 Route::post('gestion/unfinished', 'GestionController@getUnfinishedChoices', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 Route::post('gestion/resetMarbles', 'GestionController@resetMarbles', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
 
-Route::post('gestion/resetChoice', 'GestionController@resetChoice', ['middleware' => ['jwt.auth', 'header.manager', 'coordonator.manager']]);
-
 Route::group([], function(){
     Route::get('/home', ['as' => 'home', function () {
         return view('home');
