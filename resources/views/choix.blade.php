@@ -22,7 +22,6 @@
     cmptEtBilles = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
     ens = $.parseJSON('<?php echo curlCall(url("billes/getActiveAliases"));?>');
     cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
-    console.log(cours);
 </script>
 @section('content')
     <div id="menuB">
