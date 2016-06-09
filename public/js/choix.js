@@ -1,6 +1,9 @@
 window.onload = function() {
     ArrayBilles = [];
 
+    listFois = new Array();
+    listBilles = new Array();
+
     for(var i = 0; i < cours.length;i++)
     {
         ArrayBilles[i] = [];
@@ -227,6 +230,7 @@ function ClickE() {
         html += "<p id=\"04\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;4&nbsp;</p>";
         html += "<p id=\"05\" draggable=\"true\" ondragstart=\"drag(event)\">&nbsp;5&nbsp;</p>";
         html += "</div>";
+        html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
         html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
@@ -251,7 +255,7 @@ function ClickE() {
                     }
                 }
             }
-            html += "<tr>";
+            html += "<tr onclick='clickCours(\"" + courses[3][i]["cou_no"] + "\")'>";
             html += "<td class=\"cours\">" + courses[3][i]["cou_no"] + " : " + courses[3][i]["cou_titre"] +"</td>";
             html += "<td>" + mesFois  + " / " +  maxFois + "</td>";
             html += "<td>" + mesBilles  + " / " +  maxBilles + "</td>";
@@ -284,4 +288,38 @@ function ClickE() {
     }
 
     document.getElementById("contentChoix").innerHTML = html;
+}
+
+function clickCours(cId) {
+
+
+    for (var i = 0; i < ArrayBilles.length; i++) {
+        if (ArrayBilles[i].no == cId) {
+            titre = ArrayBilles[i].titre;
+            for (var j = 0; j < ArrayBilles[i].length; j++) {
+                listFois.push({key: ArrayBilles[i][j].alias, val: ArrayBilles[i][j].fois});
+                listBilles.push({key: ArrayBilles[i][j].alias, val: ArrayBilles[i][j].billes});
+            }
+        }
+    }
+    listFois.sort(function (a, b) {
+        return b.val - a.val;
+    });
+    listBilles.sort(function (a, b) {
+        return b.val - a.val;
+    });
+    var html = "";
+    html += "<h1>Top 4 " + ((langue == "EN") ? "courses" : "cours") + "</h1>";
+    html += "<h3>" + cId + "</h3>";
+    html += "<h3>" + ((langue == "EN") ? "Counters:" : "Compteurs:") + "</h3>";
+    for(var i = 0; i < 4;i++)
+    {
+        html += "<p>" + (i + 1) + ". " + listFois[i].key + " : " + listFois[i].val + "</p><br/>";
+    }
+    html += "<h3>" + ((langue == "EN") ? "Marbles:" : "Billes:") + "</h3>";
+    for(var i = 0; i < 4;i++)
+    {
+        html += "<p>" + (i + 1) + ". " + listBilles[i].key + " : " + listBilles[i].val + "</p><br/>";
+    }
+    document.getElementById("infoFixe").innerHTML = html;
 }

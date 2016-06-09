@@ -9,11 +9,12 @@
     $data = [
             'user_id' => $enseignantID
     ];
-    $choixFait = json_decode(curlCall(url('choix/choixStatus'),$data));
+    $choixFaitJSON = curlCall(url('choix/choixStatus'),$data);
+    $choixFait = json_decode($choixFaitJSON);
 ?>
 <script type="text/javascript">
     langue = "<?php echo App::getLocale();?>";
-    choixFait = $.parseJSON('<?php echo curlCall(url('choix/choixStatus'),$data);?>');
+    choixFait = $.parseJSON('<?php echo $choixFaitJSON;?>');
     courses = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url('choix/getTasks'), []));?>');
     tache = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url('choix/getChoix/'),$data));?>');
     ensId = "<?=$enseignantID ?>";
@@ -21,6 +22,7 @@
     cmptEtBilles = $.parseJSON('<?php echo str_replace("'", "\'",curlCall(url("billes/getBilles")));?>');
     ens = $.parseJSON('<?php echo curlCall(url("billes/getActiveAliases"));?>');
     cours = $.parseJSON('<?php echo str_replace("'", "\\'",curlCall(url("gestion/getCours")));?>');
+    console.log(cours);
 </script>
 @section('content')
     <div id="menuB">
@@ -33,4 +35,5 @@
 <div id="contentChoix">
     <h3><?=trans('choix.Bienvenu')?></h3>
 </div>
+
 @endsection

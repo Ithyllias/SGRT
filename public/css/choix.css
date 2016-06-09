@@ -19,10 +19,42 @@ p{
 #fixer{
     position: fixed;
     margin-left: 1100px;
-    margin-top: 50px;
+    margin-top: 40px;
     border: 2px solid black;
     height: 150px;
     width:200px;
+    background: #fafafa;
+}
+
+#infoFixe{
+    position: fixed;
+    margin-left: 1100px;
+    margin-top: 215px;
+    border: 2px solid black;
+    height: 300px;
+    width:200px;
+    background: #fafafa;
+}
+
+#infoFixe p{
+    border : none;
+    font-size:15px;
+    padding : 0px;
+    margin: 0px;
+}
+
+#infoFixe h1{
+    padding: 0px;
+    margin: 0px;
+}
+#infoFixe h3{
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#fixer p {
+    background: white;
 }
 
 .cours{
@@ -86,4 +118,11 @@ table tr:hover td {
 #option3{
     cursor: pointer;
     width: 33%;
+}
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
