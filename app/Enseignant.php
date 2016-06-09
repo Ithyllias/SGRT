@@ -116,6 +116,7 @@ class Enseignant extends Model
     }
     
     public static function getMissingChoix(){
+        $sessions = Session::getSessions();
         $returnValues = array();
         $maxTac = Tache::all()->max('tac_id');
         $choices = Enseignant::with(['choix' => function ($query) use ($maxTac){
@@ -129,11 +130,11 @@ class Enseignant extends Model
         foreach($choices as $choix) {
             if ($choix->choix->count() < Choix::NB_PRIO*Choix::NB_SESSION){
                 for ($i = 1; $i <= Choix::NB_SESSION; $i++) {
-                    $tempChoix[$i] = false;
+                    $tempChoix[$sessions[$i]] = false;
                 }
 
                 foreach ($choix->choix as $single) {
-                    $tempChoix[$single->cours_donne->cdn_ses_id] = true;
+                    $tempChoix[$sessions[$single->cours_donne->cdn_ses_id]] = true;
                 }
 
                 array_push($returnValues, [
@@ -142,7 +143,7 @@ class Enseignant extends Model
                 ]);
             }
         }
-        var_dump($returnValues);
+
         return $returnValues;
     }
 

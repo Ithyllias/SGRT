@@ -18,4 +18,12 @@ class Session extends Model
     public static function getSessionNameFromId($id){
         return Session::where('ses_id', $id)->first();
     }
+
+    public static function getSessions(){
+        $returnValues = array();
+        foreach(Session::all('ses_id', 'ses_nom') as $session){
+            $returnValues[$session->ses_id] = $session->ses_nom;
+        }
+        return $returnValues;
+    }
 }
