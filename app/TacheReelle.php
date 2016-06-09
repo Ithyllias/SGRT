@@ -29,7 +29,6 @@ class TacheReelle extends Model
             ]);
             return true;
         } catch(\Exception $e) {
-            var_dump($e->getMessage());
             return false;
         }
     }

@@ -45,11 +45,11 @@ class GestionController extends Controller
     }
 
     public function closeTask(Request $request){
-        if(App\Tache::closeLastTask()){
-            return redirect()->back()->with('success', trans('gestion.closeSuccess'));
-        } else {
-            return redirect()->back()->with('error', trans('error.closeError'));
-        }
+//        if(App\Tache::closeLastTask()){
+//            return redirect()->back()->with('success', trans('gestion.closeSuccess'));
+//        } else {
+//            return redirect()->back()->with('error', trans('error.closeError'));
+//        }
     }
 
     public function getCours(Request $request){
@@ -61,7 +61,7 @@ class GestionController extends Controller
     }
 
     public function getUnfinishedChoices(Request $request){
-        return response()->json(App\)
+        return response()->json(App\Enseignant::getMissingChoix());
     }
 
     public function resetMarbles(Request $request){
@@ -131,6 +131,7 @@ class GestionController extends Controller
     }
 
     public function test(Request $request){
-        App\Enseignant::getMissingChoix();        return response();
+        App\Enseignant::getMissingChoix();
+        return response();
     }
 }

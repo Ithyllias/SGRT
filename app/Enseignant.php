@@ -142,7 +142,6 @@ class Enseignant extends Model
                 ]);
             }
         }
-        var_dump($returnValues);
         return $returnValues;
     }
 
