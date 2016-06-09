@@ -18,6 +18,9 @@ window.onload = function() {
                 else {
                     ArrayBilles[i][cmpt].billes = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
                     ArrayBilles[i][cmpt].fois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
+                    if(cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid != null) {
+                        ArrayBilles[i][cmpt].bid = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid;
+                    }
                 }
                 cmpt++;
         }
@@ -93,6 +96,7 @@ function clickCours(cId)
 
     var listFois = new Array();
     var listBilles = new Array();
+    var listBid = new Array();
 
     for(var i = 0; i < ArrayBilles.length;i++) {
         if(ArrayBilles[i].no == cId){
@@ -100,6 +104,10 @@ function clickCours(cId)
             for(var j = 0; j < ArrayBilles[i].length;j++) {
                 listFois.push({ key: ArrayBilles[i][j].alias, val: ArrayBilles[i][j].fois });
                 listBilles.push({ key: ArrayBilles[i][j].alias, val: ArrayBilles[i][j].billes });
+                if(ArrayBilles[i][j].bid != null)
+                {
+                    listBid.push({ key: ArrayBilles[i][j].alias, val: ArrayBilles[i][j].bid });
+                }
             }
         }
     }
@@ -146,6 +154,24 @@ function clickCours(cId)
         }
     }
     html += "</table>";
+    if(listBid.length > 0)
+    {
+        html += "<h3>" + ((langue == "EN") ? "Bid" : "Bid") + "</h3>";
+        html += "<table id='tabBidC'>";
+        html += "<th>" + ((langue == "EN") ? "Alias" : "Alias") + "</th>";
+        html += "<th>" + ((langue == "EN") ? "Bid" : "Bid") + "</th>";
+        for(var i = 0; i < listBid.length;i++)
+        {
+            if(listBid[i].val != 0)
+            {
+                html += "<tr>";
+                html += "<th onclick=\"clickProfs(\'" + listBid[i].key + "\')\">" + listBid[i].key + "</th>";
+                html += "<td>" + listBid[i].val + "</td>";
+                html += "</tr>";
+            }
+        }
+        html += "</table>";
+    }
     html += "</br>";
     document.getElementById("contentBilles").innerHTML = html;
 }
