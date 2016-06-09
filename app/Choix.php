@@ -93,6 +93,6 @@ class Choix extends Model
         $ensId = Enseignant::getIdFromAlias($alias);
         $cdnId = CoursDonne::where('cdn_cou_no', '=', $couno)->where('cdn_tac_id', '=', $maxTac)->first()->cdn_id;
         $bid = Choix::where('chx_ens_id', '=', $ensId)->where('chx_cdn_id', '=', $cdnId)->first();
-        return $bid == null ? $bid : $bid->chx_priorite;
+        return $bid == null ? 0 : $bid->chx_priorite;
     }
 }
