@@ -5,6 +5,7 @@ return [
     'util' => 'Enseignants',
     'cours' => 'Cours',
     'import' => 'Importation',
+    'resetChoix' => 'Supprimer Choix',
     'newTask' => 'Nouvelle tâche',
     'completedTask' => 'Tâche complétée',
     'initMarbles' => 'Billes de départ',

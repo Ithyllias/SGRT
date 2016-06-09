@@ -1,14 +1,18 @@
 #option1{
     cursor: pointer;
-    width: 33%;
+    width: 25%;
 }
 #option2{
     cursor: pointer;
-    width: 33%;
+    width: 25%;
 }
 #option3{
     cursor: pointer;
-    width: 33%;
+    width: 25%;
+}
+#option4{
+    cursor: pointer;
+    width: 25%;
 }
 
 table {

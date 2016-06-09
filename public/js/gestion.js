@@ -192,3 +192,42 @@ function clickAjoutC() {
 
     compteur += 1;
 }
+
+function clickResetChoix() {
+    document.getElementById("option3").className = "";
+    document.getElementById("option1").className = "";
+    document.getElementById("option2").className = "";
+    document.getElementById("option4").className = "selected";
+
+    var html = "";
+    html += "<h3>" + ((langue == "EN") ? "Please enter the settings required to remove choices" : "Veuiller entrer les paramètres requis pour supprimer les choix") + "</h3>";
+    html += "<form action=\""+ routeResetChoice + "\" method=\"post\">";
+    html += "<div>";
+    html += "<table id='tabResetChoice'>";
+    html += "<tr>";
+    html += "<th>Alias</th>";
+    html += "<th>Session</th>";
+    html += "</tr>";
+    html += "<tr>";
+    html += "<td><select name='profList'>";
+    html += "<option value='' selected></option>";
+    for(var prof in ens)
+    {
+        html += "<option value='" + ens[prof].ens_id + "'>" + ens[prof].ens_alias + "</option>";
+    }
+    html += "<select></td>";
+    html += "</td>";
+    html += "<td><select name='sessionList'>";
+    html += "<option value='' selected></option>";
+    html += "<option value='1'>" +  ((langue == "EN") ? "Autumn" : "Automne")  + "</option>";
+    html += "<option value='2'>" +  ((langue == "EN") ? "Winter" : "Hiver")  + "</option>";
+    html += "<option value='3'>" +  ((langue == "EN") ? "Summer" : "Été")  + "</option>";
+    html += "<select></td>";
+    html += "</tr>";
+    html += "</table>";
+    html += "</div>";
+    html += " </br> <input type='submit' value='" + ((langue == "EN") ? "Submit" : "Envoyer") + "'>";
+    html += "</form>";
+    document.getElementById("contentGestion").innerHTML = html;
+
+}
