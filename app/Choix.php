@@ -13,14 +13,27 @@ class Choix extends Model
     public $timestamps = false;
     protected $fillable = array('chx_ens_id', 'chx_cdn_id', 'chx_priorite');
 
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function cours_donne(){
         return $this->belongsTo('App\CoursDonne', 'chx_cdn_id', 'cdn_id');
     }
 
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function enseignant(){
         return $this->belongsTo('App\Enseignant', 'chx_ens_id', 'ens_id');
     }
 
+    /**
+     *  Returns all choices made by a given Enseignant
+     * @param $ensId Enseignant ID
+     * @return array Array containing all choices made
+     */
     public static function getChoixForEnseignant($ensId){
         $returnChoix = array('1'=>[],'2'=>[],'3'=>[]);
         $maxTac = Tache::all()->max('tac_id');
@@ -37,6 +50,11 @@ class Choix extends Model
         return $returnChoix;
     }
 
+    /**
+     * Method that adds an array of choices into the table
+     * @param $choices Array of choices to add
+     * @return bool True if succeeded, false otherwise
+     */
     public static function addChoix($choices){
         try {
             foreach ($choices as $choix) {
@@ -52,6 +70,11 @@ class Choix extends Model
         return true;
     }
 
+    /**
+     * Checks the current status of a given Enseignant
+     * @param $ensId Enseignant ID
+     * @return array An array containing the status for each semester and the year of the current task
+     */
     public static function choixStatus($ensId)
     {
         $count = array(1=>0,2=>0,3=>0);
@@ -78,6 +101,11 @@ class Choix extends Model
         ];
     }
 
+    /**
+     * Clears the choices for a given Enseignant for a given Session
+     * @param $ensId Enseignant ID
+     * @param $sesId Session ID
+     */
     public static function clearChoixForSession($ensId, $sesId){
         $choix = Choix::where('chx_ens_id', $ensId)->get();
 
@@ -88,6 +116,12 @@ class Choix extends Model
         }
     }
 
+    /**
+     * Gets the bid for a given Enseignant and class
+     * @param $alias Enseignant Alias
+     * @param $couno Cours ID
+     * @return int 0 if no choice was made for the class, choice otherwise.
+     */
     public static function getBidForCoursForAlias($alias, $couno){
         $maxTac = Tache::all()->max('tac_id');
         $ensId = Enseignant::getIdFromAlias($alias);

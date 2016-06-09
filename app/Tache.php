@@ -11,11 +11,19 @@ class Tache extends Model
     public $timestamps = false;
     protected $fillable = array('tac_annee', 'tac_complete');
 
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function choix()
     {
         return $this->hasMany('App\CoursDonne', 'cdn_tac_id', 'tac_id');
     }
 
+    /**
+     * Method that closes the last/current task
+     * @return bool True if succeeded, false otherwise
+     */
     public static function closeLastTask(){
         try {
             $lastTaskId = Tache::all()->max('tac_id');
@@ -30,6 +38,11 @@ class Tache extends Model
         }
     }
 
+    /**
+     * Gets the Tache ID for a given year and creates it if it doesn't exist
+     * @param $year Year string (xxxx-xxxx)
+     * @return mixed Tache ID 
+     */
     public static function getTacheIdForYear($year){
         $tacId = Tache::where('tac_annee', $year)->first();
         if($tacId == null){
@@ -42,6 +55,11 @@ class Tache extends Model
         return $tacId;
     }
 
+    /**
+     * Closes a specific Tache given an ID
+     * @param $tacId Tache ID
+     * @return bool True if succeeded, false otherwise
+     */
     public static function closeTache($tacId){
         try {
             $tac = Tache::where('tac_id', $tacId)->get();
@@ -53,6 +71,10 @@ class Tache extends Model
         }
     }
 
+    /**
+     * Checks whether or not the nearest task is currently active (opened)
+     * @return bool True if it is, false otherwise
+     */
     public static function isTaskClosed(){
         $maxTac = Tache::all()->max('tac_id');
         return Tache::where('tac_id', $maxTac)->first()->tac_complete == 1;

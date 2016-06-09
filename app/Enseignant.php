@@ -9,10 +9,20 @@ class Enseignant extends Model
     protected $primaryKey = 'ens_id';
     public $timestamps = false;
     protected $fillable = array('ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur', 'ens_login');
+
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function billes_depart()
     {
         return $this->hasMany('App\BillesDepart', 'bdp_ens_id', 'ens_id');
     }
+
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function choix()
     {
         return $this->hasMany('App\Choix', 'chx_ens_id', 'ens_id');
@@ -29,6 +39,12 @@ class Enseignant extends Model
         }
         return $id;
     }
+
+    /**
+     *  Checks whether or not a specific Enseignant is a coordonateur
+     * @param $id Enseignant ID
+     * @return int True if it is, false otherwise.
+     */
     public static function getIsCoordoFromId($id){
         try {
             $ens = Enseignant::where('ens_id', '=', $id)->firstOrFail()->ens_coordonateur;
@@ -37,6 +53,7 @@ class Enseignant extends Model
         }
         return $ens;
     }
+
     /**
      * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table
@@ -49,6 +66,7 @@ class Enseignant extends Model
         }
         return $id;
     }
+
     /**
      * @param $login String Login to fetch the ID from
      * @return mixed The actual id in the table
@@ -61,18 +79,21 @@ class Enseignant extends Model
         }
         return $enseignant;
     }
+
     /**
      * Returns all enseignants
      */
     public static function getAllEnseignant(){
         return Enseignant::all(array('ens_id', 'ens_login', 'ens_alias', 'ens_inactif', 'ens_commentaire', 'ens_coordonateur'));
     }
+
     /**
      * Returns all enseignants
      */
     public static function getAllActiveEnseignantAliases(){
         return Enseignant::where('ens_inactif', '0')->select('ens_id', 'ens_alias')->get();
     }
+
     /**
      * @param $list array {[cou_no, cou_compteur_max, cou_commentaire], []...}
      */
@@ -114,7 +135,12 @@ class Enseignant extends Model
         });
         return $returnNonUniques;
     }
-    
+
+    /**
+     * Returns all Enseignants that have not completed all of their course selection.
+     * @return array Array containing each Enseignant that hasn't done the course choice and which
+     *               semester hasn't been completed.
+     */
     public static function getMissingChoix(){
         $sessions = Session::getSessions();
         $returnValues = array();

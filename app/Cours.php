@@ -13,14 +13,19 @@ class Cours extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = array('cou_no', 'cou_titre', 'cou_commentaire', 'cou_compteur_max');
-    /*
-     * 
-    */
 
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function cours_donne(){
         return $this->hasMany('App\CoursDonne', 'cdn_cou_no', 'cou_no');
     }
 
+    /**
+     *  Eloquent relationship method.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function billes_depart()
     {
         return $this->hasMany('App\BillesDepart', 'bdp_cou_no', 'cou_no');
