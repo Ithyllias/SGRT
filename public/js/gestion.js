@@ -43,8 +43,10 @@ function confirmReset(){
 }
 
 function confirmClose(url){
-    var enMessage = "This action will permanently close the current task, are you certain you wish to proceed?";
-    var frMessage = "Cette action fermera de façon permanente la tâche actuelle, êtes-vous certain de vouloir continuer?";
+    var enMessage = "This action will permanently close the current task, are you certain you wish to proceed?\n";
+    var frMessage = "Cette action fermera de façon permanente la tâche actuelle, êtes-vous certain de vouloir continuer?\n";
+    var listMessage = "";
+    var unfinished = false;
 
     $.ajax({
         url: url,
@@ -53,21 +55,37 @@ function confirmClose(url){
         complete: function (response) {
             var obj = JSON.parse(response.responseText);
             $.each(obj, function(ok,ov){
-                ov.session.forEach(function(sk,sv){
-                    if(sv == false){
-                        console.log(ov.ens_alias + ' : ' + sk);
-                    }
-                });
+                if(hasFalse(ov.session)){
+                    listMessage += ov.ens_alias + ' : ';
+                    $.each(ov.session, function(sk,sv){
+                        if(sv == false){
+                            listMessage += sk + ', ';
+                            unfinished = true;
+                        }
+                    });
+                    listMessage = listMessage.replace(/,\s*$/, "");
+                    listMessage += '\n';
+                }
             });
+            if(unfinished){
+                enMessage += "The following teachers have not completed all their choices:\n" + listMessage;
+                frMessage += "Les enseignants suivant n\'ont pas complété leurs choix:\n" + listMessage;
+            }
         },
         error: function () {
             $('#contentGestion').html('Error!!!');
         }
     });
 
-    var result = confirm(((langue == "EN") ? enMessage : frMessage));
+    return confirm(((langue == "EN") ? enMessage : frMessage));
+}
 
-    return result;
+function hasFalse(target){
+    for (var member in target) {
+        if (target[member] == false)
+            return true;
+    }
+    return false;
 }
 
 function clickCours() {

@@ -2,7 +2,7 @@
 
 return [
 
-    'util' => 'Users',
+    'util' => 'Teachers',
     'cours' => 'Courses',
     'import' => 'Import',
     'newTask' => 'New task',

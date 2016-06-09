@@ -52,4 +52,9 @@ class Tache extends Model
             return false;
         }
     }
+
+    public static function isTaskClosed(){
+        $maxTac = Tache::all()->max('tac_id');
+        return Tache::where('tac_id', $maxTac)->first()->tac_complete == 1;
+    }
 }
