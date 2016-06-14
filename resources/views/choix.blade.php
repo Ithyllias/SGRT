@@ -25,11 +25,13 @@
 </script>
 @section('content')
     <div id="menuB">
+        <?php if($choixFait != null){?>
         <ul>
             <li id="option1" onclick="ClickA()"><?=trans('choix.A') . " " . $choixFait->tac_annee ?></li>
             <li id="option2" onclick="ClickH()" ><?=trans('choix.H') . " " . $choixFait->tac_annee ?></li>
             <li id="option3" onclick="ClickE()" ><?=trans('choix.E') . " " . $choixFait->tac_annee ?></li>
         </ul>
+        <?php }?>
     </div>
 <div id="contentChoix">
     <h3><?=trans('choix.Bienvenu')?></h3>
