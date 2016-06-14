@@ -70,7 +70,7 @@ class ImportController extends Controller
                     array_push($errors, trans('error.newTaskInsert'));
                 }
             };
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return redirect()->back()->with('error', 'error.upload');
         }
 
@@ -159,7 +159,7 @@ class ImportController extends Controller
                 }
 
             };
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return redirect()->back()->with('error', 'error.upload');
         }
 
@@ -204,7 +204,7 @@ class ImportController extends Controller
                 };
 
             };
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return redirect()->back()->with('error', 'error.upload');
         }
 
