@@ -32,6 +32,7 @@ function clickTableau()
 {
     document.getElementById("bC").className = "selected";
     var html = "";
+    html += "<h3>" + ((langue == "EN") ? "This is the Times/Marbles for all teachers." : "Voici les Fois/Billes Pour tout les enseignants.") + "</h3>";
     html += "<table id='tabBilles'>";
     html += "<tr> <th onclick=\"clickTableau()\">INFO</th>";
     for(var i = 0; i < ArrayBilles[0].length;i++)
@@ -50,7 +51,7 @@ function clickTableau()
         for(var j = 0; j < ArrayBilles[i].length;j++)
         {
             if(ArrayBilles[i][j].alias != null) {
-                html += "<td>" + ((langue == "EN") ? "Times: " : "Fois: ") + ArrayBilles[i][j].fois + ((langue == "EN") ? "<br /> Marbles: " : "<br /> Billes: ") + ArrayBilles[i][j].billes + "</td>";
+                html += "<td><h3>" + ArrayBilles[i][j].fois + "/" + ArrayBilles[i][j].billes + "</h3></td>";
             }
         }
         html += "</tr>";
