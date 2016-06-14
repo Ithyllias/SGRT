@@ -118,7 +118,9 @@ function clickCours(cId)
     listBilles.sort(function(a,b) {
         return b.val - a.val;
     });
-
+    listBid.sort(function(a,b) {
+        return a.val - b.val;
+    });
 
 
     var html = "";
