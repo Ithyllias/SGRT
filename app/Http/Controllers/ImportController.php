@@ -164,7 +164,7 @@ class ImportController extends Controller
         }
 
         if(count($errors) > 0){
-            return redirect()->toto();//back()->with('error', trans('error.importError').implode("\n",$errors));
+            return redirect()->with('error', trans('error.importError').implode("\n",$errors));
         }
 
         return redirect()->back()->with('success', trans('gestion.importSuccess'));
