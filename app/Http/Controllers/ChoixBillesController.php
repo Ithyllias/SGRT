@@ -106,7 +106,7 @@ class ChoixBillesController extends Controller
     }
 
     function test(Request $request){
-        App\Choix::clearChoixForSession(7, 3);
+        App\Choix::getChoixForEnseignant(1);
         return "";
     }
 }

@@ -37,15 +37,17 @@ class Choix extends Model
     public static function getChoixForEnseignant($ensId){
         $returnChoix = array('1'=>[],'2'=>[],'3'=>[]);
         $maxTac = Tache::all()->max('tac_id');
-        $choices = Choix::with(['cours_donne' => function ($query) use ($maxTac) {
+        $choices = Choix::where('chx_ens_id', $ensId)->with(['cours_donne' => function ($query) use ($maxTac) {
             $query->where('cdn_tac_id', $maxTac);
-        }])->where('chx_ens_id', $ensId)->orderBy('chx_priorite')->get();
+        }])->orderBy('chx_priorite')->get();
         foreach($choices as $choix){
+            if($choix->cours_donne != null) {
                 array_push($returnChoix[$choix->cours_donne->cdn_ses_id], [
                     'chx_priorite' => $choix->chx_priorite,
                     'cou_no' => $choix->cours_donne->cours->cou_no,
                     'cou_titre' => $choix->cours_donne->cours->cou_titre
                 ]);
+            }
         }
         return $returnChoix;
     }
