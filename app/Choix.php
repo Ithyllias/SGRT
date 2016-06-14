@@ -41,13 +41,11 @@ class Choix extends Model
             $query->where('cdn_tac_id', $maxTac);
         }])->where('chx_ens_id', $ensId)->orderBy('chx_priorite')->get();
         foreach($choices as $choix){
-            if($choix->cours_donne != null) {
                 array_push($returnChoix[$choix->cours_donne->cdn_ses_id], [
                     'chx_priorite' => $choix->chx_priorite,
                     'cou_no' => $choix->cours_donne->cours->cou_no,
                     'cou_titre' => $choix->cours_donne->cours->cou_titre
                 ]);
-            }
         }
         return $returnChoix;
     }
