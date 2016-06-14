@@ -76,7 +76,11 @@ class Tache extends Model
      * @return bool True if it is, false otherwise
      */
     public static function isTaskClosed(){
-        $maxTac = Tache::all()->max('tac_id');
-        return Tache::where('tac_id', $maxTac)->first()->tac_complete == 1;
+        try {
+            $maxTac = Tache::all()->max('tac_id');
+            return Tache::where('tac_id', $maxTac)->first()->tac_complete == 1;
+        } catch(\Exception $e){
+            return false;
+        }
     }
 }
