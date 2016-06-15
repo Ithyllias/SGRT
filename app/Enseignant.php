@@ -149,7 +149,7 @@ class Enseignant extends Model
              $query->with(['cours_donne' => function($query) use ($maxTac){
                      $query->where('cdn_tac_id', $maxTac);
                  }]);
-         }])->get();
+         }])->where('ens_inactif', 0)->get();
 
         $tempChoix = array();
 
