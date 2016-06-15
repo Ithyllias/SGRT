@@ -35,6 +35,10 @@ class ChoixBillesController extends Controller
         return response()->json($array)->header('Access-Control-Allow-Origin', '*');
     }
 
+    public function getBillesView(Request $request){
+        return view('billes')->with('isTaskClosed', App\Tache::isTaskClosed());
+    }
+
     function submit(Request $request)
     {
         $values = $request->input();

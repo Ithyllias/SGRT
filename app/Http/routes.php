@@ -20,9 +20,7 @@ Route::group(['middleware' => ['header.manager', 'jwt.auth']], function(){
         return view('choix');
     }]);
 
-    Route::get('billes', ['as' => 'billes', function () {
-        return view('billes');
-    }]);
+    Route::get('billes', 'ChoixBillesController@getBillesView');
 });
 
 Route::group(['middleware' => ['header.manager', 'jwt.auth', 'coordonator.manager']], function(){
