@@ -1,5 +1,6 @@
 window.onload = function() {
     ArrayBilles = [];
+    isclosed = false;
 
     for(var i = 0; i < cours.length;i++)
     {
@@ -14,12 +15,14 @@ window.onload = function() {
                 if (cmptEtBilles[ens[j]["ens_alias"]] == null || cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]] == null) {
                     ArrayBilles[i][cmpt].billes = 0;
                     ArrayBilles[i][cmpt].fois = 0;
+                    ArrayBilles[i][cmpt].bid = 0;
                 }
                 else {
                     ArrayBilles[i][cmpt].billes = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].billes;
                     ArrayBilles[i][cmpt].fois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
                     if(cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid != null) {
                         ArrayBilles[i][cmpt].bid = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid;
+                        isclosed = true;
                     }
                 }
                 cmpt++;
@@ -32,7 +35,7 @@ function clickTableau()
 {
     document.getElementById("bC").className = "selected";
     var html = "";
-    html += "<h3>" + ((langue == "EN") ? "This is the Times/Marbles for all teachers." : "Voici les Fois/Billes Pour tout les enseignants.") + "</h3>";
+    html += "<h3>" + ((langue == "EN") ? "This is the Times/Marbles" + ((isclosed) ? "/Bid" : "") + " for all teachers." : "Voici les Fois/Billes" + ((isclosed) ? "/Bid" : "") + " Pour tout les enseignants.") + "</h3>";
     html += "<table id='tabBilles'>";
     html += "<tr> <th onclick=\"clickTableau()\">INFO</th>";
     for(var i = 0; i < ArrayBilles[0].length;i++)
@@ -51,7 +54,7 @@ function clickTableau()
         for(var j = 0; j < ArrayBilles[i].length;j++)
         {
             if(ArrayBilles[i][j].alias != null) {
-                html += "<td><h3>" + ArrayBilles[i][j].fois + "/" + ArrayBilles[i][j].billes + "</h3></td>";
+                html += "<td><h3>" + ArrayBilles[i][j].fois + "/" + ArrayBilles[i][j].billes + ((isclosed) ? "/" + ArrayBilles[i][j].bid : "") + "</h3></td>";
             }
         }
         html += "</tr>";
@@ -157,7 +160,7 @@ function clickCours(cId)
         }
     }
     html += "</table>";
-    if(listBid.length > 0)
+    if(isclosed)
     {
         html += "<h3>" + ((langue == "EN") ? "Bid" : "Bid") + "</h3>";
         html += "<table id='tabBidC'>";
