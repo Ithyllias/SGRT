@@ -145,11 +145,11 @@ class Enseignant extends Model
         $sessions = Session::getSessions();
         $returnValues = array();
         $maxTac = Tache::all()->max('tac_id');
-        $choices = Enseignant::with(['choix' => function ($query) use ($maxTac){
+        $choices = Enseignant::where('ens_inactif', 0)->with(['choix' => function ($query) use ($maxTac){
              $query->with(['cours_donne' => function($query) use ($maxTac){
                      $query->where('cdn_tac_id', $maxTac);
                  }]);
-         }])->where('ens_inactif', 0)->get();
+         }])->get();
 
         $tempChoix = array();
 
