@@ -71,7 +71,7 @@ class ImportController extends Controller
                 }
             };
         } catch(\Exception $e){
-            return redirect()->back()->with('error', 'error.upload');
+            return redirect()->back()->with('error', trans('error.upload'));
         }
 
         if(count($errors) > 0){
@@ -160,7 +160,7 @@ class ImportController extends Controller
 
             };
         } catch(\Exception $e){
-            return redirect()->back()->with('error', 'error.upload');
+            return redirect()->back()->with('error', trans('error.upload'));
         }
 
         if(count($errors) > 0){
@@ -205,7 +205,7 @@ class ImportController extends Controller
 
             };
         } catch(\Exception $e){
-            return redirect()->back()->with('error', 'error.upload');
+            return redirect()->back()->with('error', trans('error.upload'));
         }
 
         if(count($errors) > 0){
