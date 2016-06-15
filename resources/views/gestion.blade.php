@@ -24,6 +24,6 @@
     </div>
 
     <div id="contentGestion">
-        <h3>Bienvenue dans l'onglet de gestion pour coordonnateurs.</h3>
+        <h3><?=trans('gestion.welcome')?></h3>
     </div>
 @endsection

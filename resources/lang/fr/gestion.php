@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'welcome' => 'Bienvenue dans le module de gestion pour coordonnateurs.',
     'util' => 'Enseignants',
     'cours' => 'Cours',
     'import' => 'Importation',

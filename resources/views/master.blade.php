@@ -1,4 +1,3 @@
-@include("init")
 <!doctype html>
 <html>
 <head>

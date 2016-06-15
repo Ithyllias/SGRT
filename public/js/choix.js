@@ -83,7 +83,7 @@ function ClickA() {
         html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
-        html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
+        html += "<h3>" + ((langue == "EN") ? "Please make your courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
         html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
         html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
@@ -123,7 +123,7 @@ function ClickA() {
         if(choixFait.choixFait.A == false){
             html += "<h3>" + ((langue == "EN") ? "The task has been closed and your choices have not been completed." : "La tâche à été fermée et vos choix n\'ont pas été complétés.") + "</h3>";
         } else {
-            html += "<h3>" + ((langue == "EN") ? "Here are the you\'re choices." : "Voici vos choix de cours.") + "</h3>";
+            html += "<h3>" + ((langue == "EN") ? "Here are your choices." : "Voici vos choix de cours.") + "</h3>";
             html += "<table  id=\"tRes\">";
             html += "<tr>";
             html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
@@ -161,7 +161,7 @@ function ClickH() {
         html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
-        html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
+        html += "<h3>" + ((langue == "EN") ? "Please make your courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
         html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
         html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
@@ -201,7 +201,7 @@ function ClickH() {
         if(choixFait.choixFait.H == false){
             html += "<h3>" + ((langue == "EN") ? "The task has been closed and your choices have not been completed." : "La tâche à été fermée et vos choix n\'ont pas été complétés.") + "</h3>";
         } else {
-            html += "<h3>" + ((langue == "EN") ? "Here are the you\'re choices." : "Voici vos choix de cours.") + "</h3>";
+            html += "<h3>" + ((langue == "EN") ? "Here are the your choices." : "Voici vos choix de cours.") + "</h3>";
             html += "<table  id=\"tRes\">";
             html += "<tr>";
             html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
@@ -239,7 +239,7 @@ function ClickE() {
         html += "<div id=\"infoFixe\"><br/><p>" + ((langue == "EN") ? "Please click on a course to see the top 4." : "Veuillez clicker sur un cours pour voir le top 4.") + "</p></div>";
         html += "<form id=\"FormChoix\" name=\"FormChoix\" method=\"post\" action=\"" + RouteSubmit + "\">";
         html += "<input type=\"hidden\" value=\""+ ensId + "\" name=\"ensId\" readonly/>";
-        html += "<h3>" + ((langue == "EN") ? "Please make you\'re courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
+        html += "<h3>" + ((langue == "EN") ? "Please make your courses choice." : "Veuillez faire vos choix de cours.") + "</h3>";
         html += "<table>";
         html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
         html += "<th>" + ((langue == "EN") ? "Max Counter" : "Max Compteur") + "</th>";
@@ -279,7 +279,7 @@ function ClickE() {
         if(choixFait.choixFait.E == false){
             html += "<h3>" + ((langue == "EN") ? "The task has been closed and your choices have not been completed." : "La tâche à été fermée et vos choix n\'ont pas été complétés.") + "</h3>";
         } else {
-            html += "<h3>" + ((langue == "EN") ? "Here are the you\'re choices." : "Voici vos choix de cours.") + "</h3>";
+            html += "<h3>" + ((langue == "EN") ? "Here are the your choices." : "Voici vos choix de cours.") + "</h3>";
             html += "<table  id=\"tRes\">";
             html += "<tr>";
             html += "<th>" + ((langue == "EN") ? "Courses" : "Cours") + "</th>";
