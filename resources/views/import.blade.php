@@ -1,3 +1,4 @@
+@include("init")
 {!! Form::open(array('url' => url('gestion/addNewTask'), 'files' => true, 'enctype'=>'multipart/form-data')) !!}
     <h3><?=trans('gestion.newTask')?></h3> </br>
     {!! Form::file('datafile', array('size'=> 40)) !!}
