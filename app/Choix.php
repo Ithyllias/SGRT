@@ -82,6 +82,7 @@ class Choix extends Model
         $count = array(1=>0,2=>0,3=>0);
         $maxTac = Tache::all()->max('tac_id');
         $tacAnnee = Tache::where('tac_id', $maxTac)->first()->tac_annee;
+        $taskClosed = Tache::isTaskClosed();
 
         $choices = Choix::with(['cours_donne' => function ($query) use ($maxTac) {
             $query->where('cdn_tac_id', $maxTac);
@@ -94,6 +95,7 @@ class Choix extends Model
         }
 
         return [
+            'taskClosed' => $taskClosed,
             'choixFait' => [
                 'A' => $count[1] === self::NB_PRIO,
                 'H' => $count[2] === self::NB_PRIO,
