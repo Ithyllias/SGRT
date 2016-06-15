@@ -1,3 +1,4 @@
+@include("init")
 <?php if(!App\Tache::isTaskClosed()){ ?>
     <h3> <?=trans('gestion.resetChoice')?> </h3>
     {!! Form::open(array('url' => url('gestion/resetChoice'))) !!}
