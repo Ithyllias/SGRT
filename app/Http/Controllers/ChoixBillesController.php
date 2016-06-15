@@ -106,7 +106,7 @@ class ChoixBillesController extends Controller
     }
 
     function test(Request $request){
-        App\Choix::getChoixForEnseignant(1);
+        App\Enseignant::getMissingChoix();
         return "";
     }
 }

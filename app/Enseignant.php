@@ -153,18 +153,27 @@ class Enseignant extends Model
 
         $tempChoix = array();
 
-        foreach($choices as $choix) {
-            if ($choix->choix->count() < Choix::NB_PRIO*Choix::NB_SESSION){
+        foreach($choices as $ens) {
+            $tempCount = 0;
+            foreach($ens->choix as $single){
+                if($single->cours_donne != null) {
+                    $tempCount++;
+                }
+            }
+
+            if ($tempCount < Choix::NB_PRIO*Choix::NB_SESSION){
                 for ($i = 1; $i <= Choix::NB_SESSION; $i++) {
                     $tempChoix[$sessions[$i]] = false;
                 }
 
-                foreach ($choix->choix as $single) {
-                    $tempChoix[$sessions[$single->cours_donne->cdn_ses_id]] = true;
+                foreach ($ens->choix as $single) {
+                    if($single->cours_donne != null) {
+                        $tempChoix[$sessions[$single->cours_donne->cdn_ses_id]] = true;
+                    }
                 }
 
                 array_push($returnValues, [
-                    'ens_alias' => $choix->ens_alias,
+                    'ens_alias' => $ens->ens_alias,
                     'session' => $tempChoix,
                 ]);
             }
