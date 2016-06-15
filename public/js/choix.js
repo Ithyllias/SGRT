@@ -301,7 +301,8 @@ function ClickE() {
 }
 
 function clickCours(cId) {
-    for (var i = 0; i < ArrayBilles.length; i++) {
+    listBilles = [];
+    listFois = [];    for (var i = 0; i < ArrayBilles.length; i++) {
         if (ArrayBilles[i].no == cId) {
             titre = ArrayBilles[i].titre;
             for (var j = 0; j < ArrayBilles[i].length; j++) {
@@ -316,6 +317,7 @@ function clickCours(cId) {
     listBilles.sort(function (a, b) {
         return b.val - a.val;
     });
+
     var html = "";
     html += "<h1>Top 4 " + ((langue == "EN") ? "courses" : "cours") + "</h1>";
     html += "<h3>" + cId + "</h3>";
