@@ -1,6 +1,5 @@
 window.onload = function() {
     ArrayBilles = [];
-    isclosed = false;
 
     for(var i = 0; i < cours.length;i++)
     {
@@ -22,7 +21,6 @@ window.onload = function() {
                     ArrayBilles[i][cmpt].fois = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].compteur;
                     if(cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid != null) {
                         ArrayBilles[i][cmpt].bid = cmptEtBilles[ens[j]["ens_alias"]]["cours"][cours[i]["cou_no"]].bid;
-                        isclosed = true;
                     }
                 }
                 cmpt++;
