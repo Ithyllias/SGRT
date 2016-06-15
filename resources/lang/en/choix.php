@@ -14,5 +14,6 @@ return [
     'A' => 'Fall',
     'H' => 'Winter',
     'E' => 'Summer',
-    'Bienvenu' => 'Welcome to the course selection. Please select a session to begin.'
+    'Bienvenu' => 'Welcome to the course selection. Please select a session to begin.',
+    'taskClosed' => ''
 ];
