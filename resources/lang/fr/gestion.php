@@ -6,7 +6,7 @@ return [
     'cours' => 'Cours',
     'import' => 'Importation',
     'newTask' => 'Nouvelle tâche',
-    'completedTask' => 'Tâche complétée',
+    'completedTask' => 'Tâche réelle',
     'initMarbles' => 'Billes de départ',
     'send' => 'Envoyer',
     'importSuccess' => 'L\'import à été effectué avec succès.',
