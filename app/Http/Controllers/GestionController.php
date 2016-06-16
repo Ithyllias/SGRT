@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 
 use App;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class GestionController extends Controller
 {
     public function addCours(Request $request){
+        var_dump($request->input());
         $values = $request->input('values');
         $cours = [];
 

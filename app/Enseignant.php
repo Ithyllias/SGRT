@@ -123,7 +123,7 @@ class Enseignant extends Model
                 array_push($uniqueAlias, $element['ens_login']);
                 $ens->ens_alias = $element['ens_alias'];
                 $ens->ens_inactif = $element['ens_inactif'];
-                $ens->ens_commentaire = $element['ens_commentaire'];
+                $ens->ens_commentaire = $element['ens_commentaire'] == null ? '' : $element['ens_commentaire'];
                 $ens->ens_coordonateur = $element['ens_coordonateur'];
                 $allEns->add($ens);
             }

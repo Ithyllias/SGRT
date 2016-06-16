@@ -119,7 +119,7 @@ class ImportController extends Controller
                 }
 
                 $sessId = App\Session::getSessionIdFromAlias($session);
-                
+
                 if ($taskId == -1) {
                     array_push($errors, trans('error.taskCreation', ['name' => $row['session']]));
                 } elseif ($sessId == -1) {
@@ -136,7 +136,7 @@ class ImportController extends Controller
                         array_push($errors, trans('error.noTeacher', ['name'=> $prof]));
                     }
                 }
-                
+
                 if (count($errors) > 0) {
                     continue;
                 }

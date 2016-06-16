@@ -72,7 +72,7 @@ class Cours extends Model
                         $cours = Cours::create([
                             'cou_no' => $element['cou_no'],
                             'cou_titre' => $element['cou_titre'],
-                            'cou_commentaire' => $element['cou_commentaire'],
+                            'cou_commentaire' => $element['cou_commentaire'] == null ? '' : $element['cou_commentaire'],
                             'cou_compteur_max' => $element['cou_compteur_max'],
                         ]);
                     }
